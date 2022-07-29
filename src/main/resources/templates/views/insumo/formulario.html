@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insumo</title>
+    <link rel="stylesheet" href="../../assets/css/insumo.css">
+</head>
+<body>
+    <section>
+        <article>
+            <h1>Insumo</h1>
+            <form action="" method="post">
+                <!-- nombre -->
+                <!-- ******************* -->
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <br>
+                </div>
+                <!-- Descripción del Tipo-->
+                <!-- ******************* -->
+                <div>
+                    <label for="nombre">Descripción del Insumo:</label><br>
+                    <textarea name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                    <br>
+                </div>
+                <!-- Tipo -->
+                <!-- ******************* -->
+                <div>
+                    <label for="tipo">Tipo:</label>
+                    <select name="tipo" id="tipo">
+                        <option value="1">Color azul</option>
+                        <option value="2">Tamaño grande</option>
+                    </select>
+                    <br>
+                </div>
+                <!-- agregar Tipo -->
+                <!-- ******************* -->
+                <div>
+                    <a href="#agregarTipo">Agregar Tipo</a>
+                    <br>
+                </div>
+                <!-- material -->
+                <!-- ******************* -->
+                <div>
+                    <label for="material">Material del insumo:</label>
+                    <input type="text" id="material" name="material" placeholder="material">
+                    <br>
+                </div>
+                <!-- Fotografia -->
+                <!-- ******************* -->
+                <div>
+                    <label for="archivo">Fotografia:</label>
+                    <input type="file" name="foto">
+                </div>
+                <!-- Estado -->
+                <!-- ******************* -->
+                <div>
+                    <label for="estado">Estado:</label>
+                    <fieldset id="estado">
+                        <label for="activo">Activo</label>
+                        <input type="radio" name="activo" id="activo" value="1">
+                        <label for="activo">Inactivo</label>
+                        <input type="radio" name="activo" id="activo" value="0">
+                    </fieldset>
+                    <br>
+                </div>
+                
+
+                <button type="submit">Enviar</button>
+
+            </form>
+            <!-- ******************************************************* -->
+            <!-- ---------------Modal de agregar Tipo ----------------- -->
+            <!-- ******************************************************* -->
+            <div id="agregarTipo" class="modal">
+                <div class="modal-contenido">
+                    <a href="#">X</a>
+                    <h2>Agregar Tipo</h2>
+                    <form action="" method="post">
+                        <!-- nombre -->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="nombre">Nombre del Tipo</label>
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <br>
+                        </div>
+                        <!-- Descripción del Tipo-->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="nombre">Descripción del Tipo</label>
+                            <textarea name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                            <br>
+                        </div>
+                        <!-- Estado -->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="estado">Estado:</label>
+                            <fieldset id="estado">
+                                <label for="activo">Activo</label>
+                                <input type="radio" name="activo" id="activo" value="1">
+                                <label for="activo">Inactivo</label>
+                                <input type="radio" name="activo" id="activo" value="0">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <button type="submit">Enviar</button>
+
+                    </form>
+                </div>  
+            </div>
+        </article>
+    </section>
+</body>
+</html>

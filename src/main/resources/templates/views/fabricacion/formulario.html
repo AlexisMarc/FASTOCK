@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignación Empresa</title>
+    <link rel="stylesheet" href="../../assets/css/fabricacion2.css">
+    <script src="../../assets/js/fabricacion.js"></script>
+</head>
+<body>
+    <section>
+        <article>
+            <h1>Fabricación</h1>
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'paso1')" id="boton1">Prenda</button>
+                <button class="tablinks" onclick="openTab(event, 'paso2')" id="boton2">Fabricación</button>
+                <button class="tablinks" onclick="openTab(event, 'paso3')" id="boton3">Asignación</button>
+                <button class="tablinks" onclick="openTab(event, 'paso4')" id="boton4">Insumo</button>
+            </div>
+            <form action="" method="post">
+                <div id="paso1" class="tabcontent">
+                    <h3>Prenda</h3>
+                    <div>
+                        <label for="" class="nom">Nombre de la prenda:</label><br>
+                        <input type="text" placeholder="Nombre"><br> 
+                    </div>
+                    <div>
+                        <label for="descripcion" class="desc">Descripción de la prenda:</label><br>
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <button>Átras</button>
+                        <button>Siguiente</button>
+                    </div>
+                </div>
+                
+                <div id="paso2" class="tabcontent">
+                    <h3>Fabricación</h3>
+                    <div>
+                        <label for="area">Áreas:</label><br>
+                        <div>
+                            <div>
+                                <label for="diseño">Diseño</label>
+                                <input type="checkbox" name="diseño" id="diseño"><br>
+                            </div>
+                            <div>
+                                <label for="corte">Corte</label>
+                                <input type="checkbox" name="corte" id="corte"><br>
+                            </div>
+                            <div>
+                                <label for="confeccion">Confección</label>
+                                <input type="checkbox" name="confeccion" id="confeccion"><br>
+                            </div>
+                            <div>
+                                <label for="tintura">Tintura</label>
+                                <input type="checkbox" name="tintura" id="tintura"><br>
+                            </div>
+                            <div>
+                                <label for="empaquetado">Empaquetado</label>
+                                <input type="checkbox" name="empaquetado" id="empaquetado"><br>
+                            </div>
+                            <div>
+                                <label for="control">Control de calidad</label>
+                                <input type="checkbox" name="control" id="control"><br>
+                            </div>
+                            <div>
+                                <label for="otro">Otros</label>
+                                <input type="checkbox" name="otro" id="otro"><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="paso3" class="tabcontent">
+                    <h3>Asignación</h3>
+                    <div>
+                        <label for="so">Diseño:</label> <br/>
+                        <select id="so" name="so">
+                            <option value="" selected="selected">Jefe de área</option>
+                            <option value="windows">Pablo</option>
+                            <option value="mac">Maria</option>
+                            <option value="linux">Ever</option>
+                            <option value="otro">Zaramay</option>
+                        </select> <br> <br>
+                    </div>
+                    <div>
+                        <label for="so">Empaquetado:</label> <br/>
+                        <select id="so" name="so">
+                            <option value="" selected="selected">Jefe de área</option>
+                            <option value="">Pablo</option>
+                            <option value="">Maria</option>
+                            <option value="">Ever</option>
+                            <option value="">Zaramay</option>
+                        </select><br>
+                    </div>
+                </div>
+
+                <div id="paso4" class="tabcontent">
+                    <h3>Insumo</h3>
+                    <label for="tela">Tela:</label> <br/>
+                    <select id="tela" name="tela">
+                        <option value="" selected="selected">Tipo de tela</option>
+                        <option value="">Pablo</option>
+                        <option value="">Maria</option>
+                        <option value="">Ever</option>
+                        <option value="">Zaramay</option>
+                    </select> <br> 
+                    <label for="boton">Boton:</label> <br/>
+                    <select id="boton" name="boton">
+                        <option value="0" selected="selected">Tipo de boton</option>
+                        <option value="1">Pablo</option>
+                        <option value="2">Maria</option>
+                        <option value="3">Ever</option>
+                        <option value="4">Zaramay</option>
+                    </select>
+                    <br>
+                </div>
+            </form>
+            
+        </article>
+    </section>
+</body>
+<script>
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("boton1").click();
+</script>
+</html>

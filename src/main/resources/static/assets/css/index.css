@@ -1,0 +1,137 @@
+body{
+    margin: 3%;
+    background-color: #D3D0CF;
+}
+
+header{
+    width: 65%;
+    float: right;
+    text-align: right;
+}
+aside{
+    width: 35%;
+    float: left;
+    background-color: #f0ecec;
+    height: 100vh;
+    margin-top: -6%;
+    margin-left: -3.5%;
+    text-align: center;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+}
+nav{
+    margin-top: 2%;
+    width: 65%;
+    float: right;
+    background-color: #f0ecec;
+    height: 27px;
+    text-align:left;
+    border-radius: 8px;
+    padding: 10px;
+}
+section{
+    margin-top: 2%;
+    width: 67%;
+    float: right;
+    background-color: #f0ecec;
+    border-radius: 10px;
+    height: 56vh;
+}
+article{
+    margin: 2%;
+    text-align: center;
+    background-color: #D3D0CF;
+    border-radius: 10px;
+    height: 45vh;
+    padding: 2%;
+}
+footer{
+    margin-top: 2%;
+    width: 67%;
+    float: right;
+    background-color: #f0ecec;
+    border-radius: 10px;
+    text-align: center;
+    height: 10vh;
+}
+
+.nav-link{
+    color: #ffffff;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+
+.nav-link--inside{
+    border-radius: 6px ;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.nav-link--inside:hover{
+    background: #2b7dcf;
+    border-radius: 20px;
+}
+
+.list{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background: #fff;
+}
+
+.list-item{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.list-item--click{
+    cursor: pointer;
+}
+
+.list-button{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    width: 70%;
+    margin: 0 auto;
+    background-color: red;
+    padding: 5px;
+    border-radius: 25px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.arrow .list-arrow{
+    transform: rotate(90deg);
+}
+
+.list-arrow{
+    margin-left: auto;
+    transition: transform .3s;
+    width: 10%;
+}
+
+.list-show{
+    height: 0;
+    margin-left: 20%;
+    border-left: 2px solid #303440;
+    list-style: none;
+    transition: height .4s;
+}
+.list-inside {
+    width: 90%;
+    background-color: #2b7dcfcb;;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    
+}
+.list-img{
+    width: 10%;
+    margin-left: 20px;
+}

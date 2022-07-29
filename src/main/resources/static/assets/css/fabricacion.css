@@ -1,0 +1,144 @@
+/* ******************************************************************* */
+/*---------------------------- secciones------------------------------ */
+/* ******************************************************************* */
+
+body{
+    margin: 3%;
+    background-color: #D3D0CF;
+}
+section{
+    margin-top: 2%;
+    width: 67%;
+    float: right;
+    background-color: #f0ecec;
+    border-radius: 10px;
+    height: 70vh;
+}
+article{
+    margin: 2%;
+    text-align: center;
+    background-color: #D3D0CF;
+    border-radius: 10px;
+    height: 58vh;
+    padding: 2%;
+}
+/* ******************************************************************* */
+/* ------------------------formulario fabricación-------------------------------- */
+/* ******************************************************************* */
+
+
+.formulario{
+    display: flex;
+    padding-left: 5%;
+    margin-top: -5%;
+}
+
+.caja1{
+    float: left;
+    text-align: left;
+    margin-left: 85px;
+    margin-right: 45px;
+}
+
+.caja2{
+    float: left;
+    text-align: left;
+   
+}
+
+.caja3{
+    float: right;
+    text-align: left;
+    margin-left: 45px;
+}
+.area{
+    text-align: left;
+    margin-top: 40px;
+}
+h1{
+    margin-top: -1%;
+}
+button{
+    float: right;
+    margin-right: 30px;
+    margin-top: 4%;
+    background-color: #cb3234;
+    color: white;
+}
+.atras{
+    width: 70px;
+    float: left;
+    margin-left: 30px;
+    background-color:#252850;
+    color: white;
+}
+
+.siguiente{
+    
+    background-color: #cb3234;
+    color: #fff;
+    margin-top: 25%;
+   
+}
+.atrasxd{
+    width: 70px;
+    background-color:#252850;
+    color: white;
+    margin-top: 25%;
+    
+}
+.atrasx{
+    width: 70px;
+    background-color:#252850;
+    color: white;
+    margin-top: 40%;
+    
+}
+
+/* ******************************************************************* */
+/* ------------------------formulario registrar prenda-------------------------------- */
+/* ******************************************************************* */
+
+.formulario1{
+    display: flex;
+    padding-left: 5%;
+    margin-top: 2%;
+}
+
+input{
+    border-radius: 8px;
+}
+.nom{
+    float: left;
+}
+.desc{
+    float: left; 
+    
+}
+.b1{
+    margin-top: -2%;
+}
+
+/* ******************************************************************* */
+/* -----------------formulario asignación yeilux---------------------- */
+/* ******************************************************************* */
+
+.desplegable1{
+    float: left;
+    margin-top: 5%;
+    margin-left:  8%;
+    text-align: left;
+    width: 25%;
+}
+
+.desplegable2{
+    float: right;
+    margin-top: 5%;
+    margin-right:  20%;
+    text-align: left;
+    width: 28%;
+}
+
+select{
+    width: 130%;
+}
