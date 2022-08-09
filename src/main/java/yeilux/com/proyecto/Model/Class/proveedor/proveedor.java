@@ -13,7 +13,6 @@ public class proveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
 // ************************************************//
 // -------------Relacion con insumo----------------//
 // ************************************************//

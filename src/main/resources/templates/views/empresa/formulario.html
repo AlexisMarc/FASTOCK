@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empresa</title>
-    <link rel="stylesheet" href="../../assets/css/empresa.css">
+    <link rel="stylesheet" th:href="@{/assets/css/empresa.css}">
 </head>
 <body>
     <section>
@@ -31,10 +31,11 @@
                 <!-- ******************* -->
                 <div>
                     <label for="especialidad">Especialidad:</label>
-                    <select name="especialidad" id="especialidad">
-                        <option value="1">Lavado</option>
-                        <option value="2">Salelite</option>
-                        <option value="3">Tintura</option>
+                    <select th:field="*{especialidades}" name="especialidad" id="especialidad">
+                        <option value="0">Seleccione la Especialidad </option>
+                        <th:block th:each="especialidad : ${especialidades}">
+                            <option th:text="${especialidad.nombre}" th:value="${especialidad.id}"></option>
+                        </th:block>
                     </select>
                     <br>
                 </div>
@@ -94,19 +95,21 @@
                 <div class="modal-contenido">
                     <a href="#">X</a>
                     <h2>Agregar especialidad</h2>
-                    <form action="" method="post">
+                    <form th:action="@{/especialidad/add}" method="post" th:object="${especialidad}">
                         <!-- nombre -->
                         <!-- ******************* -->
                         <div>
                             <label for="nombre">Nombre del especialidad</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <input th:field="*{nombre}"type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                             <br>
                         </div>
                         <!-- Descripción del especialidad-->
                         <!-- ******************* -->
                         <div>
-                            <label for="nombre">Descripción del especialidad</label>
-                            <input type="text" name="descripcion" id="descripcion" placeholder="Descripción">
+                            <label for="descripcion">Descripción del especialidad</label>
+                            <input th:field="*{descripcion}" type="text" name="descripcion" id="descripcion" placeholder="Descripción">
+                            <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                             <br>
                         </div>
                         <!-- Estado -->
