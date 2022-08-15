@@ -1,5 +1,6 @@
 package yeilux.com.proyecto.Model.Class.empleado;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -40,6 +41,7 @@ private List<empleado> empleado;
 // ************************************************//
 
 public cargo() {
+    empleado=new ArrayList<empleado>();
 }
 
 public cargo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,

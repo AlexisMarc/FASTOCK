@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleado</title>
+    <link rel="stylesheet" th:href="@{/assets/css/empleado.css}">
+</head>
+<body>
+    <section>
+        <article>
+            <table>
+                <thead>
+                <th>id</th>
+                <th>identificacion</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Genero</th>
+                <th>Fecha Nacimiento</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Estado</th>
+            </thead>
+            <tbody>
+                <tr th:if="${empleado.size()>0}" th:each="e : ${empleado}">
+                    <td th:text="${e.id}"></td>
+                    <td th:text="${e.identificacion}"></td>
+                    <td th:text="${e.nombre}"></td>
+                    <td th:text="${e.apellido}"></td>
+                    <td th:text="${e.cargo.nombre}"></td>
+                    <td th:text="${e.genero}"></td>
+                    <td th:text="${e.fecha}"></td>
+                    <td th:text="${e.direccion}"></td>
+                    <td th:text="${e.telefono}"></td>
+                    <td th:text="${e.email}"></td>
+                    <td th:if="${e.estado==true}">
+                        <span>Activo</span>
+                    </td>
+                    <td th:if="${e.estado==false}">
+                        <span>Inactivo</span>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </article>
+    </section>
+</body>
+</html>
