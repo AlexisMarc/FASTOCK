@@ -1,5 +1,6 @@
 package yeilux.com.proyecto.Model.Class.producto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -73,6 +74,7 @@ public class categoria {
     }
 
     public categoria() {
+        producto=new ArrayList<producto>();
     }
 
     public categoria(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
