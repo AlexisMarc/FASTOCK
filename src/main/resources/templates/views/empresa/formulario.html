@@ -11,27 +11,27 @@
     <section>
         <article>
             <h1>Empresa</h1>
-            <form action="" method="post">
+            <form th:action="@{/empresa/add}" method="post" th:object="${empresa}">
                 
                 <!-- nombre -->
                 <!-- ******************* -->
                 <div>
                     <label for="nombre">Nombre de la empresa:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
                     <br>
                 </div>
                 <!-- nombre de contacto -->
                 <!-- ******************* -->
                 <div>
                     <label for="contacto">Nombre de contacto:</label>
-                    <input type="text" id="contacto" name="contacto" placeholder="Nombre de contacto">
+                    <input th:field="*{contacto}" type="text" id="contacto" name="contacto" placeholder="Nombre de contacto">
                     <br>
                 </div>
                 <!-- especialidad -->
                 <!-- ******************* -->
                 <div>
                     <label for="especialidad">Especialidad:</label>
-                    <select th:field="*{especialidades}" name="especialidad" id="especialidad">
+                    <select th:field="*{especialidad}" name="especialidad" id="especialidad">
                         <option value="0">Seleccione la Especialidad </option>
                         <th:block th:each="especialidad : ${especialidades}">
                             <option th:text="${especialidad.nombre}" th:value="${especialidad.id}"></option>
@@ -49,21 +49,21 @@
                 <!-- ******************* -->
                 <div>
                     <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="Dirección">
+                    <input th:field="*{direccion}" type="text" id="direccion" name="direccion" placeholder="Dirección">
                     <br>
                 </div>
                 <!-- email -->
                 <!-- ******************* -->
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email">
+                    <input th:field="*{email}" type="email" name="email" id="email">
                     <br>
                 </div>
                 <!-- telefono -->
                 <!-- ******************* -->
                 <div>
                     <label for="telefono">Telefono:</label>
-                    <input type="number" id="telefono" name="telefono" placeholder="Telefono">
+                    <input th:field="*{telefono}" type="number" id="telefono" name="telefono" >
                     <br>
                 </div>
                 <!-- Fotografia -->
@@ -75,12 +75,12 @@
                 <!-- Estado -->
                 <!-- ******************* -->
                 <div>
-                    <label for="estado">Estado:</label>
-                    <fieldset id="estado">
+                    <label for="estados">Estado:</label>
+                    <fieldset id="estados">
                         <label for="activo">Activo</label>
-                        <input type="radio" name="activo" id="activo" value="1">
-                        <label for="activo">Inactivo</label>
-                        <input type="radio" name="activo" id="activo" value="0">
+                        <input th:field="*{estado}" type="radio" name="estado" id="activo" value="1">
+                        <label for="inactivo">Inactivo</label>
+                        <input th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0">
                     </fieldset>
                 </div>
                 <br>

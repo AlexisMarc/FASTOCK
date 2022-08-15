@@ -1,5 +1,6 @@
 package yeilux.com.proyecto.Model.Class.empresa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -60,6 +61,7 @@ public void setEmpresa(List<empresa> empresa) {
     this.empresa = empresa;
 }
 public especialidad() {
+    empresa= new ArrayList<empresa>();
 }
 public especialidad(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
         @NotEmpty @Size(min = 0, max = 200) String descripcion,

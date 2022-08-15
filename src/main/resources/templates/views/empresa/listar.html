@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa</title>
+    <link rel="stylesheet" th:href="@{/assets/css/empresa.css}">
+</head>
+<body>
+    <section>
+        <article>
+            <thead>
+            <table>
+                <th>id</th>
+                <th>Especialidad</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Telefono</th>
+                <th>Dirección</th>
+                <th>Email</th>
+                <th>Estado</th>
+            </thead>
+            <tbody>
+                <tr th:if="${empresa.size()>0}" th:each="e : ${empleado}">
+                    <td th:text="$e.id"></td>
+                    <td th:text="$e.especialidad.nombre"></td>
+                    <td th:text="$e.nombre"></td>
+                    <td th:text="$e.contacto"></td>
+                    <td th:text="$e.telefono"></td>
+                    <td th:text="$e.direccion"></td>
+                    <td th:text="$e.email"></td>
+                    <td th:if="${e.estado==true}">
+                        <span>activo</span>
+                    </td>
+                    <td th:if="${e.estado==true}">
+                        <span>inactivo</span>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </article>
+    </section>
+</body>
+</html>
