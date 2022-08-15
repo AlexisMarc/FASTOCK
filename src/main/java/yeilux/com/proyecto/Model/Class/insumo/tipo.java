@@ -1,5 +1,6 @@
 package yeilux.com.proyecto.Model.Class.insumo;
 
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -62,6 +63,7 @@ public void setInsumo(List<insumo> insumo) {
 }
 // -------------CONSTRUCTORES----------------//
 public tipo(){
+    insumo=new ArrayList<insumo>();
 }
 public tipo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
         @NotEmpty @Size(min = 0, max = 200) String descripcion,

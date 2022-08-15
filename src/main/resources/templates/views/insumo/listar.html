@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insumo Listar</title>
+    <link rel="stylesheet" th:href="@{/assets/css/insumo.css}">
+</head>
+<body>
+    <section>
+        <article>
+            <table>
+                <thead>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Tipo insumo</th>
+                <th>Material</th>
+                <th>Estado</th>
+            </thead>
+            <tbody>
+                <tr th:if="${insumo.size()>0}" th:each = "i : ${insumo}">
+                    <td th: text="${i.id}"></td>
+                    <td th: text="${i.nombre}"></td>
+                    <td th: text="${i.descripcion}"></td>
+                    <td th: text="${i.tipo.nombre}"></td>
+                    <td th: text="${i.material}"></td>
+                    <td th:if="${i.estado==true}">
+                        <span>Activo</span>
+                    </td>
+                    <td th:if="${i.estado==false}">
+                        <span>Inactivo</span>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </article>
+    </section>
+</body>
+</html>

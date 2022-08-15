@@ -11,26 +11,26 @@
     <section>
         <article>
             <h1>Insumo</h1>
-            <form action="" method="post">
+            <form th:action="@{/insumo/add}" method="post" th:object="${insumo}">
                 <!-- nombre -->
                 <!-- ******************* -->
                 <div>
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
                     <br>
                 </div>
                 <!-- Descripción del Tipo-->
                 <!-- ******************* -->
                 <div>
                     <label for="nombre">Descripción del Insumo:</label><br>
-                    <textarea name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                    <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
                     <br>
                 </div>
                 <!-- Tipo -->
                 <!-- ******************* -->
                 <div>
                     <label for="tipo">Tipo:</label>
-                    <select th:field="*{tipos}" name="tipo" id="tipo">
+                    <select th:field="*{tipo}" name="tipo" id="tipo">
                         <option value="0">Selecciones el tipo...</option>
                         <th:block th:each="tipo : ${tipos}">
                             <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
@@ -48,7 +48,7 @@
                 <!-- ******************* -->
                 <div>
                     <label for="material">Material del insumo:</label>
-                    <input type="text" id="material" name="material" placeholder="material">
+                    <input th:field="*{material}" type="text" id="material" name="material" placeholder="material">
                     <br>
                 </div>
                 <!-- Fotografia -->
@@ -60,12 +60,12 @@
                 <!-- Estado -->
                 <!-- ******************* -->
                 <div>
-                    <label for="estado">Estado:</label>
-                    <fieldset id="estado">
+                    <label for="estados">Estado:</label>
+                    <fieldset id="estados">
                         <label for="activo">Activo</label>
-                        <input type="radio" name="activo" id="activo" value="1">
-                        <label for="activo">Inactivo</label>
-                        <input type="radio" name="activo" id="activo" value="0">
+                        <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
+                        <label for="inactivo">Inactivo</label>
+                        <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
                     </fieldset>
                     <br>
                 </div>
@@ -101,12 +101,12 @@
                         <!-- Estado -->
                         <!-- ******************* -->
                         <div>
-                            <label for="estado">Estado:</label>
-                            <fieldset id="estado">
+                            <label for="estados">Estado:</label>
+                            <fieldset id="estados">
                                 <label for="activo">Activo</label>
-                                <input type="radio" name="activo" id="activo" value="1">
-                                <label for="activo">Inactivo</label>
-                                <input type="radio" name="activo" id="activo" value="0">
+                                <input type="radio" name="estado" id="activo" value="1">
+                                <label for="inactivo">Inactivo</label>
+                                <input type="radio" name="estado" id="inactivo" value="0">
                             </fieldset>
                             <br>
                         </div>
