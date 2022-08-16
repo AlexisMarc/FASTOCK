@@ -15,17 +15,15 @@
                 <th>id</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
-                <th>Tipo insumo</th>
                 <th>Material</th>
                 <th>Estado</th>
             </thead>
             <tbody>
-                <tr th:if="${insumo.size()>0}" th:each = "i : ${insumo}">
-                    <td th: text="${i.id}"></td>
-                    <td th: text="${i.nombre}"></td>
-                    <td th: text="${i.descripcion}"></td>
-                    <td th: text="${i.tipo.nombre}"></td>
-                    <td th: text="${i.material}"></td>
+                <tr th:if="${insumos.size()>0}" th:each="i : ${insumos}">
+                    <td th:text="${i.id}"></td>
+                    <td th:text="${i.nombre}"></td>
+                    <td th:text="${i.descripcion}"></td>
+                    <td th:text="${i.material}"></td>
                     <td th:if="${i.estado==true}">
                         <span>Activo</span>
                     </td>

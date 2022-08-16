@@ -59,11 +59,14 @@ public String formulario(Model m){
 public String add(@Valid insumo insumo, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("insumo", insumo);
+        m.addAttribute("tipos", itipo.listar());
+        tipo tipo= new tipo();
+        m.addAttribute("tipo", tipo);
         return "views/insumo/formulario";
     }
     iinsumo.guardar(insumo);
     status.setComplete();
-    return"redirect:listar";
+    return"redirect:";
 }
 }
 

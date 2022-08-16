@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,13 +25,13 @@ public class TipoController {
 // ************************************************//
 
 // -------------LISTAR----------------//
-@GetMapping(path = {"/listar", "", "/"})
+/*@GetMapping(path = {"/listar", "", "/"})
 public String listar(Model m){
     m.addAttribute("tipos", itipo.listar());
     tipo tipo= new tipo();
     m.addAttribute("tipo", tipo);
     return "views/insumo/formulario";
-}
+}*/
 // ************************************************//
 // -------------MÉTODO POST----------------//
 // ************************************************//
@@ -47,6 +46,6 @@ public String add(@Valid tipo tipo, BindingResult respuesta, Model m, SessionSta
     }
     itipo.guardar(tipo);
     status.setComplete();
-    return"redirect:listar";
+    return"redirect:../insumo/formulario";
 }
 }
