@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -24,13 +23,13 @@ public class EspecialidadController {
 // -------------METODO GET---------------//
 // ************************************************//
 // ------------LISTAR------------//
-@GetMapping(path = {"/listar", "", "/"})
-public String listar(Model m){
-    m.addAttribute("especialidades", iespecialidad.listar());
-    especialidad especialidad =new especialidad();
-    m.addAttribute("especialidad", especialidad);
-    return "views/empresa/formulario";
-}
+// @GetMapping(path = {"/listar", "", "/"})
+// public String listar(Model m){
+//     m.addAttribute("especialidades", iespecialidad.listar());
+//     especialidad especialidad =new especialidad();
+//     m.addAttribute("especialidad", especialidad);
+//     return "views/empresa/formulario";
+// }
 // ************************************************//
 // -------------METODO POST---------------//
 // ************************************************//
@@ -43,6 +42,6 @@ public String add(@Valid especialidad especialidad, BindingResult respuesta, Mod
     }
     iespecialidad.guardar(especialidad);
     status.setComplete();
-    return "redirect:listar";
+    return "redirect:../empresa/formulario";
     }
 }

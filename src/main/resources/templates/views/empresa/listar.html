@@ -22,14 +22,14 @@
                 <th>Estado</th>
             </thead>
             <tbody>
-                <tr th:if="${empresa.size()>0}" th:each="e : ${empleado}">
-                    <td th:text="$e.id"></td>
-                    <td th:text="$e.especialidad.nombre"></td>
-                    <td th:text="$e.nombre"></td>
-                    <td th:text="$e.contacto"></td>
-                    <td th:text="$e.telefono"></td>
-                    <td th:text="$e.direccion"></td>
-                    <td th:text="$e.email"></td>
+                <tr th:if="${empresas.size()>0}" th:each="e : ${empresas}">
+                    <td th:text="${e.id}"></td>
+                    <td th:text="${e.especialidad.nombre}"></td>
+                    <td th:text="${e.nombre}"></td>
+                    <td th:text="${e.contacto}"></td>
+                    <td th:text="${e.telefono}"></td>
+                    <td th:text="${e.direccion}"></td>
+                    <td th:text="${e.email}"></td>
                     <td th:if="${e.estado==true}">
                         <span>activo</span>
                     </td>

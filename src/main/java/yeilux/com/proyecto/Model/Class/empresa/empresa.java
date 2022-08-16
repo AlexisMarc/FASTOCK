@@ -27,8 +27,6 @@ public class empresa {
     @Size(min = 2, max = 60)
     private String contacto;
 // ----------------------- TELEFONO-----------------------//
-    @NotEmpty
-    @Size(min =6 , max = 10)
     private Integer telefono;
 // -----------------------DIRECCION-----------------------//
     @NotEmpty
@@ -114,7 +112,7 @@ public class empresa {
     public empresa() {
     }
     public empresa(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String contacto, @NotEmpty @Size(min = 6, max = 10) Integer telefono,
+            @NotEmpty @Size(min = 2, max = 60) String contacto, Integer telefono,
             @NotEmpty @Size(min = 2, max = 60) String direccion,
             @NotEmpty @Email @Size(min = 6, max = 200) String email, Boolean estado,
             yeilux.com.proyecto.Model.Class.empresa.especialidad especialidad,

@@ -52,6 +52,9 @@ public String formulario(Model m){
 public String add(@Valid empresa empresa, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("empresas", empresa);
+        m.addAttribute("especialidades", iespecialidad.listar());
+        especialidad especialidad =new especialidad();
+        m.addAttribute("especialidad", especialidad);
     return "views/empresa/formulario";
     }
     iempresa.guardar(empresa);
