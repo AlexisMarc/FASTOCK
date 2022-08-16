@@ -21,11 +21,11 @@
                     <th>Id Categoría</th>
                 </thead>
                 <tbody>
-                    <tr th:if="${producto.size()>0}" th:each="p : ${producto}">
+                    <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
                         <td th:text="${p.id}"></td>
                         <td th:text="${p.nombre}"></td>
                         <td th:text="${p.descripcion}"></td>
-                        <td th:text="${p.categoria.nombre}"></td>
+                        <!-- <td th:text="${p.categoria.nombre}"></td> -->
                         <td th:if="${p.estado==true}">
                             <span>Activo</span>
                         </td>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import jakarta.validation.Valid;
 import yeilux.com.proyecto.Model.Class.producto.categoria;
 import yeilux.com.proyecto.Service.producto.IServiceCategoria;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -34,13 +34,13 @@ private IServiceCategoria icategoria;
 
     // -------------Listar--------------//
      
-    @GetMapping(path={"/listar","","/"} )
-    public String listar(Model m) {
-        m.addAttribute("categorias", icategoria.listar());
-        categoria categoria = new categoria();
-        m.addAttribute("categoria", categoria);
-        return"views/producto/formulario";
-    }
+    // @GetMapping(path={"/listar","","/"} )
+    // public String listar(Model m) {
+    //     m.addAttribute("categorias", icategoria.listar());
+    //     categoria categoria = new categoria();
+    //     m.addAttribute("categoria", categoria);
+    //     return"views/producto/formulario";
+    // }
 
      // ************************************************//
     // -------------Metodo POST--------------//
@@ -56,7 +56,7 @@ private IServiceCategoria icategoria;
         }
         icategoria.guardar(categoria);
         status.setComplete();
-        return"redirect:listar";
+        return"redirect:../producto/formulario";
     }
     
 

@@ -69,7 +69,7 @@ public class ProductoController {
         }
         iproducto.guardar(producto);
         status.setComplete();
-        return "redirect:listar";
+        return "redirect:";
     }
 
 }
