@@ -60,6 +60,9 @@ public String formulario(Model m){
 public String add(@Valid empleado empleado, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("empleado", empleado);
+        m.addAttribute("cargos", icargo.listar());
+        cargo cargo=new cargo();
+        m.addAttribute("cargo", cargo);
         return "views/empleado/formulario";
     }
     iempleado.guardar(empleado);

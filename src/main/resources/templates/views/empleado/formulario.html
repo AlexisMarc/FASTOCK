@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleado</title>
     <link rel="stylesheet" th:href="@{/assets/css/empleado.css}">
+    
 </head>
 <body>
     <section>
@@ -38,9 +39,9 @@
                 <div>
                     <label for="genero">Genero:</label>
                     <select th:field="*{genero}" name="genero" id="genero">
-                        <option value="F">Femenino</option>
-                        <option value="M">Masculino</option>
-                        <option value="N">No informa</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="No informa">No informa</option>
                     </select>
                     <br>
                 </div>

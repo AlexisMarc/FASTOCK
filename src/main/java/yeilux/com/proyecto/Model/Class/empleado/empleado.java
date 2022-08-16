@@ -22,8 +22,7 @@ public class empleado {
     private Integer id;
 
 // -----------------------Idenficacion-----------------------//
-    @NotEmpty
-    @Size (min = 6, max = 11)
+    
     private Integer identificacion;
 // -----------------------Nombre-----------------------//
     @NotEmpty
@@ -57,8 +56,7 @@ public class empleado {
     private String direccion;  
 
 // -----------------------Telefono-----------------------//
-    @NotEmpty
-    @Size (min = 6, max = 10)
+    
     private Integer telefono;
 
 // -----------------------Email-----------------------//
@@ -69,9 +67,9 @@ public class empleado {
     @Size (min = 1, max = 200)
     private String email; 
 
-// -----------------------ID-----------------------//
+// -----------------------Estado-----------------------//
     @Column(nullable = true)
-    private Integer estado;
+    private Boolean estado;
 
 // ************************************************//
 // -------------Relacion con cargo-----------------//
@@ -163,10 +161,10 @@ public class empleado {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Integer getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
-    public void setEstado(Integer estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
     public cargo getCargo() {
@@ -209,11 +207,11 @@ public class empleado {
     public empleado() {
     }
 
-    public empleado(Integer id, @NotEmpty @Size(min = 6, max = 11) Integer identificacion,
+    public empleado(Integer id, Integer identificacion,
             @NotEmpty @Size(min = 2, max = 60) String nombre, @NotEmpty @Size(min = 2, max = 60) String apellido,
             @NotEmpty @Size(min = 2, max = 10) String genero, @NotEmpty String fecha,
-            @NotEmpty @Size(min = 2, max = 60) String direccion, @NotEmpty @Size(min = 6, max = 10) Integer telefono,
-            @NotEmpty @Email @Size(min = 1, max = 200) String email, Integer estado,
+            @NotEmpty @Size(min = 2, max = 60) String direccion,  Integer telefono,
+            @NotEmpty @Email @Size(min = 1, max = 200) String email, Boolean estado,
             yeilux.com.proyecto.Model.Class.empleado.cargo cargo,
             List<yeilux.com.proyecto.Model.Class.fabricacion.area> area,
             List<yeilux.com.proyecto.Model.Class.inventario.insumo.entrada> entrada,
