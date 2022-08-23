@@ -24,6 +24,9 @@ public class tipo {
     @Column(length = 200)
     @Size(min = 0, max = 200)
     private String descripcion;
+    //--------------Estado---------------//
+    @Column(nullable=true)
+    private Boolean estado;
 // ************************************************//
 // -------------Relacion con Insumo----------------//
 // ************************************************//
@@ -32,7 +35,7 @@ public class tipo {
         joinColumns = @JoinColumn(name = "id_tipo", nullable = false),
         inverseJoinColumns = @JoinColumn(name="id_insumo", nullable = false)
     )
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<insumo> insumo;
 // ************************************************//
 // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
@@ -61,18 +64,24 @@ public List<insumo> getInsumo() {
 public void setInsumo(List<insumo> insumo) {
     this.insumo = insumo;
 }
+public Boolean getEstado() {
+    return estado;
+}
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
 // -------------CONSTRUCTORES----------------//
 public tipo(){
     insumo=new ArrayList<insumo>();
 }
 public tipo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 0, max = 200) String descripcion,
+        @NotEmpty @Size(min = 0, max = 200) String descripcion, Boolean estado,
         List<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
+    this.estado = estado;
     this.insumo = insumo;
 }
-
 }
 

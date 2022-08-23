@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import yeilux.com.proyecto.Model.Class.Interface.IInsumo;
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
+import yeilux.com.proyecto.Model.Interface.insumo.IInsumo;
 
 @Service
 public class InsumoImp implements IServiceInsumo{

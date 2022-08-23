@@ -46,6 +46,7 @@ public String formulario(Model m){
     insumo insumo = new insumo();
     m.addAttribute("insumo", insumo);
     m.addAttribute("tipos", itipo.listar());
+    m.addAttribute("insumoTipo",itipo.insumoTipo());
     tipo tipo= new tipo();
     m.addAttribute("tipo", tipo);
     return "views/insumo/formulario";
@@ -60,11 +61,14 @@ public String add(@Valid insumo insumo, BindingResult respuesta, Model m, Sessio
     if(respuesta.hasErrors()){
         m.addAttribute("insumo", insumo);
         m.addAttribute("tipos", itipo.listar());
+        m.addAttribute("insumoTipo",itipo.insumoTipo());
         tipo tipo= new tipo();
         m.addAttribute("tipo", tipo);
         return "views/insumo/formulario";
     }
+    insumo.setTipo(itipo.insumoTipo());
     iinsumo.guardar(insumo);
+    itipo.eliminarTipos();
     status.setComplete();
     return"redirect:";
 }

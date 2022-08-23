@@ -1,4 +1,4 @@
-package yeilux.com.proyecto.Model.Class.Interface.insumo;
+package yeilux.com.proyecto.Model.Interface.insumo;
 
 import org.springframework.data.repository.CrudRepository;
 
