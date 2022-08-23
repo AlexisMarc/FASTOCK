@@ -50,7 +50,7 @@ public class empresa {
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
-    @ManyToMany(mappedBy = "empresa")
+    @ManyToMany(mappedBy = "empresa", fetch = FetchType.LAZY)
     private List<area> area;
 // ************************************************//
 // -------------Constructores---------------//

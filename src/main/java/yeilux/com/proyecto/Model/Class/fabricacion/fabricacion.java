@@ -25,31 +25,31 @@ public class fabricacion {
 // ************************************************//
 // -------------Relacion con admin----------------//
 // ************************************************//
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "fabricacion_admin",
-        joinColumns = @JoinColumn(name = "id_fabricacion", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id_admin", nullable = false)
+        joinColumns = @JoinColumn(name = "id_fabricacion"),
+        inverseJoinColumns = @JoinColumn(name="id_admin")
     )
-    @ManyToMany(cascade = CascadeType.ALL)
     private List<admin> admin;
 // ************************************************//
 // -------------Relacion con insumo----------------//
 // ************************************************//
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "fabricacion_insumo",
-        joinColumns = @JoinColumn(name = "id_fabricacion", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id_insumo", nullable = false)
+        joinColumns = @JoinColumn(name = "id_fabricacion"),
+        inverseJoinColumns = @JoinColumn(name="id_insumo")
     )
-    @ManyToMany(cascade = CascadeType.ALL)
     private List<insumo> insumo;
 // ************************************************//
 // -------------Relacion con producto--------------//
 // ************************************************//
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "fabricacion_producto",
-        joinColumns = @JoinColumn(name = "id_fabricacion", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id_producto", nullable = false)
+        joinColumns = @JoinColumn(name = "id_fabricacion"),
+        inverseJoinColumns = @JoinColumn(name="id_producto")
     )
-    @ManyToMany(cascade = CascadeType.ALL)
     private List<producto> producto;
 }

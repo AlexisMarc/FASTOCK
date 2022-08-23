@@ -38,12 +38,15 @@ public class producto {
     // ************************************************//
     // -------------Relacion con Categoria-------------//
     // ************************************************//
-    @ManyToMany(mappedBy = "producto")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "producto_categoria", 
+    joinColumns = @JoinColumn(name = "id_producto"), 
+    inverseJoinColumns = @JoinColumn(name = "id_categoria"))
     private List<categoria> categoria;
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
     // ************************************************//
-    @ManyToMany(mappedBy = "producto")
+    @ManyToMany(mappedBy = "producto", fetch = FetchType.LAZY)
     private List<fabricacion> fabricacion;
     // ************************************************//
     // -------------Relacion con inventario------------//

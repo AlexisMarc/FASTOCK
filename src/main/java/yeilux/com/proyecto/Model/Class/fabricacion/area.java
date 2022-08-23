@@ -28,21 +28,21 @@ public class area {
 // ************************************************//
 // -------------Relacion con empleado--------------//
 // ************************************************//
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "area_empleado",
-        joinColumns = @JoinColumn(name = "id_area", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id_empleado", nullable = false)
+        joinColumns = @JoinColumn(name = "id_area"),
+        inverseJoinColumns = @JoinColumn(name="id_empleado")
     )
-    @ManyToMany(cascade = CascadeType.ALL)
     private List<empleado> empleado;
 // ************************************************//
 // -------------Relacion con empresa---------------//
 // ************************************************//
+@ManyToMany(fetch = FetchType.LAZY)
 @JoinTable(
     name = "area_empresa",
-    joinColumns = @JoinColumn(name = "id_area", nullable = false),
-    inverseJoinColumns = @JoinColumn(name="id_empresa", nullable = false)
+    joinColumns = @JoinColumn(name = "id_area"),
+    inverseJoinColumns = @JoinColumn(name="id_empresa")
     )
-    @ManyToMany(cascade = CascadeType.ALL)
     private List<empresa> empresa;
 }

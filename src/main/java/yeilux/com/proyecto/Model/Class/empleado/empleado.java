@@ -80,7 +80,7 @@ public class empleado {
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
-    @ManyToMany(mappedBy = "empleado")
+    @ManyToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
     private List<area> area;
 
 // ************************************************//

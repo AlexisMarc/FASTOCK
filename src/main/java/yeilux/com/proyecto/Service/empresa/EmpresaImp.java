@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yeilux.com.proyecto.Model.Class.empresa.empresa;
-import yeilux.com.proyecto.Model.Interface.Empresa.IEmpesa;
+import yeilux.com.proyecto.Model.Interface.Empresa.IEmpresa;
 @Service
 public class EmpresaImp implements IServiceEmpresa {
     @Autowired
-    private IEmpesa empresai;
+    private IEmpresa empresai;
 
     @Override
     public List<empresa> listar() {

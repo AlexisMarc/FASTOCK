@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import yeilux.com.proyecto.Model.Class.empresa.empresa;
 
-public interface IEmpesa extends CrudRepository<empresa, Integer>{
+public interface IEmpresa extends CrudRepository<empresa, Integer>{
     
 }

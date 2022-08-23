@@ -31,8 +31,7 @@ public class categoria {
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
-    @JoinTable(name = "categoria_producto", joinColumns = @JoinColumn(name = "id_categoria", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_producto", nullable = false))
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<producto> producto;
     
     

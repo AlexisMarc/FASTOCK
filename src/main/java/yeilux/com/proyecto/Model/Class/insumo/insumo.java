@@ -41,7 +41,12 @@ private Boolean estado;
 // ************************************************//
 // -------------Relacion con tipo------------------//
 // ************************************************//
-    @ManyToMany(mappedBy = "insumo")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "insumo_tipo",
+        joinColumns = @JoinColumn(name = "id_insumo"),
+        inverseJoinColumns = @JoinColumn(name="id_tipo")
+    )
     private List<tipo> tipo;
 // ************************************************//
 // -------------Relacion con proveedor-------------//
@@ -51,7 +56,7 @@ private Boolean estado;
 // ************************************************//
 // -------------Relacion con fabricacion-----------//
 // ************************************************//
-    @ManyToMany(mappedBy = "insumo")
+    @ManyToMany(mappedBy = "insumo", fetch = FetchType.LAZY)
     private List<fabricacion> fabricacion;
 // ************************************************//
 // -------------Relacion con inventario------------//

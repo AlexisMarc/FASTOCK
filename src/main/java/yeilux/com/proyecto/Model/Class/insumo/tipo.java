@@ -30,12 +30,7 @@ public class tipo {
 // ************************************************//
 // -------------Relacion con Insumo----------------//
 // ************************************************//
-    @JoinTable(
-        name = "tipo_insumo",
-        joinColumns = @JoinColumn(name = "id_tipo", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id_insumo", nullable = false)
-    )
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "tipo", fetch = FetchType.LAZY)
     private List<insumo> insumo;
 // ************************************************//
 // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
