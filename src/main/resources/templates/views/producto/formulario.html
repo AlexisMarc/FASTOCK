@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto</title>
-    <link rel="stylesheet" th:href="@{/assets/css/producto.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 
 <body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
             <h1>Producto</h1>
@@ -19,14 +22,15 @@
                 <div>
                     <label for="nombre">Nombre:</label>
                     <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     <br>
                 </div>
                 <!-- Descripción del categoria-->
                 <!-- ******************* -->
                 <div>
                     <label for="nombre">Descripción del producto:</label><br>
-                    <textarea  th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30"
-                        rows="10"></textarea>
+                    <textarea  th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                     <br>
                 </div>
                 <!-- categoria -->
@@ -39,6 +43,7 @@
                             <option th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
                         </th:block>
                     </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
                     <br>
                 </div>
                 <!-- agregar categoria -->
@@ -57,13 +62,12 @@
                 <!-- Estado -->
                 <!-- ******************* -->
                 <div>
-                    <label for="estados">Estado:</label>
-                    <fieldset id="estados">
+                    <label >Estado:</label>
                         <label for="activo">Activo</label>
                         <input th:field="*{estado}" type="radio" name="estado" id="activo" value="1">
                         <label for="inactivo">Inactivo</label>
                         <input th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                    </fieldset>
+                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
                     <br>
                 </div>
 
@@ -71,6 +75,23 @@
                 <button type="submit">Enviar</button>
 
             </form>
+            <!-- ******************************************************* -->
+            <!-- ---------------Categorias del insimo ----------------- -->
+            <!-- ******************************************************* -->
+            <table>
+                <thead>
+                <th>Categorias</th>
+                <th></th>      
+            </thead>
+            <tbody>
+                <tr th:if="${insumoTipo.size()>0}" th:each="i : ${productoCategoria}">
+                    <td th:text="${i.nombre}"></td>
+                    <td>
+                        <a th:href="@{../categoria/delete/}+${i.id}">X</a>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
             <!-- ******************************************************* -->
             <!-- ---------------Modal de agregar categoria ----------------- -->
             <!-- ******************************************************* -->
@@ -115,6 +136,7 @@
             </div>
         </article>
     </section>
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 
 </html>

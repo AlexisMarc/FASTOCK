@@ -5,118 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     
 </head>
 <body>
-    <header>
-        <!-- iconos -->
-        <img src="assets/img/msj.png" alt="Mensaje" width="3%">
-        <img src="assets/img/pregunta.png" alt="pregunta" width="3%">
-        <!-- barra de busqueda -->
-        <input type="search" name="busqueda" placeholder="Buscar">
-        <img src="assets/img/usuario.png" alt="usuario" width="3%">
-    </header>
-    <nav>
-        <a href="#">Home</a>
-    </nav>
-    <aside>
-<!-- *************************************************** -->
-<!-- ----------------Lista Desplegable------------------ -->
-<!-- *************************************************** -->
-        <ul >
-    <!-- -----------------------Home------------------------ -->
-                <li class="list-item">
-                    <div class="list-button list-out">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Home</a>
-                    </div>
-                </li>
-    <!-- --------------------Producción----------------------- -->
-                <li class="list-item list-item--click">
-                    <div class="list-button list-button--click">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Producción</a>
-                        <img src="assets/img/arrow.png" class="list-arrow">
-                    </div>
-    
-                    <ul class="list-show">
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside">Producto</a>
-                        </li>
-    
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside diva">Fabricación</a>
-                        </li>
-                    </ul>
-    
-                </li>
-    
-    <!-- -----------------------Empleado------------------------ -->
-                <li class="list-item">
-                    <div class="list-button list-out">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Empleado</a>
-                    </div>
-                </li>
-    <!-- ------------------------Entidad------------------------- -->
-                <li class="list-item list-item--click">
-                    <div class="list-button list-button--click">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Entidad</a>
-                        <img src="assets/img/arrow.png" class="list-arrow">
-                    </div>
-    
-                    <ul class="list-show">
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside">Empresa</a>
-                        </li>
-    
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside">Proveedor</a>
-                        </li>
-    
-                    </ul>
-    
-                </li>
-    <!-- ------------------------Inventario------------------------- -->
-                <li class="list-item list-item--click">
-                    <div class="list-button list-button--click">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Inventario</a>
-                        <img src="assets/img/arrow.png" class="list-arrow">
-                    </div>
-    
-                    <ul class="list-show">
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside">Productos</a>
-                        </li>
-    
-                        <li class="list-inside">
-                            <a href="#" class="nav-link nav-link--inside">Insumos</a>
-                        </li>
-    
-                    </ul>
-    
-                </li>
-    <!-- ------------------------Novedades------------------------- -->
-                <li class="list-item">
-                    <div class="list-button list-out">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Novedades</a>
-                    </div>
-                </li>
-    <!-- ---------------------------Otros--------------------------- -->
-                <li class="list-item">
-                    <div class="list-button list-out">
-                        <img src="assets/img/boton.png" class="list-img">
-                        <a href="#" class="nav-link">Otros</a>
-                    </div>
-                </li>
-    
-            </ul>
-    
-    </aside>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, nulla! Magni velit molestias 
@@ -124,9 +19,6 @@
             placeat accusamus ipsa nam velit unde adipisci, veniam provident ipsam eum sed eius reprehenderit!</p>
         </article>
     </section>
-    <footer>
-        <p>Creado por MaDiSeNaSa, gracias bbs</p>
-    </footer>
-    <script src="assets/js/menu.js"></script>
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 </html>

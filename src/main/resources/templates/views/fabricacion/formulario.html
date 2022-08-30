@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asignación Empresa</title>
-    <link rel="stylesheet" href="../../assets/css/fabricacion2.css">
-    <script src="../../assets/js/fabricacion.js"></script>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 <body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
             <h1>Fabricación</h1>
@@ -95,7 +97,6 @@
                         </select><br>
                     </div>
                 </div>
-
                 <div id="paso4" class="tabcontent">
                     <h3>Insumo</h3>
                     <label for="tela">Tela:</label> <br/>
@@ -120,6 +121,7 @@
             
         </article>
     </section>
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 <script>
     // Get the element with id="defaultOpen" and click on it

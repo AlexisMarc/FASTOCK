@@ -6,19 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto</title>
-    <link rel="stylesheet" th:href="@{/assets/css/producto.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 
 <body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
+            <a th:href="@{/producto/formulario}">Registrar producto</a>
             <table>
                 <thead>
                     <th>id</th>
                     <th>Nombre</th>
                     <th>descripción</th>
                     <th>Estado</th>
-                    <th>Id Categoría</th>
+                    <th>Categorías</th>
                 </thead>
                 <tbody>
                     <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
@@ -37,6 +41,7 @@
             </table>
         </article>
     </section>
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 
 </html>

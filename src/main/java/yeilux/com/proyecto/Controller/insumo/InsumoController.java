@@ -14,6 +14,7 @@ import yeilux.com.proyecto.Model.Class.insumo.insumo;
 import yeilux.com.proyecto.Model.Class.insumo.tipo;
 import yeilux.com.proyecto.Service.insumo.IServiceInsumo;
 import yeilux.com.proyecto.Service.insumo.IServiceTipo;
+import yeilux.com.proyecto.Service.proveedor.IServiceProveedor;
 
 
 @Controller
@@ -28,6 +29,8 @@ public class InsumoController {
     @Autowired
     private IServiceTipo itipo;
     
+    @Autowired
+    private IServiceProveedor iproveedor;
 // ************************************************//
 // -------------MÉTODO GET----------------//
 // ************************************************//
@@ -49,6 +52,7 @@ public String formulario(Model m){
     m.addAttribute("insumoTipo",itipo.insumoTipo());
     tipo tipo= new tipo();
     m.addAttribute("tipo", tipo);
+    m.addAttribute("proveedores", iproveedor.listar());
     return "views/insumo/formulario";
 }
 // ************************************************//
@@ -64,6 +68,7 @@ public String add(@Valid insumo insumo, BindingResult respuesta, Model m, Sessio
         m.addAttribute("insumoTipo",itipo.insumoTipo());
         tipo tipo= new tipo();
         m.addAttribute("tipo", tipo);
+        m.addAttribute("proveedores", iproveedor.listar());
         return "views/insumo/formulario";
     }
     insumo.setTipo(itipo.insumoTipo());

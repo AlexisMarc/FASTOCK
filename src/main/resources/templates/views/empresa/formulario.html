@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empresa</title>
-    <link rel="stylesheet" th:href="@{/assets/css/empresa.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 <body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
             <h1>Empresa</h1>
@@ -18,6 +21,7 @@
                 <div>
                     <label for="nombre">Nombre de la empresa:</label>
                     <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     <br>
                 </div>
                 <!-- nombre de contacto -->
@@ -25,6 +29,7 @@
                 <div>
                     <label for="contacto">Nombre de contacto:</label>
                     <input th:field="*{contacto}" type="text" id="contacto" name="contacto" placeholder="Nombre de contacto">
+                    <div class="validacion" th:if="${#fields.hasErrors('contacto')}" th:errors="*{contacto}"></div>
                     <br>
                 </div>
                 <!-- especialidad -->
@@ -37,6 +42,7 @@
                             <option th:text="${especialidad.nombre}" th:value="${especialidad.id}"></option>
                         </th:block>
                     </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('especialidad')}" th:errors="*{especialidad}"></div>
                     <br>
                 </div>
                 <!-- agregar especialidad -->
@@ -50,6 +56,7 @@
                 <div>
                     <label for="direccion">Dirección:</label>
                     <input th:field="*{direccion}" type="text" id="direccion" name="direccion" placeholder="Dirección">
+                    <div class="validacion" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
                     <br>
                 </div>
                 <!-- email -->
@@ -57,6 +64,7 @@
                 <div>
                     <label for="email">Email:</label>
                     <input th:field="*{email}" type="email" name="email" id="email">
+                    <div class="validacion" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
                     <br>
                     
                 </div>
@@ -65,6 +73,7 @@
                 <div>
                     <label for="telefono">telefono:</label>
                     <input th:field="*{telefono}" type="number" id="telefono" name="telefono" >
+                    <div class="validacion" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
                     <br>
                 </div>
                 <!-- Fotografia -->
@@ -76,13 +85,12 @@
                 <!-- Estado -->
                 <!-- ******************* -->
                 <div>
-                    <label for="estados">Estado:</label>
-                    <fieldset id="estados">
+                    <label>Estado:</label>
                         <label for="activo">Activo</label>
                         <input th:field="*{estado}" type="radio" name="estado" id="activo" value="1">
                         <label for="inactivo">Inactivo</label>
                         <input th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                    </fieldset>
+                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
                 </div>
                 <br>
 
@@ -132,6 +140,6 @@
             </div>
         </article>
     </section>
-   
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 </html>

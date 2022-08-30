@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insumo</title>
-    <link rel="stylesheet" th:href="@{/assets/css/insumo.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 <body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
             <h1>Insumo</h1>
@@ -17,6 +20,7 @@
                 <div>
                     <label for="nombre">Nombre:</label>
                     <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     <br>
                 </div>
                 <!-- Descripción del Tipo-->
@@ -24,6 +28,20 @@
                 <div>
                     <label for="descripcion">Descripción del Insumo:</label><br>
                     <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                    <br>
+                </div>
+                <!-- Proveedor -->
+                <!-- ******************* -->
+                <div>
+                    <label for="proveedor">Proveedor:</label>
+                    <select th:field="*{proveedor}" name="proveedor" id="proveedor">
+                        <option value="0">Selecciones el Proveedor...</option>
+                        <th:block th:each="proveedor : ${proveedores}">
+                            <option th:text="${proveedor.nombre}" th:value="${proveedor.id}"></option>
+                        </th:block>
+                    </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('proveedor')}" th:errors="*{proveedor}"></div>
                     <br>
                 </div>
                 <!-- Tipo -->
@@ -36,6 +54,7 @@
                             <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
                         </th:block>
                     </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
                     <br>
                 </div>
                 <!-- agregar Tipo -->
@@ -49,6 +68,7 @@
                 <div>
                     <label for="material">Material del insumo:</label>
                     <input th:field="*{material}" type="text" id="material" name="material" placeholder="material">
+                    <div class="validacion" th:if="${#fields.hasErrors('material')}" th:errors="*{material}"></div>
                     <br>
                 </div>
                 <!-- Fotografia -->
@@ -60,14 +80,13 @@
                 <!-- Estado -->
                 <!-- ******************* -->
                 <div>
-                    <label for="estados">Estado:</label>
-                    <fieldset id="estados">
+                    <label >Estado:</label>
                         <label for="activo">Activo</label>
                         <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
                         <label for="inactivo">Inactivo</label>
                         <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                    </fieldset>
-                    <br>
+                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                        <br>
                 </div>
                 
 
@@ -80,23 +99,14 @@
             <!-- ******************************************************* -->
             <table>
                 <thead>
-                <th>id</th>
-                <th>Nombre</th>  
-                <th>Estado</th>    
-                <th>Accion</th>      
+                <th>Tipos</th>
+                <th></th>      
             </thead>
             <tbody>
                 <tr th:if="${insumoTipo.size()>0}" th:each="i : ${insumoTipo}">
-                    <td th:text="${i.id}"></td>
                     <td th:text="${i.nombre}"></td>
-                    <td th:if="${i.estado==true}">
-                        <span>Activo</span>
-                    </td>
-                    <td th:if="${i.estado==false}">
-                        <span>Inactivo</span>
-                    </td>
                     <td>
-                        <a th:href="@{../tipo/delete/}+${i.id}">Xxx</a>
+                        <a th:href="@{../tipo/delete/}+${i.id}">X</a>
                     </td>
                 </tr>
             </tbody>
@@ -144,5 +154,6 @@
             </div>
         </article>
     </section>
+    <footer th:replace="layouts/base::footer"></footer>
 </body>
 </html>

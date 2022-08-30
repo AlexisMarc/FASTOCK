@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
 
@@ -32,7 +33,8 @@ public class proveedor {
     @Size(min = 2, max = 60)
     private String direccion;
 // ----------------------- TELEFONO-----------------------//
-    private Integer telefono;
+    @NotNull
+    private Long telefono;
 // -----------------------EMAIL-----------------------//
     @NotEmpty
     @Email 
@@ -40,7 +42,7 @@ public class proveedor {
     @Size(min = 6, max = 200)
     private String email;
 // -----------------------ESTADO-----------------------//
-    @Column(nullable = true)
+    @NotNull
     private Boolean estado;
 // ************************************************//
 // -------------Relacion con insumo----------------//
@@ -83,11 +85,11 @@ private List<insumo> insumo;
         this.direccion = direccion;
     }
 
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
@@ -120,7 +122,7 @@ private List<insumo> insumo;
 
     public proveedor(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
             @NotEmpty @Size(min = 2, max = 60) String contacto, @NotEmpty @Size(min = 2, max = 60) String direccion,
-            Integer telefono, @NotEmpty @Email @Size(min = 6, max = 200) String email, Boolean estado,
+            @NotNull Long telefono, @NotEmpty @Email @Size(min = 6, max = 200) String email, @NotNull Boolean estado,
             List<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
         this.id = id;
         this.nombre = nombre;

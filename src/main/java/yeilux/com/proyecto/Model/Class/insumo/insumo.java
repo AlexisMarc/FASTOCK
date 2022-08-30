@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 import yeilux.com.proyecto.Model.Class.inventario.insumo.inventario;
@@ -36,11 +37,12 @@ private String descripcion;
 @Size(min = 2, max = 200)
 private String material;
 //--------------Estado---------------//
-@Column(nullable=true)
+@NotNull
 private Boolean estado;
 // ************************************************//
 // -------------Relacion con tipo------------------//
 // ************************************************//
+    @NotNull
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "insumo_tipo",
@@ -51,6 +53,7 @@ private Boolean estado;
 // ************************************************//
 // -------------Relacion con proveedor-------------//
 // ************************************************//
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private proveedor proveedor;
 // ************************************************//
@@ -124,9 +127,9 @@ public insumo() {
 }
     public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
             @NotEmpty @Size(min = 2, max = 200) String descripcion,
-            @NotEmpty @Size(min = 2, max = 200) String material, Boolean estado,
-            List<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
-            yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
+            @NotEmpty @Size(min = 2, max = 200) String material, @NotNull Boolean estado,
+            @NotNull List<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
+            @NotNull yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
             List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,
             List<yeilux.com.proyecto.Model.Class.inventario.insumo.inventario> inventario) {
         this.id = id;

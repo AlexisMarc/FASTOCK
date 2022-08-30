@@ -65,6 +65,9 @@ public class ProductoController {
     public String add(@Valid producto producto, BindingResult respuesta, Model m, SessionStatus status) {
         if (respuesta.hasErrors()) {
             m.addAttribute("producto", producto);
+            m.addAttribute("categorias", icategoria.listar());
+            categoria categoria = new categoria();
+            m.addAttribute("categoria", categoria);
             return "views/producto/formulario";
         }
         iproducto.guardar(producto);

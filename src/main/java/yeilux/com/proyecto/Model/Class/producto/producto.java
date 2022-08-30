@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 import yeilux.com.proyecto.Model.Class.inventario.producto.inventariopro;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -32,7 +33,7 @@ public class producto {
     private String descripcion;
 
     // -----------------------Estado-----------------------//
-    @Column(nullable = true)
+    @NotNull
     private Boolean estado;
 
     // ************************************************//
@@ -42,6 +43,7 @@ public class producto {
     @JoinTable(name = "producto_categoria", 
     joinColumns = @JoinColumn(name = "id_producto"), 
     inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    @NotNull
     private List<categoria> categoria;
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
@@ -121,8 +123,8 @@ public class producto {
     }
 
     public producto(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 200) String descripcion, Boolean estado,
-            List<yeilux.com.proyecto.Model.Class.producto.categoria> categoria,
+            @NotEmpty @Size(min = 2, max = 200) String descripcion,@NotNull Boolean estado,
+            @NotNull List<yeilux.com.proyecto.Model.Class.producto.categoria> categoria,
             List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion, List<inventariopro> inventario) {
         this.id = id;
         this.nombre = nombre;

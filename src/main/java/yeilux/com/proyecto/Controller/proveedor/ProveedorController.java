@@ -27,6 +27,11 @@ public class ProveedorController {
 @GetMapping(path = {"/listar", "", "/"})
 public String listar(Model m){
     m.addAttribute("proveedores", iproveedor.listar());
+    return "views/proveedor/listar";
+}
+//-----------------FORMULARIO----------------//
+@GetMapping("/formulario")
+public String formulario(Model m){
     proveedor proveedor =new proveedor();
     m.addAttribute("proveedor", proveedor);
     return "views/proveedor/formulario";

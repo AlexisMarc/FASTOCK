@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleado</title>
+    <title>proveedor</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 </head>
 <body>
@@ -13,36 +13,31 @@
     <aside th:replace="layouts/base::aside"></aside>
     <section>
         <article>
-            <a th:href="@{/empleado/formulario}">Registrar empleado</a>
+            <a th:href="@{/proveedor/formulario}">Registrar proveedor</a>
             <table>
                 <thead>
+            
                 <th>id</th>
-                <th>identificacion</th>
                 <th>Nombre</th>
-                <th>Cargo</th>
-                <th>Genero</th>
-                <th>Fecha Nacimiento</th>
-                <th>Dirección</th>
+                <th>Contacto</th>
                 <th>Telefono</th>
+                <th>Dirección</th>
                 <th>Email</th>
                 <th>Estado</th>
             </thead>
             <tbody>
-                <tr th:if="${empleados.size()>0}" th:each="e : ${empleados}">
+                <tr th:if="${proveedores.size()>0}" th:each="e : ${proveedores}">
                     <td th:text="${e.id}"></td>
-                    <td th:text="${e.identificacion}"></td>
-                    <td th:text="${e.nombre+' '+e.apellido}"></td>
-                    <td th:text="${e.cargo.nombre}"></td>
-                    <td th:text="${e.genero}"></td>
-                    <td th:text="${e.fecha}"></td>
-                    <td th:text="${e.direccion}"></td>
+                    <td th:text="${e.nombre}"></td>
+                    <td th:text="${e.contacto}"></td>
                     <td th:text="${e.telefono}"></td>
+                    <td th:text="${e.direccion}"></td>
                     <td th:text="${e.email}"></td>
                     <td th:if="${e.estado==true}">
-                        <span>Activo</span>
+                        <span>activo</span>
                     </td>
                     <td th:if="${e.estado==false}">
-                        <span>Inactivo</span>
+                        <span>inactivo</span>
                     </td>
                 </tr>
             </tbody>

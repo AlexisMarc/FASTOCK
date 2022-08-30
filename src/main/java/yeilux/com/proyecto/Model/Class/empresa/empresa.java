@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import yeilux.com.proyecto.Model.Class.fabricacion.area;
 
@@ -27,7 +28,8 @@ public class empresa {
     @Size(min = 2, max = 60)
     private String contacto;
 // ----------------------- TELEFONO-----------------------//
-    private Integer telefono;
+    @NotNull
+    private Long telefono;
 // -----------------------DIRECCION-----------------------//
     @NotEmpty
     @Column(length = 60)
@@ -40,11 +42,12 @@ public class empresa {
     @Size(min = 6, max = 200)
     private String email;
 // -----------------------ESTADO-----------------------//
-    @Column(nullable = true)
+    @NotNull
     private Boolean estado;
 // ************************************************//
 // -------------Relacion con especialidad----------//
 // ************************************************//
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private especialidad especialidad;
 // ************************************************//
@@ -73,10 +76,10 @@ public class empresa {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
     public String getDireccion() {
@@ -112,10 +115,10 @@ public class empresa {
     public empresa() {
     }
     public empresa(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String contacto, Integer telefono,
+            @NotEmpty @Size(min = 2, max = 60) String contacto,@NotNull Long telefono,
             @NotEmpty @Size(min = 2, max = 60) String direccion,
-            @NotEmpty @Email @Size(min = 6, max = 200) String email, Boolean estado,
-            yeilux.com.proyecto.Model.Class.empresa.especialidad especialidad,
+            @NotEmpty @Email @Size(min = 6, max = 200) String email, @NotNull Boolean estado,
+            @NotNull yeilux.com.proyecto.Model.Class.empresa.especialidad especialidad,
             List<yeilux.com.proyecto.Model.Class.fabricacion.area> area) {
         this.id = id;
         this.nombre = nombre;
