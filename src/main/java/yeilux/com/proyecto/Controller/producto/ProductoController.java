@@ -50,6 +50,7 @@ public class ProductoController {
         producto producto = new producto();
         m.addAttribute("producto", producto);
         m.addAttribute("categorias", icategoria.listar());
+        m.addAttribute("productoCategoria",icategoria.productoCategoria());
         categoria categoria = new categoria();
         m.addAttribute("categoria", categoria);
         return "views/producto/formulario";
@@ -70,7 +71,9 @@ public class ProductoController {
             m.addAttribute("categoria", categoria);
             return "views/producto/formulario";
         }
+        producto.setCategoria(icategoria.productoCategoria());
         iproducto.guardar(producto);
+        icategoria.eliminarCategorias();
         status.setComplete();
         return "redirect:";
     }

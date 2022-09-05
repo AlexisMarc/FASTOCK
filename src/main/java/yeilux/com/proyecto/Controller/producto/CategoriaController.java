@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 import yeilux.com.proyecto.Model.Class.producto.categoria;
 import yeilux.com.proyecto.Service.producto.IServiceCategoria;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -42,6 +44,21 @@ private IServiceCategoria icategoria;
     //     return"views/producto/formulario";
     // }
 
+    /*-------------AGREGAR TIPO-----------------*/ 
+@PostMapping("/addtipo")
+public String add(Model m, categoria categoria){
+    icategoria.agregarCategoria(categoria);
+return"redirect:../producto/formulario";
+}
+
+/*-------------ELIMINAR TIPO-----------------*/ 
+@GetMapping("/delete/{id}")
+public String deleteCategoria(@PathVariable Integer id,Model m){
+    categoria categoria=icategoria.consulta(id);
+    icategoria.eliminarCategoria(categoria);
+return"redirect:../../producto/formulario";
+}
+
      // ************************************************//
     // -------------Metodo POST--------------//
     // ************************************************//
@@ -54,6 +71,7 @@ private IServiceCategoria icategoria;
             m.addAttribute("categoria",categoria);
             return"views/producto/formulario";
         }
+        
         icategoria.guardar(categoria);
         status.setComplete();
         return"redirect:../producto/formulario";

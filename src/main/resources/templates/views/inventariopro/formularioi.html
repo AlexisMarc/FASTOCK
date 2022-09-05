@@ -25,7 +25,7 @@
                     <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     <br>
                 </div>
-                <!-- Descripción del categoria-->
+                <!-- Descripción de la categoria-->
                 <!-- ******************* -->
                 <div>
                     <label for="nombre">Descripción del producto:</label><br>
@@ -76,7 +76,7 @@
 
             </form>
             <!-- ******************************************************* -->
-            <!-- ---------------Categorias del insumo ----------------- -->
+            <!-- ---------------Categorias del insimo ----------------- -->
             <!-- ******************************************************* -->
             <table>
                 <thead>
@@ -84,7 +84,7 @@
                 <th></th>      
             </thead>
             <tbody>
-                <tr  th:each="i : ${productoCategoria}">
+                <tr th:if="${productoCategoria.size()>0}" th:each="i : ${productoCategoria}">
                     <td th:text="${i.nombre}"></td>
                     <td>
                         <a th:href="@{../categoria/delete/}+${i.id}">X</a>

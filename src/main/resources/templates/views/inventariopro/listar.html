@@ -21,22 +21,15 @@
                     <th>id</th>
                     <th>Nombre</th>
                     <th>descripción</th>
-                    <th>Categorías</th>
                     <th>Estado</th>
-                    
+                    <th>Categorías</th>
                 </thead>
                 <tbody>
                     <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
                         <td th:text="${p.id}"></td>
                         <td th:text="${p.nombre}"></td>
                         <td th:text="${p.descripcion}"></td>
-                        <td>
-                            <ul th:if="${p.categoria.size()>0}" th:each="categoria : ${p.categoria}">
-                                <li th:text="${categoria.nombre}"></li>
-                            </ul>
-                        </td>
                         <!-- <td th:text="${p.categoria.nombre}"></td> -->
-                        
                         <td th:if="${p.estado==true}">
                             <span>Activo</span>
                         </td>

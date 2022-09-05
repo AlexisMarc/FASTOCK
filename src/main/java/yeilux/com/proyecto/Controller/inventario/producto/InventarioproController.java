@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import yeilux.com.proyecto.Model.Class.inventario.producto.entradapro;
 import yeilux.com.proyecto.Model.Class.inventario.producto.inventariopro;
 import yeilux.com.proyecto.Model.Class.inventario.producto.salidapro;
+import yeilux.com.proyecto.Model.Class.producto.producto;
 import yeilux.com.proyecto.Service.inventario.producto.IServiceEntradapro;
 import yeilux.com.proyecto.Service.inventario.producto.IServiceInventariopro;
 import yeilux.com.proyecto.Service.inventario.producto.IServiceSalidapro;
@@ -94,5 +95,19 @@ public class InventarioproController {
          status.setComplete();
          return "redirect:";
      }
+
+
+     // -------------Formulario--------------//
+
+    @GetMapping("/formulario")
+    public String formulario(Model m) {
+        producto producto = new producto();
+        m.addAttribute("producto", producto);
+        m.addAttribute("inventariopros", iinventariopro.listar());
+        inventariopro inventariopro = new inventariopro();
+        m.addAttribute("inventariopro", inventariopro);
+        return "views/producto/formulario";
+    }
+
 
 }
