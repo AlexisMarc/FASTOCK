@@ -16,7 +16,7 @@
     <section>
         <article>
             <h1>Producto</h1>
-            <form th:action="@{/producto/add}" method="post" th:object="${producto}">
+            <form th:action="@{/producto/add}" enctype="multipart/form-data" method="post" th:object="${producto}">
                 <!-- nombre -->
                 <!-- ******************* -->
                 <div>
@@ -57,7 +57,7 @@
                 <!-- ******************* -->
                 <div>
                     <label for="archivo">Fotografia:</label>
-                    <input type="file" name="foto">
+                    <input type="file" name="file" id="imagen">
                 </div>
                 <!-- Estado -->
                 <!-- ******************* -->

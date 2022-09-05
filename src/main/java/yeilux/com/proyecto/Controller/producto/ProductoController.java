@@ -1,12 +1,19 @@
 package yeilux.com.proyecto.Controller.producto;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
 import yeilux.com.proyecto.Model.Class.producto.categoria;
@@ -63,13 +70,31 @@ public class ProductoController {
     // -------------Guardar--------------//
 
     @PostMapping("/add")
-    public String add(@Valid producto producto, BindingResult respuesta, Model m, SessionStatus status) {
+    public String add(@Valid producto producto, BindingResult respuesta, Model m, SessionStatus status, @RequestParam("file") MultipartFile imagen) {
         if (respuesta.hasErrors()) {
             m.addAttribute("producto", producto);
             m.addAttribute("categorias", icategoria.listar());
             categoria categoria = new categoria();
             m.addAttribute("categoria", categoria);
             return "views/producto/formulario";
+        }
+
+        if(!imagen.isEmpty()){
+
+            Path directorioImagenes =Paths.get("src//main//resources//static/assets/imagenes");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                Files.write(rutaCompleta,bytesImg);
+
+                producto.setImagen(imagen.getOriginalFilename());
+
+            } catch (IOException e) {
+                
+                e.printStackTrace();
+            }
         }
         producto.setCategoria(icategoria.productoCategoria());
         iproducto.guardar(producto);

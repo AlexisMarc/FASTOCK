@@ -1,6 +1,6 @@
 package yeilux.com.proyecto.Model.Class.producto;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -35,6 +35,10 @@ public class producto {
     // -----------------------Estado-----------------------//
     @NotNull
     private Boolean estado;
+
+    // -----------------------Imagen-----------------------//
+    private String imagen;
+
 
     // ************************************************//
     // -------------Relacion con Categoria-------------//
@@ -118,21 +122,37 @@ public class producto {
         this.inventario = inventario;
     }
 
+    
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public producto() {
-        categoria=new ArrayList<categoria>();
     }
 
     public producto(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 200) String descripcion,@NotNull Boolean estado,
+            @NotEmpty @Size(min = 2, max = 200) String descripcion, @NotNull Boolean estado, String imagen,
             @NotNull List<yeilux.com.proyecto.Model.Class.producto.categoria> categoria,
             List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion, List<inventariopro> inventario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
+        this.imagen = imagen;
         this.categoria = categoria;
         this.fabricacion = fabricacion;
         this.inventario = inventario;
     }
+
+
+    
+
+   
+
+    
 
 }
