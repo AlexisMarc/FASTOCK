@@ -1,54 +1,94 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+<head th:replace="layouts/base_template::head">
 </head>
-
 <body>
-    <header th:replace="layouts/base::header"></header>
-    <nav><a href="#">Home</a></nav>
-    <aside th:replace="layouts/base::aside"></aside>
-    <section>
-        <article>
-            <a th:href="@{/producto/formulario}">Registrar producto</a>
-            <table>
-                <thead>
-                    <th>id</th>
-                    <th>Nombre</th>
-                    <th>descripción</th>
-                    <th>Categorías</th>
-                    <th>Estado</th>
-                    
-                </thead>
-                <tbody>
-                    <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
-                        <td th:text="${p.id}"></td>
-                        <td th:text="${p.nombre}"></td>
-                        <td th:text="${p.descripcion}"></td>
-                        <td>
-                            <ul th:if="${p.categoria.size()>0}" th:each="categoria : ${p.categoria}">
-                                <li th:text="${categoria.nombre}"></li>
-                            </ul>
-                        </td>
-                        <!-- <td th:text="${p.categoria.nombre}"></td> -->
-                        
-                        <td th:if="${p.estado==true}">
-                            <span>Activo</span>
-                        </td>
-                        <td th:if="${p.estado==false}">
-                            <span>Inactivo</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </article>
-    </section>
-    <footer th:replace="layouts/base::footer"></footer>
+    <div class="container-scroller">
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Nav ------------------->
+<!--***************************************************************************************************************************************************-->
+        <nav th:replace="layouts/base_template::navbar"></nav>
+        <div class="container-fluid page-body-wrapper">
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Combio de color ------------------->
+<!--***************************************************************************************************************************************************-->
+            <div th:replace="layouts/base_template::color"></div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Panel ------------------->
+<!--***************************************************************************************************************************************************-->
+            <div th:replace="layouts/base_template::panel"></div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Menú ------------------->
+<!--***************************************************************************************************************************************************-->
+            <nav th:replace="layouts/base_template::sidebar"></nav>
+            <div class="main-panel">
+<!--***************************************************************************************************************************************************-->
+<!---------------------  Contenido ------------------->
+<!--***************************************************************************************************************************************************-->
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Welcome Aamir</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card position-relative">
+                                <div class="card-body">
+                                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
+                                        <a th:href="@{/producto/formulario}">Registrar producto</a>
+                                        <table>
+                                            <thead>
+                                                <th>id</th>
+                                                <th>Nombre</th>
+                                                <th>descripción</th>
+                                                <th>Categorías</th>
+                                                <th>Estado</th>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
+                                                    <td th:text="${p.id}"></td>
+                                                    <td th:text="${p.nombre}"></td>
+                                                    <td th:text="${p.descripcion}"></td>
+                                                    <td>
+                                                        <ul th:if="${p.categoria.size()>0}" th:each="categoria : ${p.categoria}">
+                                                            <li th:text="${categoria.nombre}"></li>
+                                                        </ul>
+                                                    </td>
+                                                    <!-- <td th:text="${p.categoria.nombre}"></td> -->
+                                                    
+                                                    <td th:if="${p.estado==true}">
+                                                        <span>Activo</span>
+                                                    </td>
+                                                    <td th:if="${p.estado==false}">
+                                                        <span>Inactivo</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--***************************************************************************************************************************************************-->
+<!------------------------- Footer -------------------------->
+<!--***************************************************************************************************************************************************-->
+                <footer th:replace="layouts/base_template::footer"></footer>
+            </div>
+        </div>
+    </div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Scripts------------------->
+<!--***************************************************************************************************************************************************-->
+    <div th:replace="layouts/base_template::script"></div>
 </body>
 
 </html>
