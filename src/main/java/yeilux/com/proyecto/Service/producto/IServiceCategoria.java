@@ -10,10 +10,6 @@ public interface IServiceCategoria  {
     public void guardar(categoria categoria);
     public categoria consulta(Integer id);
     public void eliminar(Integer id);
-    public void eliminarCategorias();
-    public List<categoria>productoCategoria();
-    public void eliminarCategoria(categoria categoria);
-    public void agregarCategoria(categoria categoria);
 }
 
 

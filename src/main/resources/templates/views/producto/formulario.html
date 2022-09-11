@@ -57,53 +57,25 @@
                                                 <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                                                 <br>
                                             </div>
-                                            <!-- categoria -->
-                                            <!-- ******************* -->
-                                            <div>
-                                                <label for="categoria">Categoria:</label>
-                                                <select th:field="*{categoria}" name="categoria" id="categoria">
-                                                    <option value="0">Seleccione la Categoria...</option>
-                                                    <th:block th:each="categoria :${categorias}">
-                                                        <option th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
-                                                    </th:block>
-                                                </select>
-                                                <div class="validacion" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
-                                                <br>
-                                            </div>
                                             <!-- agregar categoria -->
                                             <!-- ******************* -->
-                                            <div><div class="col-md-6 grid-margin stretch-card">
+                                            <div>
                                                 <div class="card">
-                                                  <div class="card-body">
-                                                    <h4 class="card-title">Select 2</h4>
-                                                    <div class="form-group">
-                                                      <label>Single select box using select 2</label>
-                                                      <select class="js-example-basic-single w-100">
-                                                        <option value="AL">Marcos</option>
-                                                        <option value="WY">Wyoming</option>
-                                                        <option value="AM">America</option>
-                                                        <option value="CA">Canada</option>
-                                                        <option value="RU">Russia</option>
-                                                      </select>
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Select 2</h4>
+                                                        <div class="form-group" th:field="*{categoria}" >
+                                                            <label>Multiple select using select 2</label>
+                                                            <select  class="js-example-basic-multiple w-100" multiple="multiple" name="categoria" id="categoria">
+                                                                <th:block th:each="categoria :${categorias}">
+                                                                    <option th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
+                                                                </th:block>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                      <label>Multiple select using select 2</label>
-                                                      <select class="js-example-basic-multiple w-100" multiple="multiple">
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="WY">Wyoming</option>
-                                                        <option value="AM">America</option>
-                                                        <option value="CA">Canada</option>
-                                                        <option value="RU">Russia</option>
-                                                      </select>
-                                                    </div>
-                                                  </div>
                                                 </div>
-                                              </div>
-                                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                 Launch demo modal
                                             </button>
-                                                <a href="#agregarCategoria">Agregar Categoria</a>
-                                                <br>
                                             </div>
 
                                             <!-- Fotografia -->
@@ -128,7 +100,59 @@
                                             <button type="submit">Enviar</button>
 
                                         </form>
-                                        
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h2>Agregar Categoria</h2>
+                                                        <form th:action="@{/categoria/add}" method="post" th:object="${categoria}">
+                                                            <!-- nombre -->
+                                                            <!-- ******************* -->
+                                                            <div>
+                                                                <label for="nombre">Nombre del categoria</label>
+                                                                <input th:field="*{nombre}" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                                                                <div th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"> </div>
+                                                                <br>
+                                                            </div>
+                                                            <!-- Descripción del categoria-->
+                                                            <!-- ******************* -->
+                                                            <div>
+                                                                <label for="nombre">Descripción del categoria</label>
+                                                                <textarea th:field="*{descripcion}" name="descripcion" id="descripcion"
+                                                                    placeholder="Descripción" cols="30" rows="10"></textarea>
+                                                                <div th:if="${#fields.hasErrors('descripcion')}" th:erros="*{descripcion}"> </div>
+                                                                <br>
+                                                            </div>
+                                                            <!-- Estado -->
+                                                            <!-- ******************* -->
+                                                            <div>
+                                                                <label for="estado">Estado:</label>
+                                                                <fieldset id="estado">
+                                                                    <label for="activo">Activo</label>
+                                                                    <input type="radio" name="activo" id="activo" value="1">
+                                                                    <label for="activo">Inactivo</label>
+                                                                    <input type="radio" name="activo" id="activo" value="0">
+                                                                </fieldset>
+                                                                <br>
+                                                            </div>
+                                                            <button type="submit">Enviar</button>
+
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

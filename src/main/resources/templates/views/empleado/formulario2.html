@@ -57,7 +57,7 @@
                 <!-- ******************* -->
                 <div>
                     <label for="Cargo">Cargo:</label>
-                    <select  th:field="*{cargo}" name="cargo" id="cargo">
+                    <select  th:field="*{cargo}" name="cargo" id="cargo" >
                         <option value="0">Seleccione el cargo...</option>
                         <th:block th:each="cargo : ${cargos}">
                             <option th:text="${cargo.nombre}" th:value="${cargo.id}"></option>
