@@ -23,8 +23,6 @@ import yeilux.com.proyecto.Service.inventario.insumo.IServiceSalida;
 @RequestMapping("/inventario")
 public class InventarioController {
 
-public class InsumoController {
-
     @Autowired
     private IServiceInventario iinventario;
     @Autowired
@@ -47,7 +45,7 @@ public String listar(Model m){
         m.addAttribute("salidas", isalida.listar());
         salida salida = new salida();
         m.addAttribute("salida", salida);
-    return "views/insumo/listar";
+    return "views/inventario/listar";
 }
 
 //-------FORMULARIO---------//
@@ -56,7 +54,7 @@ public String formulario(Model m){
     inventario inventario = new inventario();
     m.addAttribute("inventario",inventario);
     m.addAttribute("tipos", iinventario.listar());
-    return "views/inventario/insumo/formulario";
+    return "views/inventario/formulario";
 }
 // ************************************************//
 // -------------MÉTODO POST----------------//
@@ -67,7 +65,7 @@ public String formulario(Model m){
 public String add(@Valid inventario inventario, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("inventario", inventario);
-        return "views/inventario/insumo/formulario";
+        return "views/inventario/listar";
     }
     iinventario.guardar(inventario);
     status.setComplete();
@@ -77,7 +75,7 @@ public String add(@Valid inventario inventario, BindingResult respuesta, Model m
 public String add(@Valid entrada entrada, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("entrada", entrada);
-        return "views/inventario/insumo/formulario";
+        return "views/inventario/listar";
     }
     ientrada.guardar(entrada);
     status.setComplete();
@@ -86,8 +84,15 @@ public String add(@Valid entrada entrada, BindingResult respuesta, Model m, Sess
 @PostMapping("/addsalida")
 public String add(@Valid salida salida, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
-        m.addAttribute("salida",salida);
-        return "views/inventario/insumo/formulario";
+        m.addAttribute("inventarios", iinventario.listar());
+        inventario inventario = new inventario();
+        m.addAttribute("inventario", inventario);
+            m.addAttribute("entradas", ientrada.listar());
+            entrada entrada = new entrada();
+            m.addAttribute("entrada", entrada);
+            m.addAttribute("salidas", isalida.listar());
+            m.addAttribute("salida", salida);
+        return "views/inventario/listar";
     }
     isalida.guardar(salida);
     status.setComplete();
@@ -95,4 +100,4 @@ public String add(@Valid salida salida, BindingResult respuesta, Model m, Sessio
 }
 }
 
-}
+

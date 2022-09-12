@@ -3,10 +3,12 @@ package yeilux.com.proyecto.Service.inventario.insumo;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import yeilux.com.proyecto.Model.Class.inventario.insumo.inventario;
 import yeilux.com.proyecto.Model.Interface.inventario.insumo.IInventario;
 
+@Service
 public class InventarioImp implements IServiceInventario {
 
     @Autowired
