@@ -5,6 +5,7 @@ import java.sql.Date;
 import jakarta.persistence.*;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "entradapro")
@@ -17,7 +18,7 @@ public class entradapro {
     private Integer id;
 
     // -----------------------FECHA_ENTRADA-----------------------//
-    @NotEmpty
+    @NotNull
     private Date fecha;
 
     // -----------------------CANTIDAD_ENTRADA-----------------------//
@@ -25,7 +26,7 @@ public class entradapro {
     private Integer cantidad;
 
     // -----------------------ESTADO-----------------------//
-    @Column(nullable = true)
+    @NotNull
     private Boolean estado;
 
     // ************************************************//
@@ -43,6 +44,10 @@ public class entradapro {
     // ************************************************//
     // -------------Contructores accesores--------------//
     // ************************************************//
+
+    
+    public entradapro() {
+    }
 
     public Integer getId() {
         return id;
@@ -92,10 +97,7 @@ public class entradapro {
         this.empleado = empleado;
     }
 
-    public entradapro() {
-    }
-
-    public entradapro(Integer id, @NotEmpty Date fecha, @NotEmpty Integer cantidad, Boolean estado,
+    public entradapro(Integer id, @NotNull Date fecha, @NotNull Integer cantidad, Boolean estado,
             inventariopro inventario, yeilux.com.proyecto.Model.Class.empleado.empleado empleado) {
         this.id = id;
         this.fecha = fecha;

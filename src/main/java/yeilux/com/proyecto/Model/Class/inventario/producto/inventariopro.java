@@ -3,7 +3,7 @@ package yeilux.com.proyecto.Model.Class.inventario.producto;
 import java.util.List;
 
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.NotNull;
 import yeilux.com.proyecto.Model.Class.producto.producto;
 
 @Entity
@@ -19,6 +19,7 @@ public class inventariopro {
     // -----------------------ESTADO-----------------------//
     @Column(nullable = true)
     private Boolean estado;
+
 
     // ************************************************//
     // -------------Relacion con salida----------------//
@@ -83,7 +84,7 @@ public class inventariopro {
     public inventariopro() {
     }
 
-    public inventariopro(Integer id, Boolean estado, List<salidapro> salida, List<entradapro> entrada,
+    public inventariopro(Integer id, @NotNull Boolean estado, List<salidapro> salida, List<entradapro> entrada,
             yeilux.com.proyecto.Model.Class.producto.producto producto) {
         this.id = id;
         this.estado = estado;
