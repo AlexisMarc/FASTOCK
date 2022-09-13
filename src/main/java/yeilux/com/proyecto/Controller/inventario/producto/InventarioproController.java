@@ -63,7 +63,7 @@ public class InventarioproController {
     public String add(@Valid inventariopro inventariopro, BindingResult respuesta, Model m, SessionStatus status) {
         if (respuesta.hasErrors()) {
             m.addAttribute("inventariopro", inventariopro);
-            return "views/inventariopro/formulario";
+            return "views/inventariopro/listar";
         }
         iinventariopro.guardar(inventariopro);
         status.setComplete();
@@ -75,8 +75,18 @@ public class InventarioproController {
     @PostMapping("/addentrada")
     public String add(@Valid entradapro entradapro, BindingResult respuesta, Model m, SessionStatus status) {
         if (respuesta.hasErrors()) {
-            m.addAttribute("entradapro", entradapro);
-            return "views/entradapro/formulario";
+             // -------------INVENTARIOPRO--------------//
+        m.addAttribute("inventariopros", iinventariopro.listar());
+        inventariopro inventariopro = new inventariopro();
+        m.addAttribute("inventariopro", inventariopro);
+        // -------------ENTRADAPRO--------------//
+        m.addAttribute("entradapros", ientradapro.listar());
+        m.addAttribute("entradapro", entradapro);
+        // -------------ESALIDAPRO--------------//
+        m.addAttribute("salidapros", isalidapro.listar());
+        salidapro salidapro = new salidapro();
+        m.addAttribute("salidapro", salidapro);
+            return "views/inventariopro/listar";
         }
         ientradapro.guardar(entradapro);
         status.setComplete();
@@ -89,7 +99,19 @@ public class InventarioproController {
      public String add(@Valid salidapro salidapro, BindingResult respuesta, Model m, SessionStatus status) {
          if (respuesta.hasErrors()) {
              m.addAttribute("salidapro", salidapro);
-             return "views/salidapro/formulario";
+              // -------------INVENTARIOPRO--------------//
+        m.addAttribute("inventariopros", iinventariopro.listar());
+        inventariopro inventariopro = new inventariopro();
+        m.addAttribute("inventariopro", inventariopro);
+        // -------------ENTRADAPRO--------------//
+        m.addAttribute("entradapros", ientradapro.listar());
+        entradapro entradapro = new entradapro();
+        m.addAttribute("entradapro", entradapro);
+        // -------------ESALIDAPRO--------------//
+        m.addAttribute("salidapros", isalidapro.listar());
+        m.addAttribute("salidapro", salidapro);
+        return "views/inventariopro/listar";
+             
          }
          isalidapro.guardar(salidapro);
          status.setComplete();

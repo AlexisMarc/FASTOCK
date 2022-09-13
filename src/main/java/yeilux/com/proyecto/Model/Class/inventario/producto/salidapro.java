@@ -3,7 +3,8 @@ package yeilux.com.proyecto.Model.Class.inventario.producto;
 import java.sql.Date;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+
+import jakarta.validation.constraints.NotNull;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 
 @Entity
@@ -16,15 +17,15 @@ public class salidapro {
     private Integer id;
 
     // -----------------------FECHA_SALIDA-----------------------//
-    @NotEmpty
+    @NotNull
     private Date fecha;
 
     // -----------------------CANTIDAD_SALIDA-----------------------//
-    @NotEmpty
+    @NotNull
     private Integer cantidad;
 
     // -----------------------ESTADO-----------------------//
-    @Column(nullable = true)
+    @NotNull
     private Boolean estado;
 
     // ************************************************//
@@ -93,7 +94,7 @@ public class salidapro {
     public salidapro() {
     }
 
-    public salidapro(Integer id, @NotEmpty Date fecha, @NotEmpty Integer cantidad, Boolean estado,
+    public salidapro(Integer id, @NotNull Date fecha, @NotNull Integer cantidad, @NotNull Boolean estado,
             inventariopro inventario, yeilux.com.proyecto.Model.Class.empleado.empleado empleado) {
         this.id = id;
         this.fecha = fecha;
