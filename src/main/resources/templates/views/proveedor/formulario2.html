@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proveedor</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
+    <section>
+        <article>
+            <h1>proveedor</h1>
+            <form th:action="@{/proveedor/add}" method="post" th:object="${proveedor}">
+                
+                <!-- nombre -->
+                <!-- ******************* -->
+                <div>
+                    <label for="nombre">Nombre de la proveedor:</label>
+                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    <br>
+                </div>
+                <!-- nombre de contacto -->
+                <!-- ******************* -->
+                <div>
+                    <label for="contacto">Nombre de contacto:</label>
+                    <input th:field="*{contacto}" type="text" id="contacto" name="contacto" placeholder="Nombre de contacto">
+                    <div class="validacion" th:if="${#fields.hasErrors('contacto')}" th:errors="*{contacto}"></div>
+                    <br>
+                </div>
+                <!-- direccion -->
+                <!-- ******************* -->
+                <div>
+                    <label for="direccion">Dirección:</label>
+                    <input th:field="*{direccion}" type="text" id="direccion" name="direccion" placeholder="Dirección">
+                    <div class="validacion" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+                    <br>
+                </div>
+                <!-- email -->
+                <!-- ******************* -->
+                <div>
+                    <label for="email">Email:</label>
+                    <input th:field="*{email}" type="email" name="email" id="email">
+                    <div class="validacion" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+                    <br>
+                    
+                </div>
+                <!-- telefono -->
+                <!-- ******************* -->
+                <div>
+                    <label for="telefono">telefono:</label>
+                    <input th:field="*{telefono}" type="number" id="telefono" name="telefono" >
+                    <div class="validacion" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+                    <br>
+                </div>
+                <!-- Estado -->
+                <!-- ******************* -->
+                <div>
+                    <label>Estado:</label>
+                        <label for="activo">Activo</label>
+                        <input th:field="*{estado}" type="radio" name="estado" id="activo" value="1">
+                        <label for="inactivo">Inactivo</label>
+                        <input th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0">
+                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                </div>
+                <br>
+
+                <button type="submit">Enviar</button>
+
+            </form>
+        </article>
+    </section>
+    <footer th:replace="layouts/base::footer"></footer>
+</body>
+</html>
