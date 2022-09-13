@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insumo Listar</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
+    <section>
+        <article>
+            <a th:href="@{/insumo/formulario}">Registrar insumo</a>
+            <table>
+                <thead>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Proveedor</th>
+                <th>Descripcion</th>
+                <th>Material</th>
+                <th>Tipo</th>
+                <th>Estado</th>                
+            </thead>
+            <tbody>
+                <tr th:if="${insumos.size()>0}" th:each="i : ${insumos}">
+                    <td th:text="${i.id}"></td>
+                    <td th:text="${i.nombre}"></td>
+                    <td th:text="${i.proveedor.nombre}"></td>
+                    <td th:text="${i.descripcion}"></td>
+                    <td th:text="${i.material}"></td>
+                    <td>
+                        <ul th:if="${i.tipo.size()>0}" th:each="tipo : ${i.tipo}">
+                            <li th:text="${tipo.nombre}"></li>
+                        </ul>
+                    </td>
+                    
+                    <td th:if="${i.estado==true}">
+                        <span>Activo</span>
+                    </td>
+                    <td th:if="${i.estado==false}">
+                        <span>Inactivo</span>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </article>
+    </section>
+    <footer th:replace="layouts/base::footer"></footer>
+</body>
+</html>

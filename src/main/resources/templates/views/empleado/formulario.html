@@ -72,7 +72,7 @@
                                             <!-- ******************* -->
                                             <div class="col-md-6">
                                                 <label for="genero">Genero:</label><br>
-                                                <select lass="form-control" th:field="*{genero}" name="genero" id="genero">
+                                                <select th:field="*{genero}" name="genero" id="genero" class="form-control">
                                                     <option value="0">Seleccione genero...</option>
                                                     <option value="Femenino">Femenino</option>
                                                     <option value="Masculino">Masculino</option>
@@ -89,7 +89,7 @@
                             
                                                 <div class="form-group">
                                                     <label>Seleccione el cargo</label><br>
-                                                    <select lass="form-control" th:field="*{cargo}" name="cargo" id="cargo" class="js-example-basic-single w-100" multiple="multiple">
+                                                    <select  th:field="*{cargo}" name="cargo" id="cargo" class="js-example-basic-single w-100 select3-hidden-accessible" >
                                                         <th:block th:each="cargo : ${cargos}">
                                                             <option th:text="${cargo.nombre}" th:value="${cargo.id}"></option>
                                                     </th:block>
@@ -145,21 +145,40 @@
                                             <!-- Fotografia -->
                                             <!-- ******************* -->
                                             <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="archivo">Fotografia:</label><br>
-                                                <input  type="file" name="foto" class="btn btn-primary btn-icon-text">
-                                            </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label >Subir archivo</label>
+                                                        <input type="file" name="foto" class="file-upload-default">
+                                                        <div class="input-group col-xs-12">
+                                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Subir imagen">
+                                                            <span class="input-group-append">
+                                                            <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                                            </span>
+                                                        </div>
+                                                      </div>
+                                                    </div>
                                             <!-- Estado -->
                                             <!-- ******************* -->
-                                            <div class="col-md-6">
-                                                <label>Estado:</label><br>
-                                                    <label for="activo">Activo</label>
-                                                    <input  th:field="*{estado}" type="radio" name="estado" id="activo" value="1">
-                                                    <label for="inactivo">Inactivo</label>
-                                                    <input  th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                                                    <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-                                            </div>
-                                        </div><br>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label>Estado:</label>
+                                                                <div class="col-sm-4">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="activo">
+                                                                        <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="activo" value="1" checked>Activo
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="inactivo">
+                                                                        <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0" >Inactivo
+                                                                        </label>
+                                                                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
                                             
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-primary mr-2">Enviar</button>
@@ -189,7 +208,7 @@
                                                             <!-- ******************* -->
                                                             <div class="form-group">
                                                                 <label for="nombre">Descripción del Cargo</label><br>
-                                                                <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                                                                <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
                                                                 <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                                                                 <br><br>
                                                             </div>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insumo</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+    <header th:replace="layouts/base::header"></header>
+    <nav><a href="#">Home</a></nav>
+    <aside th:replace="layouts/base::aside"></aside>
+    <section>
+        <article>
+            <h1>Insumo</h1>
+            <form th:action="@{/insumo/add}" method="post" th:object="${insumo}">
+                <!-- nombre -->
+                <!-- ******************* -->
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    <br>
+                </div>
+                <!-- Descripción del Tipo-->
+                <!-- ******************* -->
+                <div>
+                    <label for="descripcion">Descripción del Insumo:</label><br>
+                    <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                    <br>
+                </div>
+                <!-- Proveedor -->
+                <!-- ******************* -->
+                <div>
+                    <label for="proveedor">Proveedor:</label>
+                    <select th:field="*{proveedor}" name="proveedor" id="proveedor">
+                        <option value="0">Selecciones el Proveedor...</option>
+                        <th:block th:each="proveedor : ${proveedores}">
+                            <option th:text="${proveedor.nombre}" th:value="${proveedor.id}"></option>
+                        </th:block>
+                    </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('proveedor')}" th:errors="*{proveedor}"></div>
+                    <br>
+                </div>
+                <!-- Tipo -->
+                <!-- ******************* -->
+                <div>
+                    <label for="tipo">Tipo:</label>
+                    <select th:field="*{tipo}" name="tipo" id="tipo">
+                        <option value="0">Selecciones el tipo...</option>
+                        <th:block th:each="tipo : ${tipos}">
+                            <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
+                        </th:block>
+                    </select>
+                    <div class="validacion" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
+                    <br>
+                </div>
+                <!-- agregar Tipo -->
+                <!-- ******************* -->
+                <div>
+                    <a href="#agregarTipo">Agregar Tipo</a>
+                    <br>
+                </div>
+                <!-- material -->
+                <!-- ******************* -->
+                <div>
+                    <label for="material">Material del insumo:</label>
+                    <input th:field="*{material}" type="text" id="material" name="material" placeholder="material">
+                    <div class="validacion" th:if="${#fields.hasErrors('material')}" th:errors="*{material}"></div>
+                    <br>
+                </div>
+                <!-- Fotografia -->
+                <!-- ******************* -->
+                <div>
+                    <label for="archivo">Fotografia:</label>
+                    <input type="file" name="foto">
+                </div>
+                <!-- Estado -->
+                <!-- ******************* -->
+                <div>
+                    <label >Estado:</label>
+                        <label for="activo">Activo</label>
+                        <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
+                        <label for="inactivo">Inactivo</label>
+                        <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
+                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                        <br>
+                </div>
+                
+
+                <button type="submit">Enviar</button>
+                
+
+            </form>
+            <!-- ******************************************************* -->
+            <!-- ---------------Tipos del insimo ----------------- -->
+            <!-- ******************************************************* -->
+            <table>
+                <thead>
+                <th>Tipos</th>
+                <th></th>      
+            </thead>
+            <tbody>
+                <tr th:if="${insumoTipo.size()>0}" th:each="i : ${insumoTipo}">
+                    <td th:text="${i.nombre}"></td>
+                    <td>
+                        <a th:href="@{../tipo/delete/}+${i.id}">X</a>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            <!-- ******************************************************* -->
+            <!-- ---------------Modal de agregar Tipo ----------------- -->
+            <!-- ******************************************************* -->
+            <div id="agregarTipo" class="modal">
+                <div class="modal-contenido">
+                    <a href="#">X</a>
+                    <h2>Agregar Tipo</h2>
+                    <form th:action="@{/tipo/add}" method="post" th:object="${tipo}">
+                        <!-- nombre -->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="nombre">Nombre del Tipo</label>
+                            <input th:field="*{nombre}" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                            <br>
+                        </div>
+                        <!-- Descripción del Tipo-->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="nombre">Descripción del Tipo</label>
+                            <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                            <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                            <br>
+                        </div>
+                        <!-- Estado -->
+                        <!-- ******************* -->
+                        <div>
+                            <label for="estados">Estado:</label>
+                            <fieldset id="estados">
+                                <label for="activo">Activo</label>
+                                <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
+                                <label for="inactivo">Inactivo</label>
+                                <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
+                            </fieldset>
+                            <br>
+                        </div>
+                        <button type="submit">Enviar</button>
+
+                    </form>
+                </div>  
+            </div>
+        </article>
+    </section>
+    <footer th:replace="layouts/base::footer"></footer>
+</body>
+</html>

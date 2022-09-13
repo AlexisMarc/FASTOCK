@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insumo</title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+<html lang="en">
+
+<head th:replace="layouts/base_template::head">
 </head>
 <body>
-    <header th:replace="layouts/base::header"></header>
-    <nav><a href="#">Home</a></nav>
-    <aside th:replace="layouts/base::aside"></aside>
-    <section>
-        <article>
-            <h1>Insumo</h1>
-            <form th:action="@{/insumo/add}" method="post" th:object="${insumo}">
+    <div class="container-scroller">
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Nav ------------------->
+<!--***************************************************************************************************************************************************-->
+        <nav th:replace="layouts/base_template::navbar"></nav>
+        <div class="container-fluid page-body-wrapper">
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Combio de color ------------------->
+<!--***************************************************************************************************************************************************-->
+            <div th:replace="layouts/base_template::color"></div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Panel ------------------->
+<!--***************************************************************************************************************************************************-->
+            <div th:replace="layouts/base_template::panel"></div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Menú ------------------->
+<!--***************************************************************************************************************************************************-->
+            <nav th:replace="layouts/base_template::sidebar"></nav>
+            <div class="main-panel">
+<!--***************************************************************************************************************************************************-->
+<!---------------------  Contenido ------------------->
+<!--***************************************************************************************************************************************************-->
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Bienvenido</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card position-relative">
+                                <div class="card-body">
+                                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
+                                        <h1 class="card-title">Insumo</h1>
+            <form class="form-sample" th:action="@{/insumo/add}" method="post" th:object="${insumo}">
                 <!-- nombre -->
                 <!-- ******************* -->
-                <div>
+                <div class="row">
+                <div class="col-md-6">
                     <label for="nombre">Nombre:</label>
-                    <input th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <input class="form-control" th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
                     <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                     <br>
                 </div>
                 <!-- Descripción del Tipo-->
                 <!-- ******************* -->
-                <div>
-                    <label for="descripcion">Descripción del Insumo:</label><br>
-                    <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
-                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
-                    <br>
-                </div>
-                <!-- Proveedor -->
-                <!-- ******************* -->
-                <div>
+                <div class="col-md-6">
                     <label for="proveedor">Proveedor:</label>
-                    <select th:field="*{proveedor}" name="proveedor" id="proveedor">
+                    <select th:field="*{proveedor}" name="proveedor" id="proveedor" class="js-example-basic-single w-100 select3-hidden-accessible">
                         <option value="0">Selecciones el Proveedor...</option>
                         <th:block th:each="proveedor : ${proveedores}">
                             <option th:text="${proveedor.nombre}" th:value="${proveedor.id}"></option>
@@ -44,11 +63,22 @@
                     <div class="validacion" th:if="${#fields.hasErrors('proveedor')}" th:errors="*{proveedor}"></div>
                     <br>
                 </div>
+            </div>
+                <!-- Proveedor -->
+                <!-- ******************* -->
+                <div class="row">
+                
+                <div class="col-md-6">
+                    <label for="descripcion">Descripción del producto:</label><br>
+                    <textarea  class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" ></textarea>
+                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+                    <br>
+                </div>
                 <!-- Tipo -->
                 <!-- ******************* -->
-                <div>
+                <div class="col-md-6">
                     <label for="tipo">Tipo:</label>
-                    <select th:field="*{tipo}" name="tipo" id="tipo">
+                    <select th:field="*{tipo}" name="tipo" id="tipo" class="js-example-basic-single w-100 select3-hidden-accessible">
                         <option value="0">Selecciones el tipo...</option>
                         <th:block th:each="tipo : ${tipos}">
                             <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
@@ -57,103 +87,151 @@
                     <div class="validacion" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
                     <br>
                 </div>
+                
+            </div>
                 <!-- agregar Tipo -->
                 <!-- ******************* -->
-                <div>
-                    <a href="#agregarTipo">Agregar Tipo</a>
-                    <br>
+                <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarTipo">
+                        Agreguar Tipo
+                    </button>
                 </div>
                 <!-- material -->
                 <!-- ******************* -->
-                <div>
+                <div class="col-md-6">
                     <label for="material">Material del insumo:</label>
-                    <input th:field="*{material}" type="text" id="material" name="material" placeholder="material">
+                    <input class="form-control" th:field="*{material}" type="text" id="material" name="material" placeholder="material">
                     <div class="validacion" th:if="${#fields.hasErrors('material')}" th:errors="*{material}"></div>
                     <br>
                 </div>
+            </div>
                 <!-- Fotografia -->
                 <!-- ******************* -->
-                <div>
-                    <label for="archivo">Fotografia:</label>
-                    <input type="file" name="foto">
-                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label >Subir archivo</label>
+                            <input type="file" name="foto" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Subir imagen">
+                                <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
+                                </span>
+                            </div>
+                          </div>
+                        </div>
                 <!-- Estado -->
                 <!-- ******************* -->
-                <div>
-                    <label >Estado:</label>
-                        <label for="activo">Activo</label>
-                        <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
-                        <label for="inactivo">Inactivo</label>
-                        <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                        <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-                        <br>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <label class="form-check-label" for="activo">
+                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="activo" value="1" checked>Activo
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="form-check">
+                                    <label class="form-check-label" for="inactivo">
+                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0" >Inactivo
+                                    </label>
+                                    <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                                </div>
+                            </div>
+                    </div>
                 </div>
+            </div>
                 
-
-                <button type="submit">Enviar</button>
-                
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
+            </div> 
 
             </form>
-            <!-- ******************************************************* -->
-            <!-- ---------------Tipos del insimo ----------------- -->
-            <!-- ******************************************************* -->
-            <table>
-                <thead>
-                <th>Tipos</th>
-                <th></th>      
-            </thead>
-            <tbody>
-                <tr th:if="${insumoTipo.size()>0}" th:each="i : ${insumoTipo}">
-                    <td th:text="${i.nombre}"></td>
-                    <td>
-                        <a th:href="@{../tipo/delete/}+${i.id}">X</a>
-                    </td>
-                </tr>
-            </tbody>
-            </table>
+            
             <!-- ******************************************************* -->
             <!-- ---------------Modal de agregar Tipo ----------------- -->
             <!-- ******************************************************* -->
-            <div id="agregarTipo" class="modal">
-                <div class="modal-contenido">
-                    <a href="#">X</a>
-                    <h2>Agregar Tipo</h2>
-                    <form th:action="@{/tipo/add}" method="post" th:object="${tipo}">
+            <div class="modal fade" id="agregarTipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar tipo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body card-body">
+                    <form class="forms-sample" th:action="@{/tipo/add}" method="post" th:object="${tipo}">
                         <!-- nombre -->
                         <!-- ******************* -->
-                        <div>
+                        <div class="form-group">
                             <label for="nombre">Nombre del Tipo</label>
-                            <input th:field="*{nombre}" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <input class="form-control" th:field="*{nombre}" type="text" name="nombre" id="nombre" placeholder="Nombre">
                             <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
                             <br>
                         </div>
                         <!-- Descripción del Tipo-->
                         <!-- ******************* -->
-                        <div>
+                        <div class="form-group">
                             <label for="nombre">Descripción del Tipo</label>
-                            <textarea th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="10"></textarea>
                             <div th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                             <br>
                         </div>
                         <!-- Estado -->
                         <!-- ******************* -->
-                        <div>
-                            <label for="estados">Estado:</label>
-                            <fieldset id="estados">
-                                <label for="activo">Activo</label>
-                                <input th:filed="*{estado}" type="radio" name="estado" id="activo" value="1">
-                                <label for="inactivo">Inactivo</label>
-                                <input th:filed="*{estado}" type="radio" name="estado" id="inactivo" value="0">
-                            </fieldset>
-                            <br>
+                            <div class="form-group ">
+                                <label>Estado:</label>
+                                    <div class="col-sm-4">
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="activo">
+                                            <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="activo" value="1" checked>Activo
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="inactivo">
+                                            <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0" >Inactivo
+                                            </label>
+                                            <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                                        </div>
+                                    </div>
+    
                         </div>
-                        <button type="submit">Enviar</button>
+                        <button type="submit" class="btn btn-primary mr-2">Enviar</button>
 
                     </form>
-                </div>  
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
-        </article>
-    </section>
-    <footer th:replace="layouts/base::footer"></footer>
+         </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--***************************************************************************************************************************************************-->
+<!------------------------- Footer -------------------------->
+<!--***************************************************************************************************************************************************-->
+                <footer th:replace="layouts/base_template::footer"></footer>
+            </div>
+        </div>
+    </div>
+<!--***************************************************************************************************************************************************-->
+<!--------------------- Scripts------------------->
+<!--***************************************************************************************************************************************************-->
+    <div th:replace="layouts/base_template::script"></div>
 </body>
+
 </html>
