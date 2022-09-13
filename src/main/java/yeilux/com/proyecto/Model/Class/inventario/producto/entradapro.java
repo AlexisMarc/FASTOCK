@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import jakarta.persistence.*;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,7 +21,7 @@ public class entradapro {
     private Date fecha;
 
     // -----------------------CANTIDAD_ENTRADA-----------------------//
-    @NotEmpty
+    @NotNull
     private Integer cantidad;
 
     // -----------------------ESTADO-----------------------//
