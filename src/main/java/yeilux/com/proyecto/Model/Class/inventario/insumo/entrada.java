@@ -3,11 +3,11 @@ package yeilux.com.proyecto.Model.Class.inventario.insumo;
 import java.sql.Date;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 
 @Entity
-@Table(name="entrada")
+@Table(name="entrada")  
 public class entrada {
 // -----------------------ID-----------------------//
     @Id
@@ -15,13 +15,13 @@ public class entrada {
     @Column(name = "id")
     private Integer id;
 // -----------------------FECHA-ENTRADA-----------------------//
-@NotEmpty
+@NotNull
 private Date fecha; 
 // -----------------------CANTIDAD-----------------------//
-@NotEmpty
+@NotNull
 private Integer cantidad; 
 // -----------------------ESTADO-----------------------//
-@Column(nullable=true)
+@NotNull
 private Boolean estado;
 // -----------------------ID-INVENTARIO-----------------------//
 // ************************************************//
@@ -36,6 +36,9 @@ private Boolean estado;
     @ManyToOne(fetch = FetchType.LAZY)
     private empleado empleado;
 /*-----------GETTERS AND SETTERS-----------------*/
+
+public entrada() {
+}
 
 public Integer getId() {
     return id;
@@ -81,14 +84,13 @@ public empleado getEmpleado() {
     return empleado;
 }
 
-public void setEmpleado(empleado empleado) {
-    this.empleado = empleado;
-}
 /*-----------------CONSTRUCOTORES------------------*/
-    public entrada() {
+
+    public void setEmpleado(empleado empleado) {
+        this.empleado = empleado;
     }
 
-    public entrada(Integer id, @NotEmpty Date fecha, @NotEmpty Integer cantidad, Boolean estado,
+    public entrada(Integer id, @NotNull Date fecha, @NotNull Integer cantidad, @NotNull Boolean estado,
             yeilux.com.proyecto.Model.Class.inventario.insumo.inventario inventario,
             yeilux.com.proyecto.Model.Class.empleado.empleado empleado) {
         this.id = id;
@@ -98,5 +100,7 @@ public void setEmpleado(empleado empleado) {
         this.inventario = inventario;
         this.empleado = empleado;
     }
+
+
 
 }
