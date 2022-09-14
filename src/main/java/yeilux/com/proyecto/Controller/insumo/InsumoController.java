@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -73,5 +74,25 @@ public String add(@Valid insumo insumo, BindingResult respuesta, Model m, Sessio
     status.setComplete();
     return"redirect:";
 }
+
+//-----------------------Editar------------------------//
+@GetMapping("/edit/{id}")
+public String ver(@PathVariable Integer id,Model m){
+ 
+   insumo insumo=new insumo();
+   if(id>0){
+       insumo=iinsumo.consulta(id);
+   }else{
+       return "redirect:listar";
+   }
+   tipo tipo=new tipo();
+   m.addAttribute("insumo", insumo);
+   m.addAttribute("tipo", tipo);
+   m.addAttribute("tipos", itipo.listar());
+   m.addAttribute("proveedores", iproveedor.listar());
+   return "views/insumo/formulario";
+}
+
+
 }
 
