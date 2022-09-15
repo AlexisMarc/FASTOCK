@@ -77,15 +77,18 @@
                 <!-- Tipo -->
                 <!-- ******************* -->
                 <div class="col-md-6">
-                    <label for="tipo">Tipo:</label>
-                    <select th:field="*{tipo}" name="tipo" id="tipo" class="js-example-basic-single w-100 select3-hidden-accessible">
-                        <option value="0">Selecciones el tipo...</option>
-                        <th:block th:each="tipo : ${tipos}">
-                            <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
-                        </th:block>
-                    </select>
-                    <div class="validacion" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
-                    <br>
+                    <div class="card">
+                        <div class="form-group">
+                            <div  th:field="*{tipo}" >
+                                <label>Seleccione la tipo</label>
+                                <select   class="js-example-basic-multiple w-100" multiple="multiple" name="tipo" id="tipo" >
+                                    <th:block th:each="tipo :${tipos}">
+                                        <option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
             </div>
@@ -121,28 +124,7 @@
                             </div>
                           </div>
                         </div>
-                <!-- Estado -->
-                <!-- ******************* -->
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Estado</label>
-                            <div class="col-sm-4">
-                                <div class="form-check">
-                                    <label class="form-check-label" for="activo">
-                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="activo" value="1" checked>Activo
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="form-check">
-                                    <label class="form-check-label" for="inactivo">
-                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0" >Inactivo
-                                    </label>
-                                    <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
+                
             </div>
                 
             <div class="col-md-6">

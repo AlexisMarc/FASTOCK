@@ -52,6 +52,7 @@
                                             <th>Telefono</th>
                                             <th>Email</th>
                                             <th>Estado</th>
+                                            <th>Acciones</th>
                                         </thead>
                                         <tbody>
                                             <tr th:if="${empleados.size()>0}" th:each="e : ${empleados}">
@@ -69,6 +70,14 @@
                                                 </td>
                                                 <td th:if="${e.estado==false}">
                                                     <span>Inactivo</span>
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{/empleado/edit/}+${e.id}" >
+                                                        <button type="button" class="btn btn-primary btn-rounded btn-icon">
+                                                            <i class="ti-pencil"></i>
+                                                        </button>
+                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                         </tbody>

@@ -37,8 +37,7 @@ private String descripcion;
 @Size(min = 2, max = 200)
 private String material;
 //--------------Estado---------------//
-@NotNull
-private Boolean estado;
+private Boolean estado=false;
 // ************************************************//
 // -------------Relacion con tipo------------------//
 // ************************************************//
@@ -127,7 +126,7 @@ public insumo() {
 }
     public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
             @NotEmpty @Size(min = 2, max = 200) String descripcion,
-            @NotEmpty @Size(min = 2, max = 200) String material, @NotNull Boolean estado,
+            @NotEmpty @Size(min = 2, max = 200) String material, Boolean estado,
             @NotNull List<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
             @NotNull yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
             List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,

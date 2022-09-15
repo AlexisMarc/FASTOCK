@@ -42,22 +42,34 @@
                                     <div id="detailedReports"
                                         class="carousel slide detailed-report-carousel position-static pt-2"
                                         data-ride="carousel">
-                                        <a class="btn btn-primary" th:href="@{/producto/formulario}">Registrar
-                                            producto</a>
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Entrada">
+                                                Entrada
+                                            </button>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Salida">
+                                                    Salida
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Inventario">
+                                                    Nuevo inventario
+                                                </button>
+                                        </div>
                                         <table class="table table-hover">
                                             <thead>
                                                 <th>id</th>
                                                 <th>Nombre</th>
-                                                <th>descripción</th>
+                                                <th>Entradas</th>
+                                                <th>Salidas</th>
+                                                <th>Stock</th>
                                                 <th>Estado</th>
-                                                <th>Categorías</th>
                                             </thead>
-                                            <tbody>
-                                                <tr th:if="${productos.size()>0}" th:each="p : ${productos}">
+                                            <tbody th:with="total=0, totalsalida=0, totalentrada=0">
+                                                <tr th:if="${inventariopros.size()>0}" th:each="p : ${inventariopros}">
                                                     <td th:text="${p.id}"></td>
-                                                    <td th:text="${p.nombre}"></td>
-                                                    <td th:text="${p.descripcion}"></td>
-                                                    <!-- <td th:text="${p.categoria.nombre}"></td> -->
+                                                    <td th:text="${p.producto.nombre}"></td>
+                                                    <td th:text="${p.entrada}"></td>
+                                                    <td th:text="${p.salida}"></td>
+                                                    <td th:text="${p.entrada}-${p.salida}"></td>
+                                                    
                                                     <td th:if="${p.estado==true}">
                                                         <span>Activo</span>
                                                     </td>
@@ -72,13 +84,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- MODAL ENTRADA -->
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Entrada">
-                            Entrada
-                        </button>
-                    </div>
 
+                    <!-- MODAL ENTRADA -->
                     <div class="modal fade" id="Entrada" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -94,16 +101,14 @@
 
                                     <form class="forms-sample" th:action="@{/inventariopro/addentrada}" method="post"
                                         th:object="${entradapro}">
-                                        <!-- fecha entrada -->
-                                        <!-- ******************* -->
-                                        <div class="form-group">
-                                            <label for="fecha">Fecha entrada:</label>
-                                            <input th:field="*{fecha}" type="date" id="fecha" name="fecha">
-                                            <div class="validacion" th:if="${#fields.hasErrors('fecha')}"
-                                                th:errors="*{fecha}"></div>
-                                            <br>
+                                        <div>
+                                            <label>Seleccione el producto:</label>
+                                            <select th:field="*{inventario}"  name="inventario" id="inventario" >
+                                                <th:block th:if="${inventariopros.size()>0}" th:each="p : ${inventariopros}">
+                                                    <option th:text="${p.producto.nombre}" th:value="${p.id}"></option>
+                                                </th:block>
+                                            </select>
                                         </div>
-                                        <br>
                                         <div class="form-group">
                                             <label for="Cantidad">Cantidad entrada:</label>
                                             <input th:field="*{cantidad}" type="number" id="cantidad" name="cantidad">
@@ -141,12 +146,7 @@
                     <br>
 
                     <!-- MODAL SALIDA-->
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Salida">
-                            Salida
-                        </button>
-                    </div>
-
+                    
                     <div class="modal fade" id="Salida" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -162,16 +162,6 @@
 
                                     <form class="form-sample" th:action="@{/inventariopro/addsalida}" method="post"
                                         th:object="${salidapro}">
-                                        <!-- fecha entrada -->
-                                        <!-- ******************* -->
-                                        <div>
-                                            <label for="fecha">Fecha salida:</label>
-                                            <input th:field="*{fecha}" type="date" id="fecha" name="fecha">
-                                            <div class="validacion" th:if="${#fields.hasErrors('fecha')}"
-                                                th:errors="*{fecha}"></div>
-                                            <br>
-                                        </div>
-                                        <br>
                                         <!-- Cantidad salida-->
                                         <!-- ******************* -->
                                         <div>
@@ -181,7 +171,14 @@
                                                 th:errors="*{cantidad}"></div>
                                             <br>
                                         </div>
-                                        <br>
+                                        <div>
+                                            <label>Seleccione el producto:</label>
+                                            <select th:field="*{inventario}"  name="inventario" id="inventario" >
+                                                <th:block th:if="${inventariopros.size()>0}" th:each="p : ${inventariopros}">
+                                                    <option th:text="${p.producto.nombre}" th:value="${p.id}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
                                         <!-- Estado -->
                                         <!-- ******************* -->
                                         <div>
@@ -213,11 +210,6 @@
                     <br>
 
                     <!-- MODAL INVENTARIO-->
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Inventario">
-                            Inventario
-                        </button>
-                    </div>
                     <div class="modal fade" id="Inventario" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
@@ -235,10 +227,20 @@
                                             <label for="estado">Estado:</label>
                                             <fieldset id="estado">
                                                 <label for="activo">Activo</label>
-                                                <input type="radio" name="activo" id="activo" value="1">
+                                                <input th:field="*{estado}" type="radio" name="activo" id="activo" value="1">
                                                 <label for="activo">Inactivo</label>
-                                                <input type="radio" name="activo" id="activo" value="0">
+                                                <input th:field="*{estado}" type="radio" name="activo" id="activo" value="0">
                                             </fieldset>
+                                        </div>
+                                        <div>
+                                            <label>Seleccione el producto:</label>
+                                            <select th:field="*{producto}"  name="producto" id="producto" >
+                                                <th:block th:each="p : ${productos}">
+                                                    <th:block th:if="${p.estado==false}">
+                                                            <option th:text="${p.nombre}" th:value="${p.id}"></option>
+                                                    </th:block>
+                                                </th:block>
+                                            </select>
                                         </div>
                                         <br>
                                         <div>

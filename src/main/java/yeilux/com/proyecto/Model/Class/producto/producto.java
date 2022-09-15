@@ -33,8 +33,7 @@ public class producto {
     private String descripcion;
 
     // -----------------------Estado-----------------------//
-    @NotNull
-    private Boolean estado;
+    private Boolean estado=false;
 
     // -----------------------Imagen-----------------------//
     private String imagen;
@@ -57,8 +56,8 @@ public class producto {
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
-    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<inventariopro> inventario;
+    @OneToOne(mappedBy = "producto", fetch = FetchType.LAZY)
+    private inventariopro inventario;
 
 
     
@@ -114,11 +113,11 @@ public class producto {
         this.fabricacion = fabricacion;
     }
 
-    public List<inventariopro> getInventario() {
+    public inventariopro getInventario() {
         return inventario;
     }
 
-    public void setInventario(List<inventariopro> inventario) {
+    public void setInventario(inventariopro inventario) {
         this.inventario = inventario;
     }
 
@@ -135,9 +134,9 @@ public class producto {
     }
 
     public producto(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 200) String descripcion, @NotNull Boolean estado, String imagen,
+            @NotEmpty @Size(min = 2, max = 200) String descripcion, Boolean estado, String imagen,
             @NotNull List<yeilux.com.proyecto.Model.Class.producto.categoria> categoria,
-            List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion, List<inventariopro> inventario) {
+            List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion, inventariopro inventario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

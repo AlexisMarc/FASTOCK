@@ -1,6 +1,7 @@
 package yeilux.com.proyecto.Model.Class.inventario.producto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.*;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
@@ -17,8 +18,14 @@ public class entradapro {
     private Integer id;
 
     // -----------------------FECHA_ENTRADA-----------------------//
-    @NotNull
-    private Date fecha;
+    private String fecha=obtenerFecha();
+
+    public static String obtenerFecha() {
+        String formato = "yyyy-MM-dd HH:mm:ss";
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+        LocalDateTime ahora = LocalDateTime.now();
+        return formateador.format(ahora);
+    }
 
     // -----------------------CANTIDAD_ENTRADA-----------------------//
     @NotNull
@@ -56,11 +63,11 @@ public class entradapro {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -96,7 +103,7 @@ public class entradapro {
         this.empleado = empleado;
     }
 
-    public entradapro(Integer id, @NotNull Date fecha, @NotNull Integer cantidad, Boolean estado,
+    public entradapro(Integer id, String fecha, @NotNull Integer cantidad, Boolean estado,
             inventariopro inventario, yeilux.com.proyecto.Model.Class.empleado.empleado empleado) {
         this.id = id;
         this.fecha = fecha;

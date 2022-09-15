@@ -20,7 +20,6 @@ public class inventariopro {
     @Column(nullable = true)
     private Boolean estado;
 
-
     // ************************************************//
     // -------------Relacion con salida----------------//
     // ************************************************//
@@ -34,8 +33,11 @@ public class inventariopro {
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private producto producto;
+
+    
+    
 
     // ************************************************//
     // -------------Contructores accesores--------------//

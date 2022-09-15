@@ -96,26 +96,7 @@
                                             <!-- Estado -->
                                             <!-- ******************* -->
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">Estado</label>
-                                                            <div class="col-sm-4">
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label" for="activo">
-                                                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="activo" value="1" checked>Activo
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-5">
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label" for="inactivo">
-                                                                    <input class="form-check-input" th:field="*{estado}" type="radio" name="estado" id="inactivo" value="0" >Inactivo
-                                                                    </label>
-                                                                    <div class="validacion" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                </div>
+                                                
                                             <div class="col-md-6">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                     Agregue categoria
