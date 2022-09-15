@@ -12,8 +12,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import jakarta.validation.Valid;
 import yeilux.com.proyecto.Model.Class.fabricacion.area;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
+import yeilux.com.proyecto.Model.Class.fabricacion.listFabricacion;
+import yeilux.com.proyecto.Service.empleado.IServiceEmpleado;
 import yeilux.com.proyecto.Service.fabricacion.IServiceArea;
 import yeilux.com.proyecto.Service.fabricacion.IServiceFabricacion;
+import yeilux.com.proyecto.Service.producto.IServiceProducto;
 
 @Controller
 @SessionAttributes("fabricacion")
@@ -23,6 +26,10 @@ public class FabricacionController {
     private IServiceFabricacion ifabricacion;
     @Autowired
     private IServiceArea iarea;
+    @Autowired
+    private IServiceProducto iproducto;
+    @Autowired
+    private IServiceEmpleado iempleado;
 // ************************************************//
 // -------------METODO GET---------------//
 // ************************************************//
@@ -37,9 +44,11 @@ public String listar(Model m){
 //-----------------FORMULARIO----------------//
 @GetMapping("/formulario")
 public String formulario(Model m){
-    fabricacion fabricacion =new fabricacion();
+    listFabricacion fabricacion =new listFabricacion();
     m.addAttribute("fabricacion", fabricacion);
     m.addAttribute("areaes", iarea.listar());
+    m.addAttribute("productos", iproducto.listar());
+    m.addAttribute("empleados", iempleado.listar());
     area area =new area();
     m.addAttribute("area", area);
     return "views/fabricacion/formulario";
@@ -49,7 +58,7 @@ public String formulario(Model m){
 // ************************************************//
 // -------------GUARDAR-------------//
 @PostMapping("/add")
-public String add(@Valid fabricacion fabricacion, BindingResult respuesta, Model m, SessionStatus status){
+public String add(@Valid listFabricacion fabricacion, BindingResult respuesta, Model m, SessionStatus status){
     if(respuesta.hasErrors()){
         m.addAttribute("fabricacions", fabricacion);
         m.addAttribute("areaes", iarea.listar());
@@ -57,7 +66,6 @@ public String add(@Valid fabricacion fabricacion, BindingResult respuesta, Model
         m.addAttribute("area", area);
     return "views/fabricacion/formulario";
     }
-    ifabricacion.guardar(fabricacion);
     status.setComplete();
     return "redirect:listar";
     }
