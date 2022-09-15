@@ -28,19 +28,17 @@
 <!--***************************************************************************************************************************************************-->
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h3 class="font-weight-bold">Bienvenido</h3>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card position-relative">
                                 <div class="card-body">
                                     <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
-                                        <h1 class="card-title">Empleado</h1>
+                                        <h4 class="card-title">Empleado</h4>
                                         <form class="form-sample" th:action="@{/empleado/add}" method="post" th:object="${empleado}">
+                                            <p class="card-description">
+                                                Información Empleado
+                                            </p>
                                             <!-- numero de documento -->
                                             <!-- ******************* -->
                                             <div class="row">
