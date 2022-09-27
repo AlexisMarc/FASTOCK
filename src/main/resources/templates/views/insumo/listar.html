@@ -43,7 +43,8 @@
                                             <th>Descripcion</th>
                                             <th>Material</th>
                                             <th>Tipo</th>
-                                            <th>Estado</th>                
+                                            <th>Estado</th>  
+                                            <th>Opcciones</th>              
                                         </thead>
                                         <tbody>
                                             <tr th:if="${insumos.size()>0}" th:each="i : ${insumos}">
@@ -63,6 +64,14 @@
                                                 </td>
                                                 <td th:if="${i.estado==false}">
                                                     <span>Inactivo</span>
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{/insumo/edit/}+${i.id}" >
+                                                        <button type="button" class="btn btn-primary btn-rounded btn-icon">
+                                                            <i class="ti-pencil"></i>
+                                                        </button>
+                                                    </a>
+                                                   
                                                 </td>
                                             </tr>
                                         </tbody>

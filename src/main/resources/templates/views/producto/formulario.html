@@ -38,6 +38,7 @@
                                     <div id="detailedReports"
                                         class="carousel slide detailed-report-carousel position-static pt-2"
                                         data-ride="carousel">
+
                                         <form class="form-sample" th:action="@{/producto/add}"
                                             enctype="multipart/form-data" method="post" th:object="${producto}">
                                             <h4 class="card-title">Producto</h4>
@@ -73,6 +74,7 @@
                                                 <div class="col-md-6">
                                                     <div class="card">
                                                         <div class="form-group">
+
                                                             <div th:field="*{categoria}">
                                                                 <label>Seleccione la categoria</label>
                                                                 <select class="js-example-basic-multiple w-100"
@@ -110,82 +112,120 @@
                                             <div class="row">
 
                                                 <div class="col-md-6">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#exampleModal">
+                                                    <<<<<<< HEAD <button type="button" class="btn btn-primary"
+                                                        data-toggle="modal" data-target="#exampleModal">
                                                         Agregue categoria
-                                                    </button>
+                                                        </button>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <button type="submit" class="btn btn-primary mr-2">Enviar</button>
                                                 </div>
+                                                =======
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Estado</label>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-check">
+                                                            <label class="form-check-label" for="activo">
+                                                                <input class="form-check-input" th:field="*{estado}"
+                                                                    type="radio" name="estado" id="activo" value="1"
+                                                                    checked>Activo
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <div class="form-check">
+                                                            <label class="form-check-label" for="inactivo">
+                                                                <input class="form-check-input" th:field="*{estado}"
+                                                                    type="radio" name="estado" id="inactivo"
+                                                                    value="0">Inactivo
+                                                            </label>
+                                                            <div class="validacion"
+                                                                th:if="${#fields.hasErrors('estado')}"
+                                                                th:errors="*{estado}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </form>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Agregar categoria
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body card-body">
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#exampleModal">
+                                                    Agregue categoria
+                                                </button>
+                                            </div>
 
-                                                        <form class="forms-sample" th:action="@{/categoria/add}"
-                                                            method="post" th:object="${categoria}">
-                                                            <!-- nombre -->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group">
-                                                                <label for="nombre">Nombre de la categoria</label><br>
-                                                                <input class="form-control" th:field="*{nombre}"
-                                                                    type="text" name="nombre" id="nombre"
-                                                                    placeholder="Nombre">
-                                                                <div th:if="${#fields.hasErrors('nombre')}"
-                                                                    th:erros="*{nombre}"> </div><br>
+                                            <!-- id -->
+                                            <!-- ******************* -->
+                                            <input hidden th:field="*{id}">
 
-                                                            </div>
-                                                            <!-- Descripción del categoria-->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group">
-                                                                <label for="nombre">Descripción de la
-                                                                    categoria</label><br>
-                                                                <textarea th:field="*{descripcion}" name="descripcion"
-                                                                    id="descripcion" placeholder="Descripción" cols="30"
-                                                                    rows="10"></textarea>
-                                                                <div th:if="${#fields.hasErrors('descripcion')}"
-                                                                    th:erros="*{descripcion}"> </div>
 
-                                                            </div>
-                                                            <!-- Estado -->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group">
-                                                                <label for="estado">Estado:</label>
-                                                                <fieldset id="estado">
-                                                                    <label for="activo">Activo</label>
-                                                                    <input type="radio" name="activo" id="activo"
-                                                                        value="1">
-                                                                    <label for="activo">Inactivo</label>
-                                                                    <input type="radio" name="activo" id="activo"
-                                                                        value="0">
-                                                                </fieldset>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
+                                            </div>
+                                            >>>>>>> origin/Project-Se
+                                    </div>
+                                    </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Agregar categoria
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body card-body">
 
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary mr-2">Enviar</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-light"
-                                                            data-dismiss="modal">Cerrar</button>
+                                                    <form class="forms-sample" th:action="@{/categoria/add}"
+                                                        method="post" th:object="${categoria}">
+                                                        <!-- nombre -->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group">
+                                                            <label for="nombre">Nombre de la categoria</label><br>
+                                                            <input class="form-control" th:field="*{nombre}" type="text"
+                                                                name="nombre" id="nombre" placeholder="Nombre">
+                                                            <div th:if="${#fields.hasErrors('nombre')}"
+                                                                th:erros="*{nombre}"> </div><br>
 
-                                                    </div>
+                                                        </div>
+                                                        <!-- Descripción del categoria-->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group">
+                                                            <label for="nombre">Descripción de la
+                                                                categoria</label><br>
+                                                            <textarea th:field="*{descripcion}" name="descripcion"
+                                                                id="descripcion" placeholder="Descripción" cols="30"
+                                                                rows="10"></textarea>
+                                                            <div th:if="${#fields.hasErrors('descripcion')}"
+                                                                th:erros="*{descripcion}"> </div>
+
+                                                        </div>
+                                                        <!-- Estado -->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group">
+                                                            <label for="estado">Estado:</label>
+                                                            <fieldset id="estado">
+                                                                <label for="activo">Activo</label>
+                                                                <input type="radio" name="activo" id="activo" value="1">
+                                                                <label for="activo">Inactivo</label>
+                                                                <input type="radio" name="activo" id="activo" value="0">
+                                                            </fieldset>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit"
+                                                                class="btn btn-primary mr-2">Enviar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-dismiss="modal">Cerrar</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -197,11 +237,12 @@
                 </div>
             </div>
         </div>
-        <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--***************************************************************************************************************************************************-->
-        <!------------------------- Footer -------------------------->
-        <!--***************************************************************************************************************************************************-->
-        <footer th:replace="layouts/base_template::footer"></footer>
+    </div>
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--***************************************************************************************************************************************************-->
+    <!------------------------- Footer -------------------------->
+    <!--***************************************************************************************************************************************************-->
+    <footer th:replace="layouts/base_template::footer"></footer>
     </div>
     </div>
     </div>

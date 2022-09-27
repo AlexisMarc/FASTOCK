@@ -22,6 +22,7 @@ import yeilux.com.proyecto.Service.producto.IServiceCategoria;
 import yeilux.com.proyecto.Service.producto.IServiceProducto;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -99,5 +100,23 @@ public class ProductoController {
         status.setComplete();
         return "redirect:";
     }
+
+    //-----------------------Editar------------------------//
+@GetMapping("/edit/{id}")
+public String ver(@PathVariable Integer id,Model m){
+ 
+   producto producto=new producto();
+   if(id>0){
+       producto=iproducto.consulta(id);
+   }else{
+       return "redirect:listar";
+   }
+   categoria categoria=new categoria();
+   m.addAttribute("categoria", categoria);
+   m.addAttribute("producto", producto);
+   m.addAttribute("categorias", icategoria.listar());
+   return "views/producto/formulario";
+}
+
 
 }

@@ -43,6 +43,7 @@
                                             <p class="card-description">
                                                 Información Insumo
                                             </p>
+
                                             <!-- nombre -->
                                             <!-- ******************* -->
                                             <div class="row">
@@ -89,175 +90,181 @@
                                                 <div class="col-md-6">
                                                     <div class="card">
                                                         <div class="form-group">
-                                                            <div th:field="*{tipo}">
+                                                            <<<<<<< HEAD <div th:field="*{tipo}">
                                                                 <label>Seleccione la tipo</label>
-                                                                <select class="js-example-basic-multiple w-100"
-                                                                    multiple="multiple" name="tipo" id="tipo">
-                                                                    <th:block th:each="tipo :${tipos}">
-                                                                        <option th:text="${tipo.nombre}"
-                                                                            th:value="${tipo.id}"></option>
-                                                                    </th:block>
-                                                                </select>
-                                                            </div>
+                                                                <select
+                                                                    class="js-example-basic-multiple w-100"=======<div>
+                                                                    <label>Seleccione los tipos</label>
+                                                                    <select th:field="*{tipo}"
+                                                                        class="js-example-basic-multiple w-100">>>>>>>
+                                                                        origin/Project-Se
+                                                                        multiple="multiple" name="tipo" id="tipo">
+                                                                        <th:block th:each="tipo :${tipos}">
+                                                                            <option th:text="${tipo.nombre}"
+                                                                                th:value="${tipo.id}"></option>
+                                                                        </th:block>
+                                                                    </select>
                                                         </div>
                                                     </div>
-
                                                 </div>
 
-
                                             </div>
-                                            <!-- agregar Tipo -->
-                                            <!-- ******************* -->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#agregarTipo">
-                                                        Agreguar Tipo
+
+                                            <<<<<<< HEAD=======>>>>>>> origin/Project-Se
+                                    </div>
+                                    <!-- agregar Tipo -->
+                                    <!-- ******************* -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#agregarTipo">
+                                                <<<<<<< HEAD Agreguar Tipo=======Agregar Tipo>>>>>>> origin/Project-Se
+                                            </button>
+                                        </div>
+                                        <!-- material -->
+                                        <!-- ******************* -->
+                                        <div class="col-md-6">
+                                            <label for="material">Material del insumo:</label>
+                                            <input class="form-control" th:field="*{material}" type="text" id="material"
+                                                name="material" placeholder="material">
+                                            <div class="validacion" th:if="${#fields.hasErrors('material')}"
+                                                th:errors="*{material}"></div>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <!-- Fotografia -->
+                                    <!-- ******************* -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label>Subir archivo</label>
+                                                <input type="file" name="foto" class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled
+                                                        placeholder="Subir imagen">
+                                                    <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-primary"
+                                                            type="button">Cargar</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Estado -->
+                                        <!-- ******************* -->
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Estado</label>
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label" for="activo">
+                                                            <input class="form-check-input" th:field="*{estado}"
+                                                                type="radio" name="estado" id="activo" value="1"
+                                                                checked>Activo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label" for="inactivo">
+                                                            <input class="form-check-input" th:field="*{estado}"
+                                                                type="radio" name="estado" id="inactivo"
+                                                                value="0">Inactivo
+                                                        </label>
+                                                        <div class="validacion" th:if="${#fields.hasErrors('estado')}"
+                                                            th:errors="*{estado}"></div>
+                                                    </div>
+                                                </div>
+                                                <<<<<<< HEAD=======<!-- id -->
+                                                    <!-- ******************* -->
+                                                    <input hidden th:field="*{id}">
+                                                    >>>>>>> origin/Project-Se
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary mr-2">Enviar</button>
+                                    </div>
+
+                                    </form>
+
+                                    <!-- ******************************************************* -->
+                                    <!-- ---------------Modal de agregar Tipo ----------------- -->
+                                    <!-- ******************************************************* -->
+                                    <div class="modal fade" id="agregarTipo" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Agregar tipo</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <!-- material -->
-                                                <!-- ******************* -->
-                                                <div class="col-md-6">
-                                                    <label for="material">Material del insumo:</label>
-                                                    <input class="form-control" th:field="*{material}" type="text"
-                                                        id="material" name="material" placeholder="material">
-                                                    <div class="validacion" th:if="${#fields.hasErrors('material')}"
-                                                        th:errors="*{material}"></div>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                            <!-- Fotografia -->
-                                            <!-- ******************* -->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
-                                                        <label>Subir archivo</label>
-                                                        <input type="file" name="foto" class="file-upload-default">
-                                                        <div class="input-group col-xs-12">
-                                                            <input type="text" class="form-control file-upload-info"
-                                                                disabled placeholder="Subir imagen">
-                                                            <span class="input-group-append">
-                                                                <button class="file-upload-browse btn btn-primary"
-                                                                    type="button">Cargar</button>
-                                                            </span>
+                                                <div class="modal-body card-body">
+                                                    <form class="forms-sample" th:action="@{/tipo/add}" method="post"
+                                                        th:object="${tipo}">
+                                                        <!-- nombre -->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group">
+                                                            <label for="nombre">Nombre del Tipo</label>
+                                                            <input class="form-control" th:field="*{nombre}" type="text"
+                                                                name="nombre" id="nombre" placeholder="Nombre">
+                                                            <div th:if="${#fields.hasErrors('nombre')}"
+                                                                th:errors="*{nombre}"></div>
+                                                            <br>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Estado -->
-                                                <!-- ******************* -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">Estado</label>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-check">
-                                                                <label class="form-check-label" for="activo">
-                                                                    <input class="form-check-input" th:field="*{estado}"
-                                                                        type="radio" name="estado" id="activo" value="1"
-                                                                        checked>Activo
-                                                                </label>
-                                                            </div>
+                                                        <!-- Descripción del Tipo-->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group">
+                                                            <label for="nombre">Descripción del Tipo</label>
+                                                            <textarea class="form-control" th:field="*{descripcion}"
+                                                                name="descripcion" id="descripcion"
+                                                                placeholder="Descripción" cols="30"
+                                                                rows="10"></textarea>
+                                                            <div th:if="${#fields.hasErrors('descripcion')}"
+                                                                th:errors="*{descripcion}"></div>
+                                                            <br>
                                                         </div>
-                                                        <div class="col-sm-5">
-                                                            <div class="form-check">
-                                                                <label class="form-check-label" for="inactivo">
-                                                                    <input class="form-check-input" th:field="*{estado}"
-                                                                        type="radio" name="estado" id="inactivo"
-                                                                        value="0">Inactivo
-                                                                </label>
-                                                                <div class="validacion"
-                                                                    th:if="${#fields.hasErrors('estado')}"
-                                                                    th:errors="*{estado}"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                                            </div>
-
-                                        </form>
-
-                                        <!-- ******************************************************* -->
-                                        <!-- ---------------Modal de agregar Tipo ----------------- -->
-                                        <!-- ******************************************************* -->
-                                        <div class="modal fade" id="agregarTipo" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Agregar tipo</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body card-body">
-                                                        <form class="forms-sample" th:action="@{/tipo/add}"
-                                                            method="post" th:object="${tipo}">
-                                                            <!-- nombre -->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group">
-                                                                <label for="nombre">Nombre del Tipo</label>
-                                                                <input class="form-control" th:field="*{nombre}"
-                                                                    type="text" name="nombre" id="nombre"
-                                                                    placeholder="Nombre">
-                                                                <div th:if="${#fields.hasErrors('nombre')}"
-                                                                    th:errors="*{nombre}"></div>
-                                                                <br>
-                                                            </div>
-                                                            <!-- Descripción del Tipo-->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group">
-                                                                <label for="nombre">Descripción del Tipo</label>
-                                                                <textarea class="form-control" th:field="*{descripcion}"
-                                                                    name="descripcion" id="descripcion"
-                                                                    placeholder="Descripción" cols="30"
-                                                                    rows="10"></textarea>
-                                                                <div th:if="${#fields.hasErrors('descripcion')}"
-                                                                    th:errors="*{descripcion}"></div>
-                                                                <br>
-                                                            </div>
-                                                            <!-- Estado -->
-                                                            <!-- ******************* -->
-                                                            <div class="form-group ">
-                                                                <label>Estado:</label>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-check">
-                                                                        <label class="form-check-label" for="activo">
-                                                                            <input class="form-check-input"
-                                                                                th:field="*{estado}" type="radio"
-                                                                                name="estado" id="activo" value="1"
-                                                                                checked>Activo
-                                                                        </label>
-                                                                    </div>
+                                                        <!-- Estado -->
+                                                        <!-- ******************* -->
+                                                        <div class="form-group ">
+                                                            <label>Estado:</label>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label" for="activo">
+                                                                        <input class="form-check-input"
+                                                                            th:field="*{estado}" type="radio"
+                                                                            name="estado" id="activo" value="1"
+                                                                            checked>Activo
+                                                                    </label>
                                                                 </div>
-                                                                <div class="col-sm-5">
-                                                                    <div class="form-check">
-                                                                        <label class="form-check-label" for="inactivo">
-                                                                            <input class="form-check-input"
-                                                                                th:field="*{estado}" type="radio"
-                                                                                name="estado" id="inactivo"
-                                                                                value="0">Inactivo
-                                                                        </label>
-                                                                        <div class="validacion"
-                                                                            th:if="${#fields.hasErrors('estado')}"
-                                                                            th:errors="*{estado}"></div>
-                                                                    </div>
-                                                                </div>
-
                                                             </div>
-                                                            <button type="submit"
-                                                                class="btn btn-primary mr-2">Enviar</button>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-check">
+                                                                    <label class="form-check-label" for="inactivo">
+                                                                        <input class="form-check-input"
+                                                                            th:field="*{estado}" type="radio"
+                                                                            name="estado" id="inactivo"
+                                                                            value="0">Inactivo
+                                                                    </label>
+                                                                    <div class="validacion"
+                                                                        th:if="${#fields.hasErrors('estado')}"
+                                                                        th:errors="*{estado}"></div>
+                                                                </div>
+                                                            </div>
 
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-light"
-                                                            data-dismiss="modal">Cerrar</button>
+                                                        </div>
+                                                        <button type="submit"
+                                                            class="btn btn-primary mr-2">Enviar</button>
 
-                                                    </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-dismiss="modal">Cerrar</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -266,15 +273,16 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                <!--***************************************************************************************************************************************************-->
-                <!------------------------- Footer -------------------------->
-                <!--***************************************************************************************************************************************************-->
-                <footer th:replace="layouts/base_template::footer"></footer>
+
             </div>
+            <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <!--***************************************************************************************************************************************************-->
+            <!------------------------- Footer -------------------------->
+            <!--***************************************************************************************************************************************************-->
+            <footer th:replace="layouts/base_template::footer"></footer>
         </div>
+    </div>
     </div>
     <!--***************************************************************************************************************************************************-->
     <!--------------------- Scripts------------------->
