@@ -36,9 +36,9 @@
                                 <div class="card-body">
                                     <form class="form-sample" th:action="@{/empresa/add}" method="post"
                                         th:object="${empresa}">
-                                        <h4 class="card-title">Producto</h4>
+                                        <h4 class="card-title">Empresa</h4>
                                         <p class="card-description">
-                                            Información Producto 
+                                            Información Empresa 
                                         </p>
                                         <!-- nombre -->
                                         <!-- ******************* -->
@@ -78,7 +78,7 @@
                                                     <label class="col-sm-3 col-form-label"
                                                         for="especialidad">Especialidad</label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" th:field="*{especialidad}"
+                                                        <select class="js-example-basic-single w-100 select3-hidden-accessible" th:field="*{especialidad}"
                                                             name="especialidad" id="especialidad">
                                                             <option value="0">Seleccione la Especialidad </option>
                                                             <th:block th:each="especialidad : ${especialidades}">

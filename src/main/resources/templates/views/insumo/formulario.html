@@ -34,9 +34,6 @@
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card position-relative">
                                 <div class="card-body">
-                                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
-                                        <h1 class="card-title">Insumo</h1>
-            
                                     <div id="detailedReports"
                                         class="carousel slide detailed-report-carousel position-static pt-2"
                                         data-ride="carousel">
@@ -46,6 +43,37 @@
                                             <p class="card-description">
                                                 Información Insumo
                                             </p>
+                                            <!-- nombre -->
+                                            <!-- ******************* -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="nombre">Nombre:</label>
+                                                    <input class="form-control" th:field="*{nombre}" type="text"
+                                                        id="nombre" name="nombre" placeholder="Nombre">
+                                                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}"
+                                                        th:errors="*{nombre}"></div>
+                                                    <br>
+                                                </div>
+                                                <!-- Descripción del Tipo-->
+                                                <!-- ******************* -->
+                                                <div class="col-md-6">
+                                                    <label for="proveedor">Proveedor:</label>
+                                                    <select th:field="*{proveedor}" name="proveedor" id="proveedor"
+                                                        class="js-example-basic-single w-100 select3-hidden-accessible">
+                                                        <option value="0">Selecciones el Proveedor...</option>
+                                                        <th:block th:each="proveedor : ${proveedores}">
+                                                            <option th:text="${proveedor.nombre}"
+                                                                th:value="${proveedor.id}"></option>
+                                                        </th:block>
+                                                    </select>
+                                                    <div class="validacion" th:if="${#fields.hasErrors('proveedor')}"
+                                                        th:errors="*{proveedor}"></div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <!-- Proveedor -->
+                                            <!-- ******************* -->
+                                            <div class="row">
 
                                                 <div class="col-md-6">
                                                     <label for="descripcion">Descripción del producto:</label><br>
@@ -59,19 +87,23 @@
                                                 <!-- Tipo -->
                                                 <!-- ******************* -->
                                                 <div class="col-md-6">
-                                                    <label for="tipo">Tipo:</label>
-                                                    <select th:field="*{tipo}" name="tipo" id="tipo"
-                                                        class="js-example-basic-single w-100 select3-hidden-accessible">
-                                                        <option value="0">Selecciones el tipo...</option>
-                                                        <th:block th:each="tipo : ${tipos}">
-                                                            <option th:text="${tipo.nombre}" th:value="${tipo.id}">
-                                                            </option>
-                                                        </th:block>
-                                                    </select>
-                                                    <div class="validacion" th:if="${#fields.hasErrors('tipo')}"
-                                                        th:errors="*{tipo}"></div>
-                                                    <br>
+                                                    <div class="card">
+                                                        <div class="form-group">
+                                                            <div th:field="*{tipo}">
+                                                                <label>Seleccione la tipo</label>
+                                                                <select class="js-example-basic-multiple w-100"
+                                                                    multiple="multiple" name="tipo" id="tipo">
+                                                                    <th:block th:each="tipo :${tipos}">
+                                                                        <option th:text="${tipo.nombre}"
+                                                                            th:value="${tipo.id}"></option>
+                                                                    </th:block>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
 
                                             </div>
                                             <!-- agregar Tipo -->

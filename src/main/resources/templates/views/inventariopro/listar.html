@@ -103,7 +103,7 @@
                                         th:object="${entradapro}">
                                         <div>
                                             <label>Seleccione el producto:</label>
-                                            <select th:field="*{inventario}"  name="inventario" id="inventario" >
+                                            <select class="js-example-basic-single w-100 select3-hidden-accessible"´ th:field="*{inventario}"  name="inventario" id="inventario" >
                                                 <th:block th:if="${inventariopros.size()>0}" th:each="p : ${inventariopros}">
                                                     <option th:text="${p.producto.nombre}" th:value="${p.id}"></option>
                                                 </th:block>
@@ -173,7 +173,7 @@
                                         </div>
                                         <div>
                                             <label>Seleccione el producto:</label>
-                                            <select th:field="*{inventario}"  name="inventario" id="inventario" >
+                                            <select class="js-example-basic-single w-100 select3-hidden-accessible" th:field="*{inventario}"  name="inventario" id="inventario" >
                                                 <th:block th:if="${inventariopros.size()>0}" th:each="p : ${inventariopros}">
                                                     <option th:text="${p.producto.nombre}" th:value="${p.id}"></option>
                                                 </th:block>
@@ -234,7 +234,7 @@
                                         </div>
                                         <div>
                                             <label>Seleccione el producto:</label>
-                                            <select th:field="*{producto}"  name="producto" id="producto" >
+                                            <select class="js-example-basic-single w-100 select3-hidden-accessible" th:field="*{producto}"  name="producto" id="producto" >
                                                 <th:block th:each="p : ${productos}">
                                                     <th:block th:if="${p.estado==false}">
                                                             <option th:text="${p.nombre}" th:value="${p.id}"></option>

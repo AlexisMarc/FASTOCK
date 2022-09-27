@@ -3,139 +3,163 @@
 
 <head th:replace="layouts/base_template::head">
 </head>
+
 <body>
     <div class="container-scroller">
-<!--***************************************************************************************************************************************************-->
-<!--------------------- Nav ------------------->
-<!--***************************************************************************************************************************************************-->
+        <!--***************************************************************************************************************************************************-->
+        <!--------------------- Nav ------------------->
+        <!--***************************************************************************************************************************************************-->
         <nav th:replace="layouts/base_template::navbar"></nav>
         <div class="container-fluid page-body-wrapper">
-<!--***************************************************************************************************************************************************-->
-<!--------------------- Combio de color ------------------->
-<!--***************************************************************************************************************************************************-->
+            <!--***************************************************************************************************************************************************-->
+            <!--------------------- Combio de color ------------------->
+            <!--***************************************************************************************************************************************************-->
             <div th:replace="layouts/base_template::color"></div>
-<!--***************************************************************************************************************************************************-->
-<!--------------------- Panel ------------------->
-<!--***************************************************************************************************************************************************-->
+            <!--***************************************************************************************************************************************************-->
+            <!--------------------- Panel ------------------->
+            <!--***************************************************************************************************************************************************-->
             <div th:replace="layouts/base_template::panel"></div>
-<!--***************************************************************************************************************************************************-->
-<!--------------------- Menú ------------------->
-<!--***************************************************************************************************************************************************-->
+            <!--***************************************************************************************************************************************************-->
+            <!--------------------- Menú ------------------->
+            <!--***************************************************************************************************************************************************-->
             <nav th:replace="layouts/base_template::sidebar"></nav>
             <div class="main-panel">
-<!--***************************************************************************************************************************************************-->
-<!---------------------  Contenido ------------------->
-<!--***************************************************************************************************************************************************-->
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--***************************************************************************************************************************************************-->
+                <!---------------------  Contenido ------------------->
+                <!--***************************************************************************************************************************************************-->
+                <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
                 <div class="content-wrapper">
-                    
+
 
                     <div class="row">
                         <div class="col-md-12 grid-margin stretch-card">
                             <div class="card position-relative">
                                 <div class="card-body">
-                                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
-                                        <form class="form-sample" th:action="@{/producto/add}" enctype="multipart/form-data" method="post" th:object="${producto}">
+                                    <div id="detailedReports"
+                                        class="carousel slide detailed-report-carousel position-static pt-2"
+                                        data-ride="carousel">
+                                        <form class="form-sample" th:action="@{/producto/add}"
+                                            enctype="multipart/form-data" method="post" th:object="${producto}">
                                             <h4 class="card-title">Producto</h4>
                                             <p class="card-description">
-                                                Información Producto 
+                                                Información Producto
                                             </p>
                                             <!-- nombre -->
                                             <!-- ******************* -->
                                             <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="nombre">Nombre:</label><br>
-                                                <input class="form-control" th:field="*{nombre}" type="text" id="nombre" name="nombre" placeholder="Nombre">
-                                                <div class="validacion" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-                                                <br>
+                                                <div class="col-md-6">
+                                                    <label for="nombre">Nombre:</label><br>
+                                                    <input class="form-control" th:field="*{nombre}" type="text"
+                                                        id="nombre" name="nombre" placeholder="Nombre">
+                                                    <div class="validacion" th:if="${#fields.hasErrors('nombre')}"
+                                                        th:errors="*{nombre}"></div>
+                                                    <br>
+                                                </div>
+                                                <!-- Descripción del categoria-->
+                                                <!-- ******************* -->
+                                                <div class="col-md-6">
+                                                    <label for="nombre">Descripción del producto:</label><br>
+                                                    <textarea class="form-control" th:field="*{descripcion}"
+                                                        name="descripcion" id="descripcion"
+                                                        placeholder="Descripción"></textarea>
+                                                    <div class="validacion" th:if="${#fields.hasErrors('descripcion')}"
+                                                        th:errors="*{descripcion}"></div>
+                                                    <br>
+                                                </div>
                                             </div>
-                                            <!-- Descripción del categoria-->
-                                            <!-- ******************* -->
-                                            <div class="col-md-6">
-                                                <label for="nombre">Descripción del producto:</label><br>
-                                                <textarea  class="form-control" th:field="*{descripcion}" name="descripcion" id="descripcion" placeholder="Descripción" ></textarea>
-                                                <div class="validacion" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
-                                                <br>
-                                            </div>
-                                        </div>
                                             <!-- agregar categoria -->
                                             <!-- ******************* -->
                                             <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="card">
-                                                    <div class="form-group">
-                                                        <div  th:field="*{categoria}" >
-                                                            <label>Seleccione la categoria</label>
-                                                            <select   class="js-example-basic-multiple w-100" multiple="multiple" name="categoria" id="categoria" >
-                                                                <th:block th:each="categoria :${categorias}">
-                                                                    <option th:text="${categoria.nombre}" th:value="${categoria.id}"></option>
-                                                                </th:block>
-                                                            </select>
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="form-group">
+                                                            <div th:field="*{categoria}">
+                                                                <label>Seleccione la categoria</label>
+                                                                <select class="js-example-basic-multiple w-100"
+                                                                    multiple="multiple" name="categoria" id="categoria">
+                                                                    <th:block th:each="categoria :${categorias}">
+                                                                        <option th:text="${categoria.nombre}"
+                                                                            th:value="${categoria.id}"></option>
+                                                                    </th:block>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- Fotografia -->
+                                                <!-- ******************* -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label for="archivo">Fotografia:</label>
+                                                        <input type="file" name="file" class="file-upload-default">
+                                                        <div class="input-group col-xs-12">
+                                                            <input type="text" class="form-control file-upload-info"
+                                                                disabled placeholder="Subir imagen">
+                                                            <span class="input-group-append">
+                                                                <button class="file-upload-browse btn btn-primary"
+                                                                    type="button">Cargar</button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                               
                                             </div>
-
-                                            <!-- Fotografia -->
-                                            <!-- ******************* -->
-                                            <div class="col-md-6">
-                                                <div class="form-group ">
-                                                    <label for="archivo">Fotografia:</label>
-                                                    <input type="file" name="file" class="file-upload-default">
-                                                    <div class="input-group col-xs-12">
-                                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Subir imagen">
-                                                        <span class="input-group-append">
-                                                        <button class="file-upload-browse btn btn-primary" type="button">Cargar</button>
-                                                        </span>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                        </div>
                                             <!-- Estado -->
                                             <!-- ******************* -->
                                             <div class="row">
-                                                
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                    Agregue categoria
-                                                </button>
+
+                                                <div class="col-md-6">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModal">
+                                                        Agregue categoria
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <button type="submit" class="btn btn-primary mr-2">Enviar</button>
+                                                </div>
                                             </div>
-                                        
-                                        <div class="col-md-6">
-                                            <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                                        </div>
-                                        </div>
                                         </form>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Agregar categoria</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Agregar categoria
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body card-body">
 
-                                                        <form class="forms-sample" th:action="@{/categoria/add}" method="post" th:object="${categoria}">
+                                                        <form class="forms-sample" th:action="@{/categoria/add}"
+                                                            method="post" th:object="${categoria}">
                                                             <!-- nombre -->
                                                             <!-- ******************* -->
                                                             <div class="form-group">
                                                                 <label for="nombre">Nombre de la categoria</label><br>
-                                                                <input class="form-control" th:field="*{nombre}" type="text" name="nombre" id="nombre" placeholder="Nombre">
-                                                                <div th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"> </div><br>
-                                                                
+                                                                <input class="form-control" th:field="*{nombre}"
+                                                                    type="text" name="nombre" id="nombre"
+                                                                    placeholder="Nombre">
+                                                                <div th:if="${#fields.hasErrors('nombre')}"
+                                                                    th:erros="*{nombre}"> </div><br>
+
                                                             </div>
                                                             <!-- Descripción del categoria-->
                                                             <!-- ******************* -->
                                                             <div class="form-group">
-                                                                <label for="nombre">Descripción de la categoria</label><br>
-                                                                <textarea th:field="*{descripcion}" name="descripcion" id="descripcion"
-                                                                    placeholder="Descripción" cols="30" rows="10"></textarea>
-                                                                <div th:if="${#fields.hasErrors('descripcion')}" th:erros="*{descripcion}"> </div>
-                                                                
+                                                                <label for="nombre">Descripción de la
+                                                                    categoria</label><br>
+                                                                <textarea th:field="*{descripcion}" name="descripcion"
+                                                                    id="descripcion" placeholder="Descripción" cols="30"
+                                                                    rows="10"></textarea>
+                                                                <div th:if="${#fields.hasErrors('descripcion')}"
+                                                                    th:erros="*{descripcion}"> </div>
+
                                                             </div>
                                                             <!-- Estado -->
                                                             <!-- ******************* -->
@@ -143,20 +167,24 @@
                                                                 <label for="estado">Estado:</label>
                                                                 <fieldset id="estado">
                                                                     <label for="activo">Activo</label>
-                                                                    <input type="radio" name="activo" id="activo" value="1">
+                                                                    <input type="radio" name="activo" id="activo"
+                                                                        value="1">
                                                                     <label for="activo">Inactivo</label>
-                                                                    <input type="radio" name="activo" id="activo" value="0">
+                                                                    <input type="radio" name="activo" id="activo"
+                                                                        value="0">
                                                                 </fieldset>
-                                                                
+
                                                             </div>
                                                             <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                                                        </div>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary mr-2">Enviar</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-                                                        
+                                                        <button type="button" class="btn btn-light"
+                                                            data-dismiss="modal">Cerrar</button>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,20 +194,20 @@
                             </div>
                         </div>
                     </div>
-</div>
-</div>
                 </div>
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--***************************************************************************************************************************************************-->
-<!------------------------- Footer -------------------------->
-<!--***************************************************************************************************************************************************-->
-                <footer th:replace="layouts/base_template::footer"></footer>
             </div>
         </div>
+        <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--***************************************************************************************************************************************************-->
+        <!------------------------- Footer -------------------------->
+        <!--***************************************************************************************************************************************************-->
+        <footer th:replace="layouts/base_template::footer"></footer>
     </div>
-<!--***************************************************************************************************************************************************-->
-<!--------------------- Scripts------------------->
-<!--***************************************************************************************************************************************************-->
+    </div>
+    </div>
+    <!--***************************************************************************************************************************************************-->
+    <!--------------------- Scripts------------------->
+    <!--***************************************************************************************************************************************************-->
     <div th:replace="layouts/base_template::script"></div>
 </body>
 
