@@ -1,10 +1,11 @@
 package yeilux.com.proyecto.Model.Interface.producto;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import yeilux.com.proyecto.Model.Class.producto.categoria;
 
-
-public interface ICategoria extends CrudRepository<categoria, Integer> {
+import org.springframework.stereotype.Repository;
+@Repository
+public interface ICategoria extends JpaRepository<categoria, Integer> {
     
 }

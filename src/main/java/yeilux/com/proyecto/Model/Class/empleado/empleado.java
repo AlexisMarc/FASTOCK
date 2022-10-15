@@ -1,6 +1,11 @@
 package yeilux.com.proyecto.Model.Class.empleado;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,7 +19,7 @@ import yeilux.com.proyecto.Model.Class.inventario.producto.entradapro;
 import yeilux.com.proyecto.Model.Class.inventario.producto.salidapro;
 
 @Entity
-@Table(name="empleado")
+@Table(name="empleado",uniqueConstraints = {@UniqueConstraint(columnNames = {"identificacion"})})
 public class empleado {
 // -----------------------ID-----------------------//
     @Id
@@ -69,169 +74,51 @@ public class empleado {
     private String email; 
 
 // -----------------------Estado-----------------------//
-    @NotNull
-    private Boolean estado;
+@Column(nullable = false)
+private Boolean estado=true;
 
 // ************************************************//
 // -------------Relacion con cargo-----------------//
 // ************************************************//
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    private cargo cargo;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "cargo_id")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private cargo cargo;
 
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
-    @ManyToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
-    private List<area> area;
+@ManyToMany
+@JsonBackReference
+@JoinTable(
+    name = "area_empleado",
+    joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_empleado", referencedColumnName = "id"))
+private Set<area> area = new HashSet<>();
 
 // ************************************************//
 // -------------Relacion con entrada---------------//
 // ************************************************//
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<entrada> entrada;
+@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private Set<entrada> entrada = new HashSet<>();
 // ************************************************//
 // -------------Relacion con entradapro------------//
 // ************************************************//
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<entradapro> entradapro;
+@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private Set<entradapro> entradapro = new HashSet<>();
 // ************************************************//
 // -------------Relacion con salida---------------//
 // ************************************************//
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<salida> salida;
+@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private Set<salida> salida = new HashSet<>();
 // ************************************************//
 // -------------Relacion con salidapro------------//
 // ************************************************//
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<salidapro> salidapro;
+@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private Set<salidapro> salidapro = new HashSet<>();
  // ************************************************//
 // ------------- CONSTRUCTORES/GETTERS AND SETTERS--------------//
 // ************************************************//
-    public empleado() {
-    }
-    public empleado(Integer id, @NotNull Long identificacion, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String apellido, @NotEmpty @Size(min = 2, max = 10) String genero,
-            @NotEmpty String fecha, @NotEmpty @Size(min = 2, max = 60) String direccion, @NotNull Long telefono,
-            @NotEmpty @Email @Size(min = 1, max = 200) String email, @NotNull Boolean estado,
-            @NotNull yeilux.com.proyecto.Model.Class.empleado.cargo cargo,
-            List<yeilux.com.proyecto.Model.Class.fabricacion.area> area,
-            List<yeilux.com.proyecto.Model.Class.inventario.insumo.entrada> entrada,
-            List<yeilux.com.proyecto.Model.Class.inventario.producto.entradapro> entradapro,
-            List<yeilux.com.proyecto.Model.Class.inventario.insumo.salida> salida,
-            List<yeilux.com.proyecto.Model.Class.inventario.producto.salidapro> salidapro) {
-        this.id = id;
-        this.identificacion = identificacion;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.genero = genero;
-        this.fecha = fecha;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-        this.estado = estado;
-        this.cargo = cargo;
-        this.area = area;
-        this.entrada = entrada;
-        this.entradapro = entradapro;
-        this.salida = salida;
-        this.salidapro = salidapro;
-    }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public Long getIdentificacion() {
-        return identificacion;
-    }
-    public void setIdentificacion(Long identificacion) {
-        this.identificacion = identificacion;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getApellido() {
-        return apellido;
-    }
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-    public String getGenero() {
-        return genero;
-    }
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    public String getFecha() {
-        return fecha;
-    }
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-    public String getDireccion() {
-        return direccion;
-    }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-    public Long getTelefono() {
-        return telefono;
-    }
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public Boolean getEstado() {
-        return estado;
-    }
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-    public cargo getCargo() {
-        return cargo;
-    }
-    public void setCargo(cargo cargo) {
-        this.cargo = cargo;
-    }
-    public List<area> getArea() {
-        return area;
-    }
-    public void setArea(List<area> area) {
-        this.area = area;
-    }
-    public List<entrada> getEntrada() {
-        return entrada;
-    }
-    public void setEntrada(List<entrada> entrada) {
-        this.entrada = entrada;
-    }
-    public List<entradapro> getEntradapro() {
-        return entradapro;
-    }
-    public void setEntradapro(List<entradapro> entradapro) {
-        this.entradapro = entradapro;
-    }
-    public List<salida> getSalida() {
-        return salida;
-    }
-    public void setSalida(List<salida> salida) {
-        this.salida = salida;
-    }
-    public List<salidapro> getSalidapro() {
-        return salidapro;
-    }
-    public void setSalidapro(List<salidapro> salidapro) {
-        this.salidapro = salidapro;
-    }
-
+    
 }

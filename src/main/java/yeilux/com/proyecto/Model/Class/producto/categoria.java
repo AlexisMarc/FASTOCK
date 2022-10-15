@@ -1,7 +1,7 @@
 package yeilux.com.proyecto.Model.Class.producto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -31,8 +31,12 @@ public class categoria {
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
-    @ManyToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    private List<producto> producto;
+    @ManyToMany
+@JoinTable(
+    name = "producto_categoria",
+    joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
+private Set<producto> producto = new HashSet<>();
     
     
       // ************************************************//
@@ -40,53 +44,4 @@ public class categoria {
     // ************************************************//
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public List<producto> getProducto() {
-        return producto;
-    }
-
-    public void setProducto(List<producto> producto) {
-        this.producto = producto;
-    }
-
-    public categoria() {
-        producto=new ArrayList<producto>();
-    }
-
-    public categoria(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String descripcion,
-            List<yeilux.com.proyecto.Model.Class.producto.producto> producto) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.producto = producto;
-    }
-
-    
-    
-
-    
 }

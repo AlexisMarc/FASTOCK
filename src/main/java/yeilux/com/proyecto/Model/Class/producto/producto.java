@@ -1,13 +1,14 @@
 package yeilux.com.proyecto.Model.Class.producto;
 
-// import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 import yeilux.com.proyecto.Model.Class.inventario.producto.inventariopro;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -33,7 +34,8 @@ public class producto {
     private String descripcion;
 
     // -----------------------Estado-----------------------//
-    private Boolean estado=false;
+    @Column(nullable = false)
+    private Boolean estado=true;
 
     // -----------------------Imagen-----------------------//
     private String imagen;
@@ -42,115 +44,33 @@ public class producto {
     // ************************************************//
     // -------------Relacion con Categoria-------------//
     // ************************************************//
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "producto_categoria", 
-    joinColumns = @JoinColumn(name = "id_producto"), 
-    inverseJoinColumns = @JoinColumn(name = "id_categoria"))
-    @NotNull
-    private List<categoria> categoria;
+    @ManyToMany
+@JsonBackReference
+@JoinTable(
+    name = "producto_categoria",
+    joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
+private Set<categoria> categoria = new HashSet<>();
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
     // ************************************************//
-    @ManyToMany(mappedBy = "producto", fetch = FetchType.LAZY)
-    private List<fabricacion> fabricacion;
+    @ManyToMany
+@JoinTable(
+    name = "fabricacion_producto",
+    joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"))
+private Set<fabricacion> fabricacion = new HashSet<>();
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
-    @OneToOne(mappedBy = "producto", fetch = FetchType.LAZY)
-    private inventariopro inventario;
+    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<inventariopro> inventario = new HashSet<>();
 
 
     
     // ************************************************//
     // -------------Contructores accesores--------------//
     // ************************************************//
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
-    public List<categoria> getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(List<categoria> categoria) {
-        this.categoria = categoria;
-    }
-
-    public List<fabricacion> getFabricacion() {
-        return fabricacion;
-    }
-
-    public void setFabricacion(List<fabricacion> fabricacion) {
-        this.fabricacion = fabricacion;
-    }
-
-    public inventariopro getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(inventariopro inventario) {
-        this.inventario = inventario;
-    }
-
-    
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public producto() {
-    }
-
-    public producto(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 200) String descripcion, Boolean estado, String imagen,
-            @NotNull List<yeilux.com.proyecto.Model.Class.producto.categoria> categoria,
-            List<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion, inventariopro inventario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.estado = estado;
-        this.imagen = imagen;
-        this.categoria = categoria;
-        this.fabricacion = fabricacion;
-        this.inventario = inventario;
-    }
-
-
-    
-
-   
 
     
 

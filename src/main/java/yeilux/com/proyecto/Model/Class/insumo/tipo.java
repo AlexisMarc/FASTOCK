@@ -1,7 +1,8 @@
 package yeilux.com.proyecto.Model.Class.insumo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -30,53 +31,15 @@ public class tipo {
 // ************************************************//
 // -------------Relacion con Insumo----------------//
 // ************************************************//
-    @ManyToMany(mappedBy = "tipo", fetch = FetchType.LAZY)
-    private List<insumo> insumo;
+@ManyToMany
+@JoinTable(
+    name = "insumo_tipo",
+    joinColumns = @JoinColumn(name = "id_insumo", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_tipo", referencedColumnName = "id"))
+private Set<insumo> insumo = new HashSet<>();
 // ************************************************//
 // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
 // ************************************************//
-public Integer getId() {
-    return id;
-}
-public void setId(Integer id) {
-    this.id = id;
-}
-public String getNombre() {
-    return nombre;
-}
-public void setNombre(String nombre) {
-    this.nombre = nombre;
-}
-public String getDescripcion() {
-    return descripcion;
-}
-public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-}
-public List<insumo> getInsumo() {
-    return insumo;
-}
-public void setInsumo(List<insumo> insumo) {
-    this.insumo = insumo;
-}
-public Boolean getEstado() {
-    return estado;
-}
-public void setEstado(Boolean estado) {
-    this.estado = estado;
-}
-// -------------CONSTRUCTORES----------------//
-public tipo(){
-    insumo=new ArrayList<insumo>();
-}
-public tipo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 0, max = 200) String descripcion, Boolean estado,
-        List<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.estado = estado;
-    this.insumo = insumo;
-}
+
 }
 

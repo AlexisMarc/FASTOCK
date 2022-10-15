@@ -3,6 +3,9 @@ package yeilux.com.proyecto.Model.Class.fabricacion;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -39,61 +42,10 @@ public class produccion {
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "area_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
     private area area;
-
-    public produccion() {
-    }
-
-    public produccion(Integer id, @NotEmpty @Size(min = 0, max = 200) String descripcion, String fecha,
-            @NotEmpty @Size(min = 2, max = 60) String tipo, yeilux.com.proyecto.Model.Class.fabricacion.area area) {
-        this.id = id;
-        Descripcion = descripcion;
-        this.fecha = fecha;
-        this.tipo = tipo;
-        this.area = area;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public area getArea() {
-        return area;
-    }
-
-    public void setArea(area area) {
-        this.area = area;
-    }
-
 
     
 }

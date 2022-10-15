@@ -1,7 +1,7 @@
 package yeilux.com.proyecto.Model.Class.empleado;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -32,73 +32,11 @@ public class cargo {
 // -------------Relacion con empleado--------------//
 // ************************************************//
 @OneToMany(mappedBy = "cargo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-private List<empleado> empleado;
-
-
+	private Set<empleado> empleado = new HashSet<>();
 
 // ************************************************//
 // ------------- CONSTRUCTORES/GETTERS AND SETTERS--------------//
 // ************************************************//
-
-public cargo() {
-    empleado=new ArrayList<empleado>();
-}
-
-public cargo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-@NotEmpty @Size(min = 0, max = 200) String descripcion,
-List<yeilux.com.proyecto.Model.Class.empleado.empleado> empleado) {
-this.id = id;
-Nombre = nombre;
-Descripcion = descripcion;
-this.empleado = empleado;
-}
-
-
-public Integer getId() {
-    return id;
-}
-
-
-
-public void setId(Integer id) {
-    this.id = id;
-}
-
-
-
-public String getNombre() {
-    return Nombre;
-}
-
-
-
-public void setNombre(String nombre) {
-    Nombre = nombre;
-}
-
-
-
-public String getDescripcion() {
-    return Descripcion;
-}
-
-
-
-public void setDescripcion(String descripcion) {
-    Descripcion = descripcion;
-}
-
-
-
-public List<empleado> getEmpleado() {
-    return empleado;
-}
-
-
-
-public void setEmpleado(List<empleado> empleado) {
-    this.empleado = empleado;
-}
 
 
 }

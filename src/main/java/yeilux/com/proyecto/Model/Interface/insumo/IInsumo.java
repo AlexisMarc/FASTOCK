@@ -1,9 +1,10 @@
 package yeilux.com.proyecto.Model.Interface.insumo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
-
-public interface IInsumo extends CrudRepository<insumo, Integer>{
+import org.springframework.stereotype.Repository;
+@Repository
+public interface IInsumo extends JpaRepository<insumo, Integer>{
     
 }

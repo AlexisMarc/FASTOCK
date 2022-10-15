@@ -1,8 +1,7 @@
 package yeilux.com.proyecto.Model.Class.empresa;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,46 +28,12 @@ public class especialidad {
 // ************************************************//
 // -------------Relacion con empresa---------------//
 // ************************************************//
-    @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<empresa> empresa;
+@OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<empresa> empresa = new HashSet<>();
 
 
 // ************************************************//
 // -------------Constructores---------------//
 // ************************************************//
-public Integer getId() {
-    return id;
-}
-public void setId(Integer id) {
-    this.id = id;
-}
-public String getNombre() {
-    return nombre;
-}
-public void setNombre(String nombre) {
-    this.nombre = nombre;
-}
-public String getDescripcion() {
-    return descripcion;
-}
-public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-}
-public List<empresa> getEmpresa() {
-    return empresa;
-}
-public void setEmpresa(List<empresa> empresa) {
-    this.empresa = empresa;
-}
-public especialidad() {
-    empresa= new ArrayList<empresa>();
-}
-public especialidad(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 0, max = 200) String descripcion,
-        List<yeilux.com.proyecto.Model.Class.empresa.empresa> empresa) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.empresa = empresa;
-}
+
 }
