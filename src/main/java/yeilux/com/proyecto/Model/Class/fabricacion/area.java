@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 import yeilux.com.proyecto.Model.Class.empresa.empresa;
 
@@ -62,7 +62,6 @@ public class area {
     // -------------Relacion con empleado--------------//
     // ************************************************//
     @ManyToMany
-	@JsonBackReference
 	@JoinTable(
         name = "area_empleado",
         joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), 

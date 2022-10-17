@@ -6,7 +6,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import yeilux.com.proyecto.Model.Class.producto.producto;
 
 @Entity

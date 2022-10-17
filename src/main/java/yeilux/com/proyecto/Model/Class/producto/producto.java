@@ -5,11 +5,11 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 import yeilux.com.proyecto.Model.Class.inventario.producto.inventariopro;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "producto")

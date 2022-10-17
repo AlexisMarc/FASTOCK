@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 
 @Entity

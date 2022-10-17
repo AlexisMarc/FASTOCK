@@ -8,7 +8,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import yeilux.com.proyecto.Model.Class.empleado.admin;
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
 import yeilux.com.proyecto.Model.Class.producto.producto;

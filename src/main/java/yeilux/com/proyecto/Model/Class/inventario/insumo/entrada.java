@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 
 @Entity
