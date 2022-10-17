@@ -32,8 +32,66 @@ public class especialidad {
 	private Set<empresa> empresa = new HashSet<>();
 
 
+
 // ************************************************//
 // -------------Constructores---------------//
 // ************************************************//
+public especialidad() {
+}
+
+
+public especialidad(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
+        @NotEmpty @Size(min = 0, max = 200) String descripcion,
+        Set<yeilux.com.proyecto.Model.Class.empresa.empresa> empresa) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.empresa = empresa;
+}
+
+
+public Integer getId() {
+    return id;
+}
+
+
+public void setId(Integer id) {
+    this.id = id;
+}
+
+
+public String getNombre() {
+    return nombre;
+}
+
+
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+
+
+public String getDescripcion() {
+    return descripcion;
+}
+
+
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+
+
+public Set<empresa> getEmpresa() {
+    return empresa;
+}
+
+
+public void setEmpresa(Set<empresa> empresa) {
+    this.empresa = empresa;
+}
+
+
+
+
+
 
 }
