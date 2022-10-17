@@ -73,6 +73,75 @@ private Set<insumo> insumo = new HashSet<>();
     joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
     inverseJoinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"))
 private Set<producto> producto = new HashSet<>();
+
+public fabricacion() {
+}
+
+public fabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado,
+        Set<yeilux.com.proyecto.Model.Class.fabricacion.area> area,
+        Set<yeilux.com.proyecto.Model.Class.empleado.admin> admin,
+        Set<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo,
+        Set<yeilux.com.proyecto.Model.Class.producto.producto> producto) {
+    this.id = id;
+    this.fechainicio = fechainicio;
+    this.fechafinal = fechafinal;
+    this.estado = estado;
+    this.area = area;
+    this.admin = admin;
+    this.insumo = insumo;
+    this.producto = producto;
+}
+
+public Integer getId() {
+    return id;
+}
+
+public void setId(Integer id) {
+    this.id = id;
+}
+
+public String getFechainicio() {
+    return fechainicio;
+}
+
+public void setFechainicio(String fechainicio) {
+    this.fechainicio = fechainicio;
+}
+
+public String getFechafinal() {
+    return fechafinal;
+}
+
+public void setFechafinal(String fechafinal) {
+    this.fechafinal = fechafinal;
+}
+
+public Boolean getEstado() {
+    return estado;
+}
+
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
+
+public Set<area> getArea() {
+    return area;
+}
+
+public void setArea(Set<area> area) {
+    this.area = area;
+}
+
+public Set<admin> getAdmin() {
+    return admin;
+}
+
+public void setAdmin(Set<admin> admin) {
+    this.admin = admin;
+}
+
+public Set<insumo> getInsumo() {
+    return insumo;
 }
 
 public void setInsumo(Set<insumo> insumo) {
@@ -86,6 +155,7 @@ public Set<producto> getProducto() {
 public void setProducto(Set<producto> producto) {
     this.producto = producto;
 }
+
 
 }
 

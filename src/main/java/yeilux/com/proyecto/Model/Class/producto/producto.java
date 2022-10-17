@@ -65,6 +65,54 @@ private Set<fabricacion> fabricacion = new HashSet<>();
     // ************************************************//
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<inventariopro> inventario = new HashSet<>();
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public Boolean getEstado() {
+        return estado;
+    }
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+    public String getImagen() {
+        return imagen;
+    }
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    public Set<categoria> getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(Set<categoria> categoria) {
+        this.categoria = categoria;
+    }
+    public Set<fabricacion> getFabricacion() {
+        return fabricacion;
+    }
+    public void setFabricacion(Set<fabricacion> fabricacion) {
+        this.fabricacion = fabricacion;
+    }
+    public Set<inventariopro> getInventario() {
+        return inventario;
+    }
+    public void setInventario(Set<inventariopro> inventario) {
+        this.inventario = inventario;
+    }
 
 
     
