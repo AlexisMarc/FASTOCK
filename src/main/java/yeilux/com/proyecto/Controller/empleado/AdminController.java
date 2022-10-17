@@ -1,4 +1,4 @@
-package yeilux.com.proyecto.Controller.insumo;
+package yeilux.com.proyecto.Controller.empleado;
 
 import java.util.Collection;
 
@@ -13,15 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import yeilux.com.proyecto.Model.Class.insumo.tipo;
-import yeilux.com.proyecto.Model.Interface.insumo.ITipo;
+import yeilux.com.proyecto.Model.Class.empleado.admin;
+import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
+import yeilux.com.proyecto.Model.Interface.empleado.IAdmin;
+
 @RestController
-@SessionAttributes("tipo")
-@RequestMapping("/tipo")
-public class TipoController {
+@SessionAttributes("admin")
+@RequestMapping("/admin")
+
+public class AdminController {
 
     @Autowired
-    private ITipo itipo;
+    private IAdmin iadmin;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -30,23 +33,34 @@ public class TipoController {
 // --------------LISTAR TODOS--------------//
 
 @GetMapping
-	public ResponseEntity<Collection<tipo>> listartipos(){
-		return new ResponseEntity<>(itipo.findAll(),HttpStatus.OK);
+	public ResponseEntity<Collection<admin>> listarAdmins(){
+		return new ResponseEntity<>(iadmin.findAll(),HttpStatus.OK);
 	}
-
 // ---------------LISTAR UNO---------------//
 
 @GetMapping("/{id}")
-	public ResponseEntity<tipo> obtenertipoPorId(@PathVariable Integer id){
-	tipo tipo = itipo.findById(id).orElseThrow();
+	public ResponseEntity<admin> obtenerAdminPorId(@PathVariable Integer id){
+		admin admin = iadmin.findById(id).orElseThrow();
 		
-		if(tipo != null) {
-			return new ResponseEntity<>(itipo.findById(id).orElseThrow(),HttpStatus.OK);
+		if(admin != null) {
+			return new ResponseEntity<>(iadmin.findById(id).orElseThrow(),HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 		}
 	}
 
+// ---------------LISTAR FABRICACIONES---------------//
+
+@GetMapping("/{id}/fabricaciones")
+	public ResponseEntity<Collection<fabricacion>> listarAdmin(@PathVariable Integer id){
+		admin admin = iadmin.findById(id).orElseThrow();
+		
+		if(admin != null) {
+			return new ResponseEntity<>(admin.getFabricacion(),HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+		}
+	}
 
 // ****************************************//
 // -------------METODO POST----------------//
@@ -55,8 +69,8 @@ public class TipoController {
 // ---------------REGISTRAR----------------//
 
 @PostMapping
-	public ResponseEntity<?> guardarTipo(@RequestBody tipo tipo){
-		return new ResponseEntity<>(itipo.save(tipo),HttpStatus.CREATED);
+	public ResponseEntity<?> guardarAdmin(@RequestBody admin admin){
+		return new ResponseEntity<>(iadmin.save(admin),HttpStatus.CREATED);
 	}
 
 // ****************************************//
@@ -64,7 +78,6 @@ public class TipoController {
 // ****************************************//
 
 // ----------------EDITAR------------------//
-
 
 
 // ----------------ESTADO------------------//
