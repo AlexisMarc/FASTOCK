@@ -75,4 +75,96 @@ public class area {
     @JoinTable(name = "area_empresa", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_empresa", referencedColumnName = "id"))
     private Set<empresa> empresa = new HashSet<>();
 
+    public area() {
+    }
+
+    public area(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre, String fechainicio, String fechafinal,
+            Boolean estado, yeilux.com.proyecto.Model.Class.fabricacion.fabricacion fabricacion,
+            Set<yeilux.com.proyecto.Model.Class.fabricacion.produccion> produccion,
+            Set<yeilux.com.proyecto.Model.Class.empleado.empleado> empleado,
+            Set<yeilux.com.proyecto.Model.Class.empresa.empresa> empresa) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechainicio = fechainicio;
+        this.fechafinal = fechafinal;
+        this.estado = estado;
+        this.fabricacion = fabricacion;
+        this.produccion = produccion;
+        this.empleado = empleado;
+        this.empresa = empresa;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getFechainicio() {
+        return fechainicio;
+    }
+
+    public void setFechainicio(String fechainicio) {
+        this.fechainicio = fechainicio;
+    }
+
+    public String getFechafinal() {
+        return fechafinal;
+    }
+
+    public void setFechafinal(String fechafinal) {
+        this.fechafinal = fechafinal;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public fabricacion getFabricacion() {
+        return fabricacion;
+    }
+
+    public void setFabricacion(fabricacion fabricacion) {
+        this.fabricacion = fabricacion;
+    }
+
+    public Set<produccion> getProduccion() {
+        return produccion;
+    }
+
+    public void setProduccion(Set<produccion> produccion) {
+        this.produccion = produccion;
+    }
+
+    public Set<empleado> getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Set<empleado> empleado) {
+        this.empleado = empleado;
+    }
+
+    public Set<empresa> getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Set<empresa> empresa) {
+        this.empresa = empresa;
+    }
+
+    
 }
