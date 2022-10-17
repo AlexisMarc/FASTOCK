@@ -41,5 +41,47 @@ private Set<insumo> insumo = new HashSet<>();
 // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
 // ************************************************//
 
+public Integer getId() {
+    return id;
+}
+public void setId(Integer id) {
+    this.id = id;
+}
+public String getNombre() {
+    return nombre;
+}
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+public String getDescripcion() {
+    return descripcion;
+}
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+public Boolean getEstado() {
+    return estado;
+}
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
+public Set<insumo> getInsumo() {
+    return insumo;
+}
+public void setInsumo(Set<insumo> insumo) {
+    this.insumo = insumo;
+}
+public tipo() {
+}
+public tipo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
+        @NotEmpty @Size(min = 0, max = 200) String descripcion, Boolean estado,
+        Set<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.estado = estado;
+    this.insumo = insumo;
+}
+
 }
 

@@ -38,10 +38,52 @@ public class categoria {
     inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
 private Set<producto> producto = new HashSet<>();
     
-    
-      // ************************************************//
-    // -------------Contructores accesores--------------//
-    // ************************************************//
+// ************************************************//
+// -------------Contructores accesores--------------//
+// ************************************************//
 
+public Integer getId() {
+    return id;
+}
+
+public void setId(Integer id) {
+    this.id = id;
+}
+
+public String getNombre() {
+    return nombre;
+}
+
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+
+public String getDescripcion() {
+    return descripcion;
+}
+
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+
+public Set<producto> getProducto() {
+    return producto;
+}
+
+public void setProducto(Set<producto> producto) {
+    this.producto = producto;
+}
+
+public categoria() {
+}
+
+public categoria(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
+        @NotEmpty @Size(min = 2, max = 60) String descripcion,
+        Set<yeilux.com.proyecto.Model.Class.producto.producto> producto) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.producto = producto;
+}
 
 }
