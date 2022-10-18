@@ -80,81 +80,77 @@ private Set<fabricacion> fabricacion = new HashSet<>();
 
 //---------GETTERS AND SETTERS---------------------//
 
-
-public Integer getId() {
-    return id;
-}
-public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 2, max = 200) String descripcion, @NotEmpty @Size(min = 2, max = 200) String material,
-        Boolean estado, Set<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
-        yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
-        Set<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,
-        Set<yeilux.com.proyecto.Model.Class.inventario.insumo.inventario> inventario) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.material = material;
-    this.estado = estado;
-    this.tipo = tipo;
-    this.proveedor = proveedor;
-    this.fabricacion = fabricacion;
-    this.inventario = inventario;
-}
-
-
 public insumo() {
 }
-
+public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
+		@NotEmpty @Size(min = 2, max = 200) String descripcion, @NotEmpty @Size(min = 2, max = 200) String material,
+		Boolean estado, Set<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
+		yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
+		Set<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,
+		Set<yeilux.com.proyecto.Model.Class.inventario.insumo.inventario> inventario) {
+	this.id = id;
+	this.nombre = nombre;
+	this.descripcion = descripcion;
+	this.material = material;
+	this.estado = estado;
+	this.tipo = tipo;
+	this.proveedor = proveedor;
+	this.fabricacion = fabricacion;
+	this.inventario = inventario;
+}
+public Integer getId() {
+	return id;
+}
 public void setId(Integer id) {
-    this.id = id;
+	this.id = id;
 }
 public String getNombre() {
-    return nombre;
+	return nombre;
 }
 public void setNombre(String nombre) {
-    this.nombre = nombre;
+	this.nombre = nombre;
 }
 public String getDescripcion() {
-    return descripcion;
+	return descripcion;
 }
 public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
+	this.descripcion = descripcion;
 }
 public String getMaterial() {
-    return material;
+	return material;
 }
 public void setMaterial(String material) {
-    this.material = material;
+	this.material = material;
 }
 public Boolean getEstado() {
-    return estado;
+	return estado;
 }
 public void setEstado(Boolean estado) {
-    this.estado = estado;
+	this.estado = estado;
 }
 public Set<tipo> getTipo() {
-    return tipo;
+	return tipo;
 }
 public void setTipo(Set<tipo> tipo) {
-    this.tipo = tipo;
+	this.tipo = tipo;
 }
 public proveedor getProveedor() {
-    return proveedor;
+	return proveedor;
 }
 public void setProveedor(proveedor proveedor) {
-    this.proveedor = proveedor;
+	this.proveedor = proveedor;
 }
 public Set<fabricacion> getFabricacion() {
-    return fabricacion;
+	return fabricacion;
 }
 public void setFabricacion(Set<fabricacion> fabricacion) {
-    this.fabricacion = fabricacion;
+	this.fabricacion = fabricacion;
 }
 public Set<inventario> getInventario() {
-    return inventario;
+	return inventario;
 }
 public void setInventario(Set<inventario> inventario) {
-    this.inventario = inventario;
+	this.inventario = inventario;
 }
     
 
