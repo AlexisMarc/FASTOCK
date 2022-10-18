@@ -1,5 +1,6 @@
 package yeilux.com.proyecto.Controller.empleado;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional; 
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+
 import yeilux.com.proyecto.Model.Class.empleado.cargo;
 import yeilux.com.proyecto.Model.Class.empleado.empleado;
 import yeilux.com.proyecto.Model.Interface.empleado.ICargo;
