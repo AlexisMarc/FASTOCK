@@ -151,6 +151,7 @@ public Set<inventario> getInventario() {
 }
 public void setInventario(Set<inventario> inventario) {
 	this.inventario = inventario;
+
 }
     
 

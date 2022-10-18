@@ -1,8 +1,5 @@
 package yeilux.com.proyecto.Controller.insumo;
-import java.net.URI;
 import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
-import yeilux.com.proyecto.Model.Interface.fabricacion.IFabricacion;
 import yeilux.com.proyecto.Model.Interface.insumo.IInsumo;
 
 
@@ -30,10 +26,6 @@ public class InsumoController {
 
     @Autowired
     private IInsumo iinsumo;
-
-    @Autowired
-    private IFabricacion ifabricacion;
-
     // @Autowired
     // private Ifabricacion ifabricacion;
 
