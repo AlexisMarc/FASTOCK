@@ -73,6 +73,93 @@ private Set<fabricacion> fabricacion = new HashSet<>();
 // ************************************************//
 @OneToMany(mappedBy = "insumo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<inventario> inventario = new HashSet<>();
+
+
+
+
+
 //---------GETTERS AND SETTERS---------------------//
+
+
+public Integer getId() {
+    return id;
+}
+public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
+        @NotEmpty @Size(min = 2, max = 200) String descripcion, @NotEmpty @Size(min = 2, max = 200) String material,
+        Boolean estado, Set<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
+        yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
+        Set<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,
+        Set<yeilux.com.proyecto.Model.Class.inventario.insumo.inventario> inventario) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.material = material;
+    this.estado = estado;
+    this.tipo = tipo;
+    this.proveedor = proveedor;
+    this.fabricacion = fabricacion;
+    this.inventario = inventario;
+}
+
+
+public insumo() {
+}
+
+public void setId(Integer id) {
+    this.id = id;
+}
+public String getNombre() {
+    return nombre;
+}
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+public String getDescripcion() {
+    return descripcion;
+}
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+public String getMaterial() {
+    return material;
+}
+public void setMaterial(String material) {
+    this.material = material;
+}
+public Boolean getEstado() {
+    return estado;
+}
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
+public Set<tipo> getTipo() {
+    return tipo;
+}
+public void setTipo(Set<tipo> tipo) {
+    this.tipo = tipo;
+}
+public proveedor getProveedor() {
+    return proveedor;
+}
+public void setProveedor(proveedor proveedor) {
+    this.proveedor = proveedor;
+}
+public Set<fabricacion> getFabricacion() {
+    return fabricacion;
+}
+public void setFabricacion(Set<fabricacion> fabricacion) {
+    this.fabricacion = fabricacion;
+}
+public Set<inventario> getInventario() {
+    return inventario;
+}
+public void setInventario(Set<inventario> inventario) {
+    this.inventario = inventario;
+}
     
+
+
+
+
+
 }
