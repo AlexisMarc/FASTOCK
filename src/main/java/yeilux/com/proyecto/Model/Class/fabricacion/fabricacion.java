@@ -132,10 +132,6 @@ public void setArea(Set<area> area) {
     this.area = area;
 }
 
-public Set<admin> getAdmin() {
-    return admin;
-}
-
 public void setAdmin(Set<admin> admin) {
     this.admin = admin;
 }
@@ -154,6 +150,10 @@ public Set<producto> getProducto() {
 
 public void setProducto(Set<producto> producto) {
     this.producto = producto;
+}
+
+public Set<admin> getAdmin() {
+    return admin;
 }
 
 

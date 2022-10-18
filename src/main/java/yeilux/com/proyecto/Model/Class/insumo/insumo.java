@@ -74,5 +74,59 @@ private Set<fabricacion> fabricacion = new HashSet<>();
 @OneToMany(mappedBy = "insumo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<inventario> inventario = new HashSet<>();
 //---------GETTERS AND SETTERS---------------------//
+public Integer getId() {
+    return id;
+}
+public void setId(Integer id) {
+    this.id = id;
+}
+public String getNombre() {
+    return nombre;
+}
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
+public String getDescripcion() {
+    return descripcion;
+}
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+public String getMaterial() {
+    return material;
+}
+public void setMaterial(String material) {
+    this.material = material;
+}
+public Boolean getEstado() {
+    return estado;
+}
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
+public Set<tipo> getTipo() {
+    return tipo;
+}
+public void setTipo(Set<tipo> tipo) {
+    this.tipo = tipo;
+}
+public proveedor getProveedor() {
+    return proveedor;
+}
+public void setProveedor(proveedor proveedor) {
+    this.proveedor = proveedor;
+}
+public Set<fabricacion> getFabricacion() {
+    return fabricacion;
+}
+public void setFabricacion(Set<fabricacion> fabricacion) {
+    this.fabricacion = fabricacion;
+}
+public Set<inventario> getInventario() {
+    return inventario;
+}
+public void setInventario(Set<inventario> inventario) {
+    this.inventario = inventario;
+}
     
 }
