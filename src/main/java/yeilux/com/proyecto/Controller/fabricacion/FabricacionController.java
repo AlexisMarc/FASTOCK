@@ -16,7 +16,6 @@ import yeilux.com.proyecto.Model.Class.empleado.admin;
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
 import yeilux.com.proyecto.Model.Class.producto.producto;
-import yeilux.com.proyecto.Model.Interface.empleado.IAdmin;
 import yeilux.com.proyecto.Model.Interface.fabricacion.IFabricacion;
 
 @RestController
@@ -26,9 +25,6 @@ public class FabricacionController {
 
     @Autowired
     private IFabricacion ifabricacion;
-
-    @Autowired
-    private IAdmin iadmin;
 
 // ****************************************//
 // --------------METODO GET----------------//
