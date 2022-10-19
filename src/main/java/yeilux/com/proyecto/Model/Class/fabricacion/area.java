@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -49,6 +51,7 @@ public class area {
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
     // ************************************************//
+    @JsonBackReference(value = "fabricacion_area")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "fabricacion_id")
 	@JsonProperty(access = Access.WRITE_ONLY)
@@ -56,11 +59,13 @@ public class area {
     // ************************************************//
     // -------------Relacion con produccion------------//
     // ************************************************//
+    @JsonManagedReference(value = "area_produccion")
     @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<produccion> produccion = new HashSet<>();
     // ************************************************//
     // -------------Relacion con empleado--------------//
     // ************************************************//
+    @JsonIgnoreProperties(value = "areaempleado")
     @ManyToMany
 	@JoinTable(
         name = "area_empleado",
@@ -70,8 +75,8 @@ public class area {
     // ************************************************//
     // -------------Relacion con empresa---------------//
     // ************************************************//
+    @JsonIgnoreProperties(value = "area_empresa")
     @ManyToMany
-    @JsonBackReference
     @JoinTable(name = "area_empresa", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_empresa", referencedColumnName = "id"))
     private Set<empresa> empresa = new HashSet<>();
 
@@ -79,10 +84,10 @@ public class area {
     }
 
     public area(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre, String fechainicio, String fechafinal,
-            Boolean estado, yeilux.com.proyecto.Model.Class.fabricacion.fabricacion fabricacion,
-            Set<yeilux.com.proyecto.Model.Class.fabricacion.produccion> produccion,
-            Set<yeilux.com.proyecto.Model.Class.empleado.empleado> empleado,
-            Set<yeilux.com.proyecto.Model.Class.empresa.empresa> empresa) {
+            Boolean estado, fabricacion fabricacion,
+            Set<produccion> produccion,
+            Set<empleado> empleado,
+            Set<empresa> empresa) {
         this.id = id;
         this.nombre = nombre;
         this.fechainicio = fechainicio;

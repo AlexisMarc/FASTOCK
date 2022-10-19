@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -80,6 +82,7 @@ public class empleado {
     // ************************************************//
     // -------------Relacion con cargo-----------------//
     // ************************************************//
+    @JsonBackReference(value = "cargo_empleado")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cargo_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -90,32 +93,32 @@ public class empleado {
     // ************************************************//
 
     @ManyToMany
-    @JsonBackReference
+    @JsonIgnoreProperties(value = "areaempleado")
     @JoinTable(name = "area_empleado", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_empleado", referencedColumnName = "id"))
     private Set<area> area = new HashSet<>();
 
     // ************************************************//
     // -------------Relacion con entrada---------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "empleado_entrada")
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<entrada> entrada = new HashSet<>();
     // ************************************************//
     // -------------Relacion con entradapro------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "empleado_entradapro")
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<entradapro> entradapro = new HashSet<>();
     // ************************************************//
     // -------------Relacion con salida---------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "empleado_salida")
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<salida> salida = new HashSet<>();
     // ************************************************//
     // -------------Relacion con salidapro------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "empleado_salidapro")
     @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<salidapro> salidapro = new HashSet<>();
 
@@ -129,12 +132,12 @@ public class empleado {
             @NotEmpty @Size(min = 2, max = 60) String apellido, @NotEmpty @Size(min = 2, max = 10) String genero,
             @NotEmpty String fecha, @NotEmpty @Size(min = 2, max = 60) String direccion, @NotNull Long telefono,
             @NotEmpty @Email @Size(min = 1, max = 200) String email, Boolean estado,
-            yeilux.com.proyecto.Model.Class.empleado.cargo cargo,
-            Set<yeilux.com.proyecto.Model.Class.fabricacion.area> area,
-            Set<yeilux.com.proyecto.Model.Class.inventario.insumo.entrada> entrada,
-            Set<yeilux.com.proyecto.Model.Class.inventario.producto.entradapro> entradapro,
-            Set<yeilux.com.proyecto.Model.Class.inventario.insumo.salida> salida,
-            Set<yeilux.com.proyecto.Model.Class.inventario.producto.salidapro> salidapro) {
+            cargo cargo,
+            Set<area> area,
+            Set<entrada> entrada,
+            Set<entradapro> entradapro,
+            Set<salida> salida,
+            Set<salidapro> salidapro) {
         this.id = id;
         this.identificacion = identificacion;
         this.nombre = nombre;

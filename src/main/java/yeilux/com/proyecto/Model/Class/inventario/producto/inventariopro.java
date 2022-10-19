@@ -3,6 +3,8 @@ package yeilux.com.proyecto.Model.Class.inventario.producto;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -26,16 +28,19 @@ public class inventariopro {
     // ************************************************//
     // -------------Relacion con salida----------------//
     // ************************************************//
+    @JsonManagedReference(value = "inventariopro_salida")
     @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<salidapro> salida = new HashSet<>();
     // ************************************************//
     // -------------Relacion con entrada---------------//
     // ************************************************//
+    @JsonManagedReference(value = "inventariopro_entrada")
     @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<entradapro> entrada = new HashSet<>();
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
+    @JsonBackReference(value = "producto_inventario")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "producto_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -86,7 +91,7 @@ public class inventariopro {
     }
 
     public inventariopro(Integer id, Boolean estado, Set<salidapro> salida, Set<entradapro> entrada,
-            yeilux.com.proyecto.Model.Class.producto.producto producto) {
+            producto producto) {
         this.id = id;
         this.estado = estado;
         this.salida = salida;

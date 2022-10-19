@@ -8,6 +8,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import yeilux.com.proyecto.Model.Class.insumo.insumo;
 
 @Entity
@@ -48,7 +51,7 @@ public class proveedor {
     // ************************************************//
     // -------------Relacion con insumo----------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "insumo_proveedor")
     @OneToMany(mappedBy = "proveedor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<insumo> insumo = new HashSet<>();
     // ************************************************//
@@ -61,7 +64,7 @@ public class proveedor {
     public proveedor(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
             @NotEmpty @Size(min = 2, max = 60) String contacto, @NotEmpty @Size(min = 2, max = 60) String direccion,
             @NotNull Long telefono, @NotEmpty @Email @Size(min = 6, max = 200) String email, @NotNull Boolean estado,
-            Set<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
+            Set<insumo> insumo) {
         this.id = id;
         this.nombre = nombre;
         this.contacto = contacto;

@@ -3,6 +3,8 @@ package yeilux.com.proyecto.Model.Class.empresa;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -51,6 +53,7 @@ public class empresa {
     // ************************************************//
     // -------------Relacion con especialidad----------//
     // ************************************************//
+    @JsonBackReference(value = "especialidad_empresa")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "especialidad_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -58,6 +61,7 @@ public class empresa {
     // ************************************************//
     // -------------Relacion con area------------------//
     // ************************************************//
+    @JsonIgnoreProperties(value = "area_empresa")
     @ManyToMany
     @JoinTable(name = "area_empresa", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_empresa", referencedColumnName = "id"))
     private Set<area> area = new HashSet<>();
@@ -74,8 +78,8 @@ public class empresa {
             @NotEmpty @Size(min = 2, max = 60) String contacto, @NotNull Long telefono,
             @NotEmpty @Size(min = 2, max = 60) String direccion,
             @NotEmpty @Email @Size(min = 6, max = 200) String email, Boolean estado,
-            yeilux.com.proyecto.Model.Class.empresa.especialidad especialidad,
-            Set<yeilux.com.proyecto.Model.Class.fabricacion.area> area) {
+            especialidad especialidad,
+            Set<area> area) {
         this.id = id;
         this.nombre = nombre;
         this.contacto = contacto;

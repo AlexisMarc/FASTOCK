@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -46,7 +48,7 @@ private String material;
 // -------------Relacion con tipo------------------//
 // ************************************************//
 @ManyToMany
-@JsonBackReference
+@JsonIgnoreProperties(value = "insumo_tipo")
 @JoinTable(
     name = "insumo_tipo",
     joinColumns = @JoinColumn(name = "id_insumo", referencedColumnName = "id"), 
@@ -55,6 +57,7 @@ private Set<tipo> tipo = new HashSet<>();
 // ************************************************//
 // -------------Relacion con proveedor-------------//
 // ************************************************//
+@JsonBackReference(value = "insumo_proveedor")
 @ManyToOne(fetch = FetchType.LAZY, optional = false)
 @JoinColumn(name = "proveedor_id")
 @JsonProperty(access = Access.WRITE_ONLY)
@@ -63,6 +66,7 @@ private proveedor proveedor;
 // -------------Relacion con fabricacion-----------//
 // ************************************************//
 @ManyToMany
+@JsonIgnoreProperties(value = "fabricacion_insumo")
 @JoinTable(
     name = "fabricacion_insumo",
     joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
@@ -71,6 +75,7 @@ private Set<fabricacion> fabricacion = new HashSet<>();
 // ************************************************//
 // -------------Relacion con inventario------------//
 // ************************************************//
+@JsonManagedReference(value = "insumo_inventario")
 @OneToMany(mappedBy = "insumo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<inventario> inventario = new HashSet<>();
 
@@ -84,10 +89,10 @@ public insumo() {
 }
 public insumo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
 		@NotEmpty @Size(min = 2, max = 200) String descripcion, @NotEmpty @Size(min = 2, max = 200) String material,
-		Boolean estado, Set<yeilux.com.proyecto.Model.Class.insumo.tipo> tipo,
-		yeilux.com.proyecto.Model.Class.proveedor.proveedor proveedor,
-		Set<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion,
-		Set<yeilux.com.proyecto.Model.Class.inventario.insumo.inventario> inventario) {
+		Boolean estado, Set<tipo> tipo,
+		proveedor proveedor,
+		Set<fabricacion> fabricacion,
+		Set<inventario> inventario) {
 	this.id = id;
 	this.nombre = nombre;
 	this.descripcion = descripcion;

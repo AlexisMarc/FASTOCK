@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="tipo")
 public class tipo {
@@ -31,6 +33,7 @@ public class tipo {
 // ************************************************//
 // -------------Relacion con Insumo----------------//
 // ************************************************//
+@JsonIgnoreProperties(value = "insumo_tipo")
 @ManyToMany
 @JoinTable(
     name = "insumo_tipo",
@@ -75,7 +78,7 @@ public tipo() {
 }
 public tipo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
         @NotEmpty @Size(min = 0, max = 200) String descripcion, Boolean estado,
-        Set<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo) {
+        Set<insumo> insumo) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;

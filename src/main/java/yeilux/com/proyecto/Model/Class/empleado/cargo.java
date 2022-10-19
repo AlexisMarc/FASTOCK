@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "cargo")
 public class cargo {
@@ -31,7 +33,7 @@ public class cargo {
     // ************************************************//
     // -------------Relacion con empleado--------------//
     // ************************************************//
-
+    @JsonManagedReference(value = "cargo_empleado")
     @OneToMany(mappedBy = "cargo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<empleado> empleado = new HashSet<>();
 
@@ -52,7 +54,7 @@ public class cargo {
 
     public cargo(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
             @NotEmpty @Size(min = 0, max = 200) String descripcion,
-            Set<yeilux.com.proyecto.Model.Class.empleado.empleado> empleado) {
+            Set<empleado> empleado) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

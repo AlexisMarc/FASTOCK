@@ -8,6 +8,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import yeilux.com.proyecto.Model.Class.fabricacion.fabricacion;
 
 @Entity
@@ -72,6 +75,7 @@ public class admin {
 // -------------Relacion con fabricacion-----------//
 // ************************************************//
     @ManyToMany
+    @JsonIgnoreProperties(value = "fabricacion_admin")
 	@JoinTable(
         name = "fabricacion_admin",
         joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
@@ -176,7 +180,7 @@ public admin(Integer id, @NotNull Long identificacion, @NotEmpty @Size(min = 2, 
         @NotEmpty @Size(min = 2, max = 60) String apellido, @NotEmpty @Size(min = 2, max = 10) String genero,
         @NotEmpty String fecha, @NotEmpty @Size(min = 2, max = 60) String direccion, @NotNull Integer telefono,
         @NotEmpty @Email @Size(min = 1, max = 200) String email, Boolean estado,
-        Set<yeilux.com.proyecto.Model.Class.fabricacion.fabricacion> fabricacion) {
+        Set<fabricacion> fabricacion) {
     this.id = id;
     this.identificacion = identificacion;
     this.nombre = nombre;

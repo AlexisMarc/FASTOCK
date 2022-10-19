@@ -2,6 +2,8 @@ package yeilux.com.proyecto.Model.Class.inventario.producto;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -40,6 +42,7 @@ public class salidapro {
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
+    @JsonBackReference(value = "inventariopro_salida")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "inventario_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -47,6 +50,7 @@ public class salidapro {
     // ************************************************//
     // -------------Relacion con empleado--------------//
     // ************************************************//
+    @JsonBackReference(value = "empleado_salidapro")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "empleado_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -105,7 +109,7 @@ public class salidapro {
     }
 
     public salidapro(Integer id, String fecha, @NotNull Integer cantidad, @NotNull Boolean estado,
-            inventariopro inventario, yeilux.com.proyecto.Model.Class.empleado.empleado empleado) {
+            inventariopro inventario, empleado empleado) {
         this.id = id;
         this.fecha = fecha;
         this.cantidad = cantidad;

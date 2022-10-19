@@ -3,6 +3,7 @@ package yeilux.com.proyecto.Model.Class.fabricacion;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -42,6 +43,7 @@ public class produccion {
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
+@JsonBackReference(value = "area_produccion")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "area_id")
     @JsonProperty(access = Access.WRITE_ONLY)
@@ -51,7 +53,7 @@ public class produccion {
     }
 
     public produccion(Integer id, @NotEmpty @Size(min = 0, max = 200) String descripcion, String fecha,
-            @NotEmpty @Size(min = 2, max = 60) String tipo, yeilux.com.proyecto.Model.Class.fabricacion.area area) {
+            @NotEmpty @Size(min = 2, max = 60) String tipo, area area) {
         this.id = id;
         Descripcion = descripcion;
         this.fecha = fecha;

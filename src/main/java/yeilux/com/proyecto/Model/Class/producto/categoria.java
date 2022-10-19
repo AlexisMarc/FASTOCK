@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "categoria")
 public class categoria {
@@ -32,6 +34,7 @@ public class categoria {
     // -------------Relacion con producto--------------//
     // ************************************************//
     @ManyToMany
+    @JsonIgnoreProperties(value = "producto_categoria")
 @JoinTable(
     name = "producto_categoria",
     joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), 
@@ -79,7 +82,7 @@ public categoria() {
 
 public categoria(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
         @NotEmpty @Size(min = 2, max = 60) String descripcion,
-        Set<yeilux.com.proyecto.Model.Class.producto.producto> producto) {
+        Set<producto> producto) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;

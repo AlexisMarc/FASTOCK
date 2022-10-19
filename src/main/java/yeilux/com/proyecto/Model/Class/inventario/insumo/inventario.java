@@ -3,6 +3,8 @@ package yeilux.com.proyecto.Model.Class.inventario.insumo;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -31,16 +33,19 @@ private Boolean estado;
 // ************************************************//
 // -------------Relacion con salida----------------//
 // ************************************************//
+@JsonManagedReference(value = "inventario_salida")
 @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 private Set<salida> salida = new HashSet<>();
 // ************************************************//
 // -------------Relacion con entrada----------------//
 // ************************************************//
+@JsonManagedReference(value = "inventario_entrada")
 @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 private Set<entrada> entrada = new HashSet<>();
 // ************************************************//
 // -------------Relacion con insumo----------------//
 // ************************************************//
+@JsonBackReference(value = "insumo_inventario")
 @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "insumo_id")
 	@JsonProperty(access = Access.WRITE_ONLY)
@@ -49,9 +54,9 @@ private Set<entrada> entrada = new HashSet<>();
 public inventario() {
 }
 public inventario(Integer id, @NotEmpty @Size(min = 2, max = 60) String tipoUnidad, Boolean estado,
-        Set<yeilux.com.proyecto.Model.Class.inventario.insumo.salida> salida,
-        Set<yeilux.com.proyecto.Model.Class.inventario.insumo.entrada> entrada,
-        yeilux.com.proyecto.Model.Class.insumo.insumo insumo) {
+        Set<salida> salida,
+        Set<entrada> entrada,
+        insumo insumo) {
     this.id = id;
     this.tipoUnidad = tipoUnidad;
     this.estado = estado;

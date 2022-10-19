@@ -5,7 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import yeilux.com.proyecto.Model.Class.empleado.admin;
@@ -39,6 +40,7 @@ public class fabricacion {
 // ************************************************//
 // -------------Relacion con area------------------//
 // ************************************************//
+@JsonManagedReference(value = "fabricacion_area")
 @OneToMany(mappedBy = "fabricacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 private Set<area> area = new HashSet<>();
     
@@ -47,7 +49,7 @@ private Set<area> area = new HashSet<>();
 // ************************************************//
 
     @ManyToMany
-	@JsonBackReference
+	@JsonIgnoreProperties(value = "fabricacion_admin")
 	@JoinTable(
         name = "fabricacion_admin",
         joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
@@ -57,7 +59,7 @@ private Set<area> area = new HashSet<>();
 // -------------Relacion con insumo----------------//
 // ************************************************//
 @ManyToMany
-@JsonBackReference
+@JsonIgnoreProperties(value = "fabricacion_insumo")
 @JoinTable(
     name = "fabricacion_insumo",
     joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
@@ -67,7 +69,7 @@ private Set<insumo> insumo = new HashSet<>();
 // -------------Relacion con producto--------------//
 // ************************************************//
 @ManyToMany
-@JsonBackReference
+@JsonIgnoreProperties(value = "fabricacion_producto")
 @JoinTable(
     name = "fabricacion_producto",
     joinColumns = @JoinColumn(name = "id_fabricacion", referencedColumnName = "id"), 
@@ -78,10 +80,10 @@ public fabricacion() {
 }
 
 public fabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado,
-        Set<yeilux.com.proyecto.Model.Class.fabricacion.area> area,
-        Set<yeilux.com.proyecto.Model.Class.empleado.admin> admin,
-        Set<yeilux.com.proyecto.Model.Class.insumo.insumo> insumo,
-        Set<yeilux.com.proyecto.Model.Class.producto.producto> producto) {
+        Set<area> area,
+        Set<admin> admin,
+        Set<insumo> insumo,
+        Set<producto> producto) {
     this.id = id;
     this.fechainicio = fechainicio;
     this.fechafinal = fechafinal;
