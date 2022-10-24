@@ -1,15 +1,12 @@
-package yeilux.com.proyecto.Controller.empresa;
+package yeilux.com.proyecto.Controller.usuario;
 
 import java.net.URI;
 import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,17 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import yeilux.com.proyecto.Service.Empresa.IEspecialidad;
-import yeilux.com.proyecto.Class.empresa.especialidad;
+import javax.validation.Valid;
+
+import yeilux.com.proyecto.Service.usuario.ICargo;
+import yeilux.com.proyecto.Class.usuario.cargo;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@SessionAttributes("especialidad")
-@RequestMapping("/especialidad") 
-public class EspecialidadController {
+@SessionAttributes("cargo")
+@RequestMapping("/cargo")
+public class CargoController {
+
 
     @Autowired
-    private IEspecialidad iespecialidad;
+    private ICargo icargo;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -39,21 +38,21 @@ public class EspecialidadController {
 // --------------LISTAR TODOS--------------//
 
 @GetMapping
-	public ResponseEntity<Page<especialidad>> especialidades(Pageable pageable){
-		return ResponseEntity.ok(iespecialidad.findAll(pageable));
+	public ResponseEntity<Page<cargo>> cargos(Pageable pageable){
+		return ResponseEntity.ok(icargo.findAll(pageable));
 	}
 
 // ---------------LISTAR UNO---------------//
 
 @GetMapping("/{id}")
-	public ResponseEntity<especialidad> especialidad(@PathVariable Integer id){
-		Optional<especialidad> especialidadOptional = iespecialidad.findById(id);
+	public ResponseEntity<cargo> cargo(@PathVariable Integer id){
+		Optional<cargo> cargoOptional = icargo.findById(id);
 		
-		if(!especialidadOptional.isPresent()){
+		if(!cargoOptional.isPresent()){
 			return ResponseEntity.unprocessableEntity().build();
 		}
 		
-		return ResponseEntity.ok(especialidadOptional.get());
+		return ResponseEntity.ok(cargoOptional.get());
 	}
 
 // ****************************************//
@@ -63,11 +62,11 @@ public class EspecialidadController {
 // ---------------REGISTRAR----------------//
 
 @PostMapping
-	public ResponseEntity<especialidad> guardarespecialidad(@Valid @RequestBody especialidad especialidad){
-		especialidad especialidadGuardada = iespecialidad.save(especialidad);
+	public ResponseEntity<cargo> guardarcargo(@Valid @RequestBody cargo cargo){
+		cargo cargoGuardada = icargo.save(cargo);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(especialidadGuardada.getId()).toUri();
-		return ResponseEntity.created(ubicacion).body(especialidadGuardada);
+				.buildAndExpand(cargoGuardada.getId()).toUri();
+		return ResponseEntity.created(ubicacion).body(cargoGuardada);
 	}
 
 // ****************************************//
@@ -76,17 +75,16 @@ public class EspecialidadController {
 
 // ----------------EDITAR------------------//
 
-
 @PutMapping("/{id}")
-	public ResponseEntity<especialidad> actualizarespecialidad(@PathVariable Integer id,@Valid @RequestBody especialidad especialidad){
-		Optional<especialidad> especialidadOptional = iespecialidad.findById(id);
+	public ResponseEntity<cargo> actualizarcargo(@PathVariable Integer id,@Valid @RequestBody cargo cargo){
+		Optional<cargo> cargoOptional = icargo.findById(id);
 		
-		if(!especialidadOptional.isPresent()){
+		if(!cargoOptional.isPresent()){
 			return ResponseEntity.unprocessableEntity().build();
 		}
 		
-		especialidad.setId(especialidadOptional.get().getId());
-		iespecialidad.save(especialidad);
+		cargo.setId(cargoOptional.get().getId());
+		icargo.save(cargo);
 		
 		return ResponseEntity.noContent().build();
 	}

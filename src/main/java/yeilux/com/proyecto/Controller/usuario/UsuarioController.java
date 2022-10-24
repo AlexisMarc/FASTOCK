@@ -1,11 +1,10 @@
-package yeilux.com.proyecto.Controller.insumo;
+package yeilux.com.proyecto.Controller.usuario;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,16 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import yeilux.com.proyecto.Service.insumo.ITipo;
-import yeilux.com.proyecto.Class.insumo.tipo;
+import yeilux.com.proyecto.Service.usuario.IUsuario;
+import yeilux.com.proyecto.Class.usuario.usuario;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@SessionAttributes("tipo")
-@RequestMapping("/tipo")
-public class TipoController {
+@SessionAttributes("usuario")
+@RequestMapping("/usuario")
+
+public class UsuarioController {
 
     @Autowired
-    private ITipo itipo;
+    private IUsuario iusuario;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -32,23 +32,22 @@ public class TipoController {
 // --------------LISTAR TODOS--------------//
 
 @GetMapping
-	public ResponseEntity<Collection<tipo>> listartipos(){
-		return new ResponseEntity<>(itipo.findAll(),HttpStatus.OK);
+	public ResponseEntity<Collection<usuario>> listarusuarios(){
+		return new ResponseEntity<>(iusuario.findAll(),HttpStatus.OK);
 	}
 
 // ---------------LISTAR UNO---------------//
 
 @GetMapping("/{id}")
-	public ResponseEntity<tipo> obtenertipoPorId(@PathVariable Integer id){
-	tipo tipo = itipo.findById(id).orElseThrow();
+	public ResponseEntity<usuario> obtenerusuarioPorId(@PathVariable Integer id){
+	usuario usuario = iusuario.findById(id).orElseThrow();
 		
-		if(tipo != null) {
-			return new ResponseEntity<>(itipo.findById(id).orElseThrow(),HttpStatus.OK);
+		if(usuario != null) {
+			return new ResponseEntity<>(iusuario.findById(id).orElseThrow(),HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 		}
 	}
-
 
 // ****************************************//
 // -------------METODO POST----------------//
@@ -57,8 +56,8 @@ public class TipoController {
 // ---------------REGISTRAR----------------//
 
 @PostMapping
-	public ResponseEntity<?> guardarTipo(@RequestBody tipo tipo){
-		return new ResponseEntity<>(itipo.save(tipo),HttpStatus.CREATED);
+	public ResponseEntity<?> guardarusuario(@RequestBody usuario usuario){
+		return new ResponseEntity<>(iusuario.save(usuario),HttpStatus.CREATED);
 	}
 
 // ****************************************//

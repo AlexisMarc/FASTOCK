@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +20,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 
-import yeilux.com.proyecto.Model.Class.inventario.producto.entradapro;
-import yeilux.com.proyecto.Model.Class.inventario.producto.inventariopro;
-import yeilux.com.proyecto.Model.Interface.inventario.producto.IEntradapro;
-import yeilux.com.proyecto.Model.Interface.inventario.producto.IInventariopro;
+import yeilux.com.proyecto.Service.inventario.producto.IEntradapro;
+import yeilux.com.proyecto.Service.inventario.producto.IInventariopro;
+import yeilux.com.proyecto.Class.inventario.producto.entradapro;
+import yeilux.com.proyecto.Class.inventario.producto.inventariopro;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @SessionAttributes("entradapro")
 @RequestMapping("entradapro")
 

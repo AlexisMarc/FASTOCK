@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,14 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import yeilux.com.proyecto.Model.Class.insumo.insumo;
-import yeilux.com.proyecto.Model.Class.inventario.insumo.inventario;
-import yeilux.com.proyecto.Model.Interface.insumo.IInsumo;
-import yeilux.com.proyecto.Model.Interface.inventario.insumo.IInventario;
+import yeilux.com.proyecto.Service.insumo.IInsumo;
+import yeilux.com.proyecto.Service.inventario.insumo.IInventario;
+import yeilux.com.proyecto.Class.insumo.insumo;
+import yeilux.com.proyecto.Class.inventario.insumo.inventario;
 
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @SessionAttributes("inventario")
 @RequestMapping("/inventario")
 public class InventarioController {
