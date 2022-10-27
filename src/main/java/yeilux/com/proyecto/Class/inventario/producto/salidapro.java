@@ -1,8 +1,5 @@
 package yeilux.com.proyecto.Class.inventario.producto;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -19,25 +16,18 @@ public class salidapro {
     // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    // -----------------------FECHA_SALIDA-----------------------//
-    private String fecha = obtenerFecha();
-
-    public static String obtenerFecha() {
-        String formato = "yyyy-MM-dd HH:mm:ss";
-        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
-        LocalDateTime ahora = LocalDateTime.now();
-        return formateador.format(ahora);
-    }
-
-    // -----------------------CANTIDAD_SALIDA-----------------------//
-    @NotNull
+    // -----------------------FECHA_ENTRADA-----------------------//
+    @Column(nullable = false)
+    private String fecha;
+    // -----------------------CANTIDAD_ENTRADA-----------------------//
+    @NotNull(message = "La cantidad no debe estar vacía")
+    @Column(nullable = false)
     private Integer cantidad;
-
     // -----------------------ESTADO-----------------------//
-    @NotNull
+    @Column(nullable = false)
     private Boolean estado;
 
     // ************************************************//
@@ -109,8 +99,8 @@ public class salidapro {
         this.usuario = usuario;
     }
 
-    public salidapro(Integer id, String fecha, @NotNull Integer cantidad, @NotNull Boolean estado,
-            inventariopro inventario, usuario usuario) {
+    public salidapro(Integer id, String fecha, @NotNull(message = "La cantidad no debe estar vacía") Integer cantidad,
+            Boolean estado, inventariopro inventario, usuario usuario) {
         this.id = id;
         this.fecha = fecha;
         this.cantidad = cantidad;

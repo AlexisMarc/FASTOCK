@@ -10,91 +10,89 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="especialidad")
+@Table(name = "especialidad")
 public class especialidad {
-// -----------------------ID-----------------------//
+    // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-// --------------------NOMBRE-------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    // --------------------NOMBRE-------------------//
+    @NotEmpty(message = "La especialidad no debe estar vacía.")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "La especialidad debe tener una longitud en 2 y 60 caracteres.")
     private String nombre;
-// ----------------------DESCRIPCION-----------------//
-    @NotEmpty
-    @Column(length = 200)
-    @Size(min = 0, max = 200)
+    // ----------------------DESCRIPCION-----------------//
+    @NotEmpty(message = "La descripción no debe estar vacía.")
+    @Column(length = 200, nullable = false)
+    @Size(min = 2, max = 200, message = "La descripción debe tener una longitud entre 2 y 200 carcateres.")
     private String descripcion;
-// ************************************************//
-// -------------Relacion con empresa---------------//
-// ************************************************//
-@JsonManagedReference(value = "especialidad_empresa")
-@OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<empresa> empresa = new HashSet<>();
 
+    // --------------Estado---------------//
+    @Column(nullable = true)
+    private Boolean estado;
+    // ************************************************//
+    // -------------Relacion con empresa---------------//
+    // ************************************************//
+    @JsonManagedReference(value = "especialidad_empresa")
+    @OneToMany(mappedBy = "especialidad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<empresa> empresa = new HashSet<>();
 
+    // ************************************************//
+    // -------------Constructores---------------//
+    // ************************************************//
+    public especialidad() {
+    }
 
-// ************************************************//
-// -------------Constructores---------------//
-// ************************************************//
-public especialidad() {
-}
+    public especialidad(Integer id,
+            @NotEmpty(message = "La especialidad no debe estar vacía.") @Size(min = 2, max = 60, message = "La especialidad debe tener una longitud en 2 y 60 caracteres.") String nombre,
+            @NotEmpty(message = "La descripción no debe estar vacía.") @Size(min = 2, max = 200, message = "La descripción debe tener una longitud entre 2 y 200 carcateres.") String descripcion,
+            Boolean estado, Set<yeilux.com.proyecto.Class.empresa.empresa> empresa) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.empresa = empresa;
+    }
 
+    public Integer getId() {
+        return id;
+    }
 
-public especialidad(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 0, max = 200) String descripcion,
-        Set<empresa> empresa) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.empresa = empresa;
-}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
 
-public Integer getId() {
-    return id;
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-public void setId(Integer id) {
-    this.id = id;
-}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
+    public Set<empresa> getEmpresa() {
+        return empresa;
+    }
 
-public String getNombre() {
-    return nombre;
-}
+    public void setEmpresa(Set<empresa> empresa) {
+        this.empresa = empresa;
+    }
 
+    public Boolean getEstado() {
+        return estado;
+    }
 
-public void setNombre(String nombre) {
-    this.nombre = nombre;
-}
-
-
-public String getDescripcion() {
-    return descripcion;
-}
-
-
-public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-}
-
-
-public Set<empresa> getEmpresa() {
-    return empresa;
-}
-
-
-public void setEmpresa(Set<empresa> empresa) {
-    this.empresa = empresa;
-}
-
-
-
-
-
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
 
 }

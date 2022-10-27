@@ -19,11 +19,11 @@ public class inventariopro {
     // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     // -----------------------ESTADO-----------------------//
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Boolean estado;
 
     // ************************************************//

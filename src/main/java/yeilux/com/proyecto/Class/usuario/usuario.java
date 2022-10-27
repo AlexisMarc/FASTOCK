@@ -25,53 +25,55 @@ public class usuario {
     // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     // -----------------------Idenficacion-----------------------//
     @NotNull
+    @Column(nullable = false)
     private Long identificacion;
     // -----------------------Nombre-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "El nombre no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres")
     private String nombre;
 
     // -----------------------Apellido-----------------------//
 
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "El apellido no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres")
     private String apellido;
 
     // -----------------------Genero-----------------------//
-    @NotEmpty
-    @Column(length = 10)
-    @Size(min = 2, max = 10)
+    @NotEmpty(message = "El género no debe estar vacío")
+    @Column(length = 10, nullable = false)
+    @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres")
     private String genero;
 
     // -----------------------Fecha de nacimiento-----------------------//
-    @NotEmpty
-    @Column(length = 12)
+    @NotEmpty(message = "La fecha de nacimiento no debe estar vacío")
+    @Column(length = 12, nullable = false)
     private String fecha;
 
     // -----------------------Direccion-----------------------//
 
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "La dirección no debe estar vacío")
+    @Column(length = 100, nullable = false)
+    @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres")
     private String direccion;
 
     // -----------------------Telefono-----------------------//
-    @NotNull
+    @NotNull(message = "El número teléfono no debe estar vacío")
+    @Column(nullable = false)
     private Long telefono;
 
     // -----------------------Email-----------------------//
 
-    @NotEmpty
-    @Email
-    @Column(length = 200)
-    @Size(min = 1, max = 200)
+    @NotEmpty(message = "EL Email no debe estar vacío")
+    @Email(message = "EL Email no valido")
+    @Column(length = 200, nullable = false)
+    @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres")
     private String email;
 
     // -----------------------Estado-----------------------//
@@ -90,12 +92,9 @@ public class usuario {
     // -------------Relacion con cargo-----------------//
     // ************************************************//
     @ManyToMany
-	@JsonIgnoreProperties(value = "usuario_cargo")
-	@JoinTable(
-        name = "usuario_cargo",
-        joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
-	private Set<cargo> cargo = new HashSet<>();
+    @JsonIgnoreProperties(value = "usuario_cargo")
+    @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
+    private Set<cargo> cargo = new HashSet<>();
 
     // ************************************************//
     // -------------Relacion con area------------------//
@@ -137,13 +136,16 @@ public class usuario {
     public usuario() {
     }
 
-    public usuario(Integer id, @NotNull Long identificacion, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String apellido, @NotEmpty @Size(min = 2, max = 10) String genero,
-            @NotEmpty String fecha, @NotEmpty @Size(min = 2, max = 60) String direccion, @NotNull Long telefono,
-            @NotEmpty @Email @Size(min = 1, max = 200) String email, Boolean estado,
-            Set<fabricacion> fabricacion,
-            Set<cargo> cargo,
-            Set<area> area,
+    public usuario(Integer id, @NotNull Long identificacion,
+            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
+            @NotEmpty(message = "El apellido no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String apellido,
+            @NotEmpty(message = "El género no debe estar vacío") @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres") String genero,
+            @NotEmpty(message = "La fecha de nacimiento no debe estar vacío") String fecha,
+            @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres") String direccion,
+            @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
+            @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String email,
+            Boolean estado, Set<fabricacion> fabricacion,
+            Set<cargo> cargo, Set<area> area,
             Set<entrada> entrada,
             Set<entradapro> entradapro,
             Set<salida> salida,

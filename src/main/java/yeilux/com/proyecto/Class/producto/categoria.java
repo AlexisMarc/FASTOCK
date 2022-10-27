@@ -15,78 +15,76 @@ public class categoria {
     // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     // -----------------------NOMBRE-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "La categoría no debe estar vacía")
+    @Column(length = 30, nullable = false)
+    @Size(min = 2, max = 30, message = "La categoría debe tener una longitud en 2 y 60 caracteres.")
     private String nombre;
 
-    // -----------------------Descri-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
-    private String descripcion;
+    // -----------------------FILTRO-----------------------//
+    @NotEmpty(message = "El filtro no debe estar vacío")
+    @Column(length = 20, nullable = false)
+    @Size(min = 2, max = 20)
+    private String filtro;
 
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
     @ManyToMany
     @JsonIgnoreProperties(value = "producto_categoria")
-@JoinTable(
-    name = "producto_categoria",
-    joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), 
-    inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
-private Set<producto> producto = new HashSet<>();
-    
-// ************************************************//
-// -------------Contructores accesores--------------//
-// ************************************************//
+    @JoinTable(name = "producto_categoria", joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
+    private Set<producto> producto = new HashSet<>();
 
-public Integer getId() {
-    return id;
-}
+    // ************************************************//
+    // -------------Contructores accesores--------------//
+    // ************************************************//
 
-public void setId(Integer id) {
-    this.id = id;
-}
+    public categoria() {
+    }
 
-public String getNombre() {
-    return nombre;
-}
+    public categoria(Integer id,
+            @NotEmpty(message = "La categoría no debe estar vacía") @Size(min = 2, max = 30, message = "La categoría debe tener una longitud en 2 y 60 caracteres.") String nombre,
+            @NotEmpty(message = "El filtro no debe estar vacío") @Size(min = 2, max = 20) String filtro,
+            Set<producto> producto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.filtro = filtro;
+        this.producto = producto;
+    }
 
-public void setNombre(String nombre) {
-    this.nombre = nombre;
-}
+    public Integer getId() {
+        return id;
+    }
 
-public String getDescripcion() {
-    return descripcion;
-}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-public void setDescripcion(String descripcion) {
-    this.descripcion = descripcion;
-}
+    public String getNombre() {
+        return nombre;
+    }
 
-public Set<producto> getProducto() {
-    return producto;
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-public void setProducto(Set<producto> producto) {
-    this.producto = producto;
-}
+    public String getFiltro() {
+        return filtro;
+    }
 
-public categoria() {
-}
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
 
-public categoria(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-        @NotEmpty @Size(min = 2, max = 60) String descripcion,
-        Set<producto> producto) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.producto = producto;
-}
+    public Set<producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Set<producto> producto) {
+        this.producto = producto;
+    }
 
 }

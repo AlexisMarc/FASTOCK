@@ -19,34 +19,34 @@ public class proveedor {
     // -----------------------ID-----------------------//
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     // -----------------------NOMBRE-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "El nombre no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres")
     private String nombre;
     // -----------------------NOMBRE CONTACTO-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "El nombre del contacto no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "El nombre del contacto debe tener entre 2 y 60 caracteres")
     private String contacto;
     // -----------------------DIRECCION-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "La dirección no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "La dirección debe tener entre 2 y 60 caracteres")
     private String direccion;
     // ----------------------- TELEFONO-----------------------//
-    @NotNull
+    @NotNull(message = "El teléfono no debe estar vacío")
     private Long telefono;
     // -----------------------EMAIL-----------------------//
-    @NotEmpty
-    @Email
-    @Column(length = 60)
-    @Size(min = 6, max = 200)
+    @NotEmpty(message = "El email no debe estar vacío")
+    @Email(message = "El email no es valido")
+    @Column(length = 200, nullable = false)
+    @Size(min = 6, max = 200, message = "El email debe tener entre 6 y 200 caracteres")
     private String email;
     // -----------------------ESTADO-----------------------//
-    @NotNull
+    @Column(nullable = false)
     private Boolean estado;
     // ************************************************//
     // -------------Relacion con insumo----------------//
@@ -61,10 +61,13 @@ public class proveedor {
     public proveedor() {
     }
 
-    public proveedor(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre,
-            @NotEmpty @Size(min = 2, max = 60) String contacto, @NotEmpty @Size(min = 2, max = 60) String direccion,
-            @NotNull Long telefono, @NotEmpty @Email @Size(min = 6, max = 200) String email, @NotNull Boolean estado,
-            Set<insumo> insumo) {
+    public proveedor(Integer id,
+            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres") String nombre,
+            @NotEmpty(message = "El nombre del contacto no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre del contacto debe tener entre 2 y 60 caracteres") String contacto,
+            @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 60, message = "La dirección debe tener entre 2 y 60 caracteres") String direccion,
+            @NotNull(message = "El teléfono no debe estar vacío") Long telefono,
+            @NotEmpty(message = "El email no debe estar vacío") @Email(message = "El email no es valido") @Size(min = 6, max = 200, message = "El email debe tener entre 6 y 200 caracteres") String email,
+            Boolean estado, Set<insumo> insumo) {
         this.id = id;
         this.nombre = nombre;
         this.contacto = contacto;

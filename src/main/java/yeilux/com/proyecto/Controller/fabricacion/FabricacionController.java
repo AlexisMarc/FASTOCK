@@ -59,7 +59,7 @@ public class FabricacionController {
 		fabricacion fabricacion = ifabricacion.findById(id).orElseThrow();
 		
 		if(fabricacion != null) {
-			return new ResponseEntity<>(fabricacion.getusuario(),HttpStatus.OK);
+			return new ResponseEntity<>(fabricacion.getUsuario(),HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 		}

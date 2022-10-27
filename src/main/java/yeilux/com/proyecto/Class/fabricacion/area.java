@@ -1,7 +1,5 @@
 package yeilux.com.proyecto.Class.fabricacion;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,51 +26,43 @@ public class area {
     private Integer id;
 
     // -----------------------Nombre-----------------------//
-    @NotEmpty
-    @Column(length = 60)
-    @Size(min = 2, max = 60)
+    @NotEmpty(message = "El nombre no debe estar vacío")
+    @Column(length = 60, nullable = false)
+    @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 30 caracteres")
     private String nombre;
 
     // -----------------------FECHA_INICIO-----------------------//
-    private String fechainicio = obtenerFecha();
-
-    public static String obtenerFecha() {
-        String formato = "yyyy-MM-dd";
-        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
-        LocalDateTime ahora = LocalDateTime.now();
-        return formateador.format(ahora);
-    }
+    @Column(length = 20, nullable = false)
+    private String fechainicio;
 
     // -----------------------FECHA_FINAL-----------------------//
+    @Column(length = 20, nullable = true)
     private String fechafinal;
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
-    private Boolean estado = true;
+    private Boolean estado;
 
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
     // ************************************************//
     @JsonBackReference(value = "fabricacion_area")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "fabricacion_id")
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private fabricacion fabricacion;
+    @JoinColumn(name = "fabricacion_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private fabricacion fabricacion;
     // ************************************************//
     // -------------Relacion con produccion------------//
     // ************************************************//
     @JsonManagedReference(value = "area_produccion")
     @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<produccion> produccion = new HashSet<>();
+    private Set<produccion> produccion = new HashSet<>();
     // ************************************************//
     // -------------Relacion con usuario--------------//
     // ************************************************//
     @JsonIgnoreProperties(value = "areausuario")
     @ManyToMany
-	@JoinTable(
-        name = "area_usuario",
-        joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
-	private Set<usuario> usuario = new HashSet<>();
+    @JoinTable(name = "area_usuario", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
+    private Set<usuario> usuario = new HashSet<>();
     // ************************************************//
     // -------------Relacion con empresa---------------//
     // ************************************************//
@@ -84,8 +74,10 @@ public class area {
     public area() {
     }
 
-    public area(Integer id, @NotEmpty @Size(min = 2, max = 60) String nombre, String fechainicio, String fechafinal,
-            Boolean estado, fabricacion fabricacion,
+    public area(Integer id,
+            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 30 caracteres") String nombre,
+            String fechainicio, String fechafinal, Boolean estado,
+            fabricacion fabricacion,
             Set<produccion> produccion,
             Set<usuario> usuario,
             Set<empresa> empresa) {
@@ -172,7 +164,4 @@ public class area {
         this.empresa = empresa;
     }
 
-
-
-    
 }
