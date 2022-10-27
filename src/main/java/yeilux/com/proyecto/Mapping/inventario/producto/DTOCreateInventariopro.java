@@ -1,34 +1,36 @@
 package yeilux.com.proyecto.Mapping.inventario.producto;
 
-import yeilux.com.proyecto.Class.usuario.usuario;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.validation.constraints.NotNull;
+import yeilux.com.proyecto.Class.producto.producto;
 
-public class salidapro {
+public class DTOCreateInventariopro {
+
     // -----------------------ID-----------------------//
     private Integer id;
 
-    // -----------------------FECHA_ENTRADA-----------------------//
-    private String fecha;
-    // -----------------------CANTIDAD_ENTRADA-----------------------//
-    @NotNull(message = "La cantidad no debe estar vacía")
-    private Integer cantidad;
     // -----------------------ESTADO-----------------------//
     private Boolean estado;
 
     // ************************************************//
-    // -------------Relacion con inventario------------//
+    // -------------Relacion con salida----------------//
     // ************************************************//
-    private inventariopro inventario;
+    private Set<salidapro> salida = new HashSet<>();
     // ************************************************//
-    // -------------Relacion con usuario--------------//
+    // -------------Relacion con entrada---------------//
     // ************************************************//
-    private usuario usuario;
+    private Set<entradapro> entrada = new HashSet<>();
+    // ************************************************//
+    // -------------Relacion con producto--------------//
+    // ************************************************//
+    private producto producto;
 
     // ************************************************//
     // -------------Contructores accesores--------------//
     // ************************************************//
-    public salidapro() {
+
+    public DTOCreateInventariopro() {
     }
 
 }

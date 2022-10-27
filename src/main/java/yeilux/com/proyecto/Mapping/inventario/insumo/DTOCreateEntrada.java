@@ -4,10 +4,10 @@ import yeilux.com.proyecto.Class.usuario.usuario;
 
 import javax.validation.constraints.NotNull;
 
-public class salida {
+public class DTOCreateEntrada {
     // -----------------------ID-----------------------//
     private Integer id;
-    // -----------------------FECHA-----------------------//
+    // -----------------------FECHA-ENTRADA-----------------------//
     private String fecha;
     // -----------------------CANTIDAD-----------------------//
     @NotNull(message = "La cantidad no debe estar vacía")
@@ -18,14 +18,15 @@ public class salida {
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
-    private inventario inventario;
+    private DTOinventario inventario;
+
     // ************************************************//
     // -------------Relacion con usuario--------------//
     // ************************************************//
     private usuario usuario;
+    /*-----------GETTERS AND SETTERS-----------------*/
 
-    /*-----------------GETTERS AND SETTERS----------------*/
-    public salida() {
+    public DTOCreateEntrada() {
     }
 
 }

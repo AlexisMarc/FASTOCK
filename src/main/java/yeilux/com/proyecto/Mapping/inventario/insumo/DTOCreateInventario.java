@@ -8,7 +8,7 @@ import yeilux.com.proyecto.Class.insumo.insumo;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class inventario {
+public class DTOCreateInventario {
     // -----------------------ID-----------------------//
     private Integer id;
     // -----------------------TIPO-UNIDAD-----------------------//
@@ -32,7 +32,7 @@ public class inventario {
     private insumo insumo;
 
     /*-----------------GETTERS AND SETTERS----------------*/
-    public inventario() {
+    public DTOCreateInventario() {
     }
 
 }

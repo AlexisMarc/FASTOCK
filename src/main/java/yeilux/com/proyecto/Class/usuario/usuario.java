@@ -78,7 +78,7 @@ public class usuario {
 
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
-    private Boolean estado = true;
+    private Boolean estado;
 
     // ************************************************//
     // -------------Relacion con fabricacion-----------//

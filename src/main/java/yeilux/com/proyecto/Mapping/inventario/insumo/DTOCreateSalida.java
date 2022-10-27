@@ -1,17 +1,15 @@
-package yeilux.com.proyecto.Mapping.inventario.producto;
+package yeilux.com.proyecto.Mapping.inventario.insumo;
 
 import yeilux.com.proyecto.Class.usuario.usuario;
 
 import javax.validation.constraints.NotNull;
 
-public class entradapro {
-
+public class DTOCreateSalida {
     // -----------------------ID-----------------------//
     private Integer id;
-
-    // -----------------------FECHA_ENTRADA-----------------------//
+    // -----------------------FECHA-----------------------//
     private String fecha;
-    // -----------------------CANTIDAD_ENTRADA-----------------------//
+    // -----------------------CANTIDAD-----------------------//
     @NotNull(message = "La cantidad no debe estar vacía")
     private Integer cantidad;
     // -----------------------ESTADO-----------------------//
@@ -20,17 +18,14 @@ public class entradapro {
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
-    private inventariopro inventario;
-
+    private DTOinventario inventario;
     // ************************************************//
     // -------------Relacion con usuario--------------//
     // ************************************************//
     private usuario usuario;
 
-    // ************************************************//
-    // -------------Contructores accesores--------------//
-    // ************************************************//
-    public entradapro() {
+    /*-----------------GETTERS AND SETTERS----------------*/
+    public DTOCreateSalida() {
     }
 
 }

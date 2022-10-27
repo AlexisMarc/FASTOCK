@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class tipo {
+public class DTOCreateTipo {
     // -----------------------ID-----------------------//
     private Integer id;
     // --------------------NOMBRE-----------------------//

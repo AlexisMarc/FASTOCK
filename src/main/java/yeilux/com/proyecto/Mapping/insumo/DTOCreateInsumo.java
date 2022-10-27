@@ -10,7 +10,7 @@ import yeilux.com.proyecto.Class.proveedor.proveedor;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class insumo {
+public class DTOCreateInsumo {
 	// -----------------------ID-----------------------//
 	private Integer id;
 	// ----------------NOMBRE-------------//
@@ -43,9 +43,6 @@ public class insumo {
 	private Set<inventario> inventario = new HashSet<>();
 
 	// ---------GETTERS AND SETTERS---------------------//
-
-	public insumo() {
-	}
 
 	
 }

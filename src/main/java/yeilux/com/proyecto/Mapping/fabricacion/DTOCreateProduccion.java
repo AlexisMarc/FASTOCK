@@ -5,7 +5,7 @@ import yeilux.com.proyecto.Utils.EnumProduccion;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class produccion {
+public class DTOCreateProduccion {
 
     // -----------------------ID-----------------------//
     private Integer id;
@@ -23,9 +23,11 @@ public class produccion {
     // ************************************************//
     // -------------Relacion con area------------------//
     // ************************************************//
-    private area area;
+    @NotNull(message = "El producto no debe estar vacío")
+    private Integer area;
 
-    public produccion() {
+    public DTOCreateProduccion() {
     }
+    
 
 }
