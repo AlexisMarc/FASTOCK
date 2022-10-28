@@ -29,7 +29,7 @@ public class usuario {
     private Integer id;
 
     // -----------------------Idenficacion-----------------------//
-    @NotNull
+    @NotNull(message = "La identificación no debe estar vacío")
     @Column(nullable = false)
     private Long identificacion;
     // -----------------------Nombre-----------------------//
@@ -136,7 +136,9 @@ public class usuario {
     public usuario() {
     }
 
-    public usuario(Integer id, @NotNull Long identificacion,
+    
+    
+    public usuario(Integer id, @NotNull(message = "La identificación no debe estar vacío") Long identificacion,
             @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
             @NotEmpty(message = "El apellido no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String apellido,
             @NotEmpty(message = "El género no debe estar vacío") @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres") String genero,
@@ -168,6 +170,8 @@ public class usuario {
         this.salida = salida;
         this.salidapro = salidapro;
     }
+
+
 
     public Integer getId() {
         return id;

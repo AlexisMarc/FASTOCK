@@ -1,19 +1,12 @@
 package yeilux.com.proyecto.Mapping.producto;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import yeilux.com.proyecto.Class.fabricacion.fabricacion;
-import yeilux.com.proyecto.Class.inventario.producto.inventariopro;
+import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class producto {
-
-    // -----------------------ID-----------------------//
-    private Integer id;
-
+public class DTOCreateProducto {
     // -----------------------NOMBRE-----------------------//
     @NotEmpty(message = "El nombre no debe estar vacío")
     @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres")
@@ -22,34 +15,63 @@ public class producto {
     // -----------------------DESCRIPCION-----------------------//
     private String descripcion;
 
-    // -----------------------Estado-----------------------//
-    private Boolean estado;
-
-    // -----------------------VISIBLE-----------------------//
-    private Boolean visible;
-
     // -----------------------IMAGEN-----------------------//
     private String imagen;
 
     // ************************************************//
     // -------------Relacion con Categoria-------------//
     // ************************************************//
-    private Set<categoria> categoria = new HashSet<>();
-    // ************************************************//
-    // -------------Relacion con fabricacion-----------//
-
-    // ************************************************//
-    private Set<fabricacion> fabricacion = new HashSet<>();
-    // ************************************************//
-    // -------------Relacion con inventario------------//
-    // ************************************************//
-    private Set<inventariopro> inventario = new HashSet<>();
-
+    @NotNull(message = "Las categorías no debe estar vacías")
+    private List<Integer> categoria;
     // ************************************************//
     // -------------Contructores accesores--------------//
     // ************************************************//
-    
-    public producto() {
+
+    public DTOCreateProducto() {
     }
+
+    public DTOCreateProducto(
+            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres") String nombre,
+            String descripcion, String imagen,
+            @NotNull(message = "Las categorías no debe estar vacías") List<Integer> categoria) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.categoria = categoria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public List<Integer> getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(List<Integer> categoria) {
+        this.categoria = categoria;
+    }
+    
+    
 
 }

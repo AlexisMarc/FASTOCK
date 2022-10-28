@@ -1,4 +1,4 @@
-package yeilux.com.proyecto.Mapping.inventario.insumo;
+package yeilux.com.proyecto.Mapping.inventario;
 
 
 public class DTOinventario {
