@@ -19,6 +19,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 @Table(name = "usuario", uniqueConstraints = { @UniqueConstraint(columnNames = { "identificacion" }) })
 public class usuario {
@@ -69,12 +71,21 @@ public class usuario {
     private Long telefono;
 
     // -----------------------Email-----------------------//
-
     @NotEmpty(message = "EL Email no debe estar vacío")
     @Email(message = "EL Email no valido")
-    @Column(length = 200, nullable = false)
+    @Column(length = 200, nullable = false, unique = true)
     @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres")
     private String email;
+
+    // -----------------------Password-----------------------//
+    @NotNull
+    private String password;
+
+    // -----------------------username-----------------------//
+    @NotNull
+    @NaturalId
+    @Column(unique = true)
+    private String userName;
 
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
@@ -91,7 +102,7 @@ public class usuario {
     // ************************************************//
     // -------------Relacion con cargo-----------------//
     // ************************************************//
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = "usuario_cargo")
     @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
     private Set<cargo> cargo = new HashSet<>();
@@ -136,8 +147,6 @@ public class usuario {
     public usuario() {
     }
 
-    
-    
     public usuario(Integer id, @NotNull(message = "La identificación no debe estar vacío") Long identificacion,
             @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
             @NotEmpty(message = "El apellido no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String apellido,
@@ -146,12 +155,13 @@ public class usuario {
             @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres") String direccion,
             @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
             @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String email,
-            Boolean estado, Set<fabricacion> fabricacion,
-            Set<cargo> cargo, Set<area> area,
-            Set<entrada> entrada,
-            Set<entradapro> entradapro,
-            Set<salida> salida,
-            Set<salidapro> salidapro) {
+            @NotNull String password, @NotNull String userName, Boolean estado,
+            Set<yeilux.com.proyecto.Class.fabricacion.fabricacion> fabricacion,
+            Set<yeilux.com.proyecto.Class.usuario.cargo> cargo, Set<yeilux.com.proyecto.Class.fabricacion.area> area,
+            Set<yeilux.com.proyecto.Class.inventario.insumo.entrada> entrada,
+            Set<yeilux.com.proyecto.Class.inventario.producto.entradapro> entradapro,
+            Set<yeilux.com.proyecto.Class.inventario.insumo.salida> salida,
+            Set<yeilux.com.proyecto.Class.inventario.producto.salidapro> salidapro) {
         this.id = id;
         this.identificacion = identificacion;
         this.nombre = nombre;
@@ -161,6 +171,8 @@ public class usuario {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.password = password;
+        this.userName = userName;
         this.estado = estado;
         this.fabricacion = fabricacion;
         this.cargo = cargo;
@@ -170,8 +182,6 @@ public class usuario {
         this.salida = salida;
         this.salidapro = salidapro;
     }
-
-
 
     public Integer getId() {
         return id;
@@ -307,6 +317,22 @@ public class usuario {
 
     public void setFabricacion(Set<fabricacion> fabricacion) {
         this.fabricacion = fabricacion;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
 }

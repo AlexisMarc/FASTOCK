@@ -10,7 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "entrada", uniqueConstraints = { @UniqueConstraint(columnNames = { "identificacion" }) })
+@Table(name = "entrada")
 public class entrada {
     // -----------------------ID-----------------------//
     @Id

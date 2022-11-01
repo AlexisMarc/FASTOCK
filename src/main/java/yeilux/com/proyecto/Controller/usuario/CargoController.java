@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class CargoController {
 // ****************************************//
 
 // --------------LISTAR TODOS--------------//
-
+@PreAuthorize("hasRole('ADMIN')")
 @GetMapping
 	public ResponseEntity<Page<cargo>> cargos(Pageable pageable){
 		return ResponseEntity.ok(icargo.findAll(pageable));

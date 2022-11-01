@@ -18,11 +18,11 @@ public class cargo {
     @Column(name = "id")
     private Integer id;
 
-    // -----------------------NOMBRE-----------------------//
-    @NotEmpty(message = "El nombre no debe estar vacío")
+    // -----------------------roleName-----------------------//
+    @NotEmpty(message = "El roleName no debe estar vacío")
     @Column(length = 60, nullable = false)
-    @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres")
-    private String nombre;
+    @Size(min = 2, max = 60, message = "El roleName debe tener entre 2 y 60 caracteres")
+    private String roleName;
 
     // ************************************************//
     // -------------Relacion con usuario--------------//
@@ -47,12 +47,12 @@ public class cargo {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getroleName() {
+        return roleName;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setroleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public Set<usuario> getusuario() {
@@ -64,11 +64,10 @@ public class cargo {
     }
 
     public cargo(Integer id,
-            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres") String nombre,
+            @NotEmpty(message = "El roleName no debe estar vacío") @Size(min = 2, max = 60, message = "El roleName debe tener entre 2 y 60 caracteres") String roleName,
             Set<usuario> usuario) {
         this.id = id;
-        this.nombre = nombre;
+        this.roleName = roleName;
         this.usuario = usuario;
     }
-
 }
