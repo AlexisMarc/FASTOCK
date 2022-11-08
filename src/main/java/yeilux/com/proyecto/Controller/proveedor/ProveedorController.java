@@ -1,13 +1,11 @@
 package yeilux.com.proyecto.Controller.proveedor;
 
 import java.net.URI;
-import java.util.Optional;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import yeilux.com.proyecto.Service.proveedor.IProveedor;
-import yeilux.com.proyecto.Class.proveedor.proveedor;
+import yeilux.com.proyecto.Service.proveedor.ImpProveedor;
+import yeilux.com.proyecto.Mapping.proveedor.DTOCreateProveedor;
+import yeilux.com.proyecto.Mapping.proveedor.DTOUpdateProveedor;
+import yeilux.com.proyecto.Mapping.proveedor.DTOproveedor;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -30,7 +30,7 @@ import yeilux.com.proyecto.Class.proveedor.proveedor;
 public class ProveedorController {
 
     @Autowired
-    private IProveedor iproveedor;
+    private ImpProveedor iproveedor;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -38,8 +38,8 @@ public class ProveedorController {
 
 // --------------LISTAR TODOS--------------//
 @GetMapping
-	public ResponseEntity<Page<proveedor>> proveedores(Pageable pageable){
-		return ResponseEntity.ok(iproveedor.findAll(pageable));
+	public ResponseEntity<List<DTOproveedor>> proveedores(){
+		return ResponseEntity.ok(iproveedor.listado());
 	}
 
 
@@ -47,14 +47,14 @@ public class ProveedorController {
 
 
 @GetMapping("/{id}")
-	public ResponseEntity<proveedor> proveedor(@PathVariable Integer id){
-		Optional<proveedor> proveedorOptional = iproveedor.findById(id);
+	public ResponseEntity<DTOproveedor> proveedor(@PathVariable Integer id){
+		DTOproveedor proveedorOptional = iproveedor.consulta(id);
 		
-		if(!proveedorOptional.isPresent()){
+		if(proveedorOptional==null){
 			return ResponseEntity.unprocessableEntity().build();
 		}
 		
-		return ResponseEntity.ok(proveedorOptional.get());
+		return ResponseEntity.ok(proveedorOptional);
 	}
 
 // ****************************************//
@@ -64,8 +64,8 @@ public class ProveedorController {
 // ---------------REGISTRAR----------------//
 
 @PostMapping
-	public ResponseEntity<proveedor> guardarproveedor(@Valid @RequestBody proveedor proveedor){
-		proveedor proveedorGuardada = iproveedor.save(proveedor);
+	public ResponseEntity<DTOproveedor> guardarproveedor(@Valid @RequestBody DTOCreateProveedor proveedor){
+		DTOproveedor proveedorGuardada = iproveedor.registrar(proveedor);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(proveedorGuardada.getId()).toUri();
 		return ResponseEntity.created(ubicacion).body(proveedorGuardada);
@@ -79,21 +79,27 @@ public class ProveedorController {
 // ----------------EDITAR------------------//
 
 @PutMapping("/{id}")
-	public ResponseEntity<proveedor> actualizarproveedor(@PathVariable Integer id,@Valid @RequestBody proveedor proveedor){
-		Optional<proveedor> proveedorOptional = iproveedor.findById(id);
-		
-		if(!proveedorOptional.isPresent()){
+	public ResponseEntity<DTOproveedor> actualizarproveedor(@PathVariable Integer id,@Valid @RequestBody DTOUpdateProveedor proveedor){
+		DTOproveedor proveedorID = iproveedor.consulta(id);
+		if(proveedorID==null){
 			return ResponseEntity.unprocessableEntity().build();
+		}else{
+			proveedor.setId(proveedorID.getId());
+			DTOproveedor pro = iproveedor.editar(proveedor);
+
+			URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(proveedor.getId()).toUri();
+
+			return ResponseEntity.created(ubicacion).body(pro);
 		}
-		
-		proveedor.setId(proveedorOptional.get().getId());
-		iproveedor.save(proveedor);
-		
-		return ResponseEntity.noContent().build();
 	}
 
 // ----------------ESTADO------------------//
 
-
+@PutMapping("/estado/{id}")
+	public ResponseEntity<DTOproveedor> EstadoProveedor(@PathVariable Integer id){
+		iproveedor.estado(id);
+		return ResponseEntity.ok(iproveedor.consulta(id));
+	}
 
 }
