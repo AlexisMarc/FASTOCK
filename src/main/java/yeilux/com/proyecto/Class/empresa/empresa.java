@@ -168,4 +168,12 @@ public class empresa {
         this.area = area;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
 }
