@@ -3,22 +3,25 @@ package yeilux.com.proyecto.Service.Empresa;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yeilux.com.proyecto.Class.empresa.empresa;
+import yeilux.com.proyecto.Class.empresa.especialidad;
 import yeilux.com.proyecto.Mapping.empresa.DTOCreateEmpresa;
 import yeilux.com.proyecto.Mapping.empresa.DTOUpdateEmpresa;
 import yeilux.com.proyecto.Mapping.empresa.DTOempresa;
 
 
 @Service
-
 public class ImpEmpresa {
     
     @Autowired
     private IEmpresa empresai;
+    @Autowired
+    private IEspecialidad especialidadi;
 
     // LISTAR
     private List<empresa> listar() {
@@ -36,6 +39,13 @@ public class ImpEmpresa {
         return empresai.findById(id).orElse(null);
     }
 
+    //ESPECIALIDAD
+    private especialidad especialidad(Integer id){
+        Optional<especialidad> especialidadOpcional = especialidadi.findById(id);
+        especialidad especialidad = especialidadOpcional.get();
+        return especialidad;
+    }
+
     // DTOCREATE A ENTITY
     private empresa DTOCreate(DTOCreateEmpresa DTO) {
         empresa empresa = new empresa();
@@ -47,7 +57,7 @@ public class ImpEmpresa {
         empresa.setDireccion(DTO.getDireccion());
         empresa.setContacto(DTO.getContacto());
         empresa.setImagen(DTO.getImagen());
-        empresa.setEspecialidad(null);
+        empresa.setEspecialidad(especialidad(DTO.getEspecialidad()));
 
         return empresa;
     }
@@ -56,13 +66,14 @@ public class ImpEmpresa {
     private empresa DTOUpdate(DTOUpdateEmpresa DTO) {
         empresa empresa = new empresa();
 
-        empresa.setId(DTO.getId());
         empresa.setNombre(DTO.getNombre());
-        empresa.setContacto(null);
-        empresa.setDireccion(null);
-        empresa.setTelefono(null);
-        empresa.setEmail(null);
-        empresa.setEstado(null);
+        empresa.setEmail(DTO.getEmail());
+        empresa.setEstado(true);
+        empresa.setTelefono(DTO.getTelefono());
+        empresa.setDireccion(DTO.getDireccion());
+        empresa.setContacto(DTO.getContacto());
+        empresa.setImagen(DTO.getImagen());
+        empresa.setEspecialidad(especialidad(DTO.getEspecialidad()));
 
         return empresa;
     }
@@ -78,7 +89,7 @@ public class ImpEmpresa {
         DTO.setTelefono(empresa.getTelefono());
         DTO.setDireccion(empresa.getDireccion());
         DTO.setEstado(empresa.getEstado());
-
+        DTO.setEspecialidad(empresa.getEspecialidad().getNombre());
         return DTO;
     }
 

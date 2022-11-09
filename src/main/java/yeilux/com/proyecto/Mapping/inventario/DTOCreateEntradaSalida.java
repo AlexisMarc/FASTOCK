@@ -3,6 +3,8 @@ package yeilux.com.proyecto.Mapping.inventario;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import yeilux.com.proyecto.Utils.EnumEntradaSalida;
+
 public class DTOCreateEntradaSalida {
     // -----------------------CANTIDAD_ENTRADA-----------------------//
     @NotNull(message = "La cantidad no debe estar vacía")
@@ -21,7 +23,7 @@ public class DTOCreateEntradaSalida {
     private Integer usuario;
 
     @NotEmpty(message = "El tipo de inventario no debe estar vacío")
-    private String tipo;
+    private EnumEntradaSalida tipo;
 
     // ************************************************//
     // -------------Contructores accesores--------------//
@@ -32,7 +34,7 @@ public class DTOCreateEntradaSalida {
     public DTOCreateEntradaSalida(@NotNull(message = "La cantidad no debe estar vacía") Integer cantidad,
             @NotNull(message = "El Inventario no debe estar vacío") Integer inventario,
             @NotNull(message = "El usuario no debe estar vacío") Integer usuario,
-            @NotEmpty(message = "El tipo de inventario no debe estar vacío") String tipo) {
+            @NotEmpty(message = "El tipo de inventario no debe estar vacío") EnumEntradaSalida tipo) {
         this.cantidad = cantidad;
         this.inventario = inventario;
         this.usuario = usuario;
@@ -63,11 +65,11 @@ public class DTOCreateEntradaSalida {
         this.usuario = usuario;
     }
 
-    public String getTipo() {
+    public EnumEntradaSalida getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(EnumEntradaSalida tipo) {
         this.tipo = tipo;
     }
 
