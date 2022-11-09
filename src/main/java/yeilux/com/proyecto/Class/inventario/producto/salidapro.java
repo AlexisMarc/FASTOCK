@@ -91,11 +91,11 @@ public class salidapro {
         this.inventario = inventario;
     }
 
-    public usuario getusuario() {
+    public usuario getUsuario() {
         return usuario;
     }
 
-    public void setusuario(usuario usuario) {
+    public void setUsuario(usuario usuario) {
         this.usuario = usuario;
     }
 
