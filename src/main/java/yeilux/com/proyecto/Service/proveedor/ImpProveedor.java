@@ -91,9 +91,11 @@ public class ImpProveedor {
 
         while (i.hasNext()) {
             proveedor interar = i.next();
-            DTOproveedor DTOs = DTOproveedor(interar);
+            if (interar.getEstado()) {
+                DTOproveedor DTOs = DTOproveedor(interar);
+                DTO.add(DTOs);
+            }
 
-            DTO.add(DTOs);
         }
         return DTO;
     }
@@ -105,7 +107,7 @@ public class ImpProveedor {
         } else {
             return null;
         }
-        
+
     }
 
     // EDITAR

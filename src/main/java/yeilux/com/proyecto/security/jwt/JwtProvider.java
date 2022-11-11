@@ -24,11 +24,11 @@ public class JwtProvider {
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     //Clave para verificar el token
-    @Value("${jwt.secret}")
+    @Value("${app.jwt-secret}")
     private String secret;
 
     //Tiempo base de expiración
-    @Value("${jwt.expiration}")
+    @Value("${app.jwt-expiration-milliseconds}")
     private int expiration;
 
     public String generateToken(Authentication authentication){
