@@ -1,0 +1,110 @@
+package fastock.fastock.Class.inventario.insumo;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import fastock.fastock.Class.usuario.usuario;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "salida")
+public class salida {
+    // -----------------------ID-----------------------//
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    // -----------------------FECHA-----------------------//
+    @Column(length = 20, nullable = false)
+    private String fecha;
+    // -----------------------CANTIDAD-----------------------//
+    @NotNull(message = "La cantidad no debe estar vacía")
+    private Integer cantidad;
+    // -----------------------ESTADO-----------------------//
+    @Column(nullable = false)
+    private Boolean estado;
+
+    // ************************************************//
+    // -------------Relacion con inventario------------//
+    // ************************************************//
+    @JsonBackReference(value = "inventario_salida")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "inventario_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private inventario inventario;
+    // ************************************************//
+    // -------------Relacion con usuario--------------//
+    // ************************************************//
+    @JsonBackReference(value = "usuario_salida")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "usuario_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private usuario usuario;
+
+    /*-----------------GETTERS AND SETTERS----------------*/
+    public salida() {
+    }
+
+    public salida(Integer id, String fecha, @NotNull(message = "La cantidad no debe estar vacía") Integer cantidad,
+            Boolean estado, inventario inventario,
+            usuario usuario) {
+        this.id = id;
+        this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.estado = estado;
+        this.inventario = inventario;
+        this.usuario = usuario;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(inventario inventario) {
+        this.inventario = inventario;
+    }
+
+    public usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(usuario usuario) {
+        this.usuario = usuario;
+    }
+
+}
