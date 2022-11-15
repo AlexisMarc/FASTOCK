@@ -14,10 +14,9 @@ import fastock.fastock.Mapping.empresa.DTOCreateEmpresa;
 import fastock.fastock.Mapping.empresa.DTOUpdateEmpresa;
 import fastock.fastock.Mapping.empresa.DTOempresa;
 
-
 @Service
 public class ImpEmpresa {
-    
+
     @Autowired
     private IEmpresa empresai;
     @Autowired
@@ -39,8 +38,8 @@ public class ImpEmpresa {
         return empresai.findById(id).orElse(null);
     }
 
-    //ESPECIALIDAD
-    private especialidad especialidad(Integer id){
+    // ESPECIALIDAD
+    private especialidad especialidad(Integer id) {
         Optional<especialidad> especialidadOpcional = especialidadi.findById(id);
         especialidad especialidad = especialidadOpcional.get();
         return especialidad;
@@ -66,6 +65,7 @@ public class ImpEmpresa {
     private empresa DTOUpdate(DTOUpdateEmpresa DTO) {
         empresa empresa = new empresa();
 
+        empresa.setId(DTO.getId());
         empresa.setNombre(DTO.getNombre());
         empresa.setEmail(DTO.getEmail());
         empresa.setEstado(true);
@@ -78,7 +78,7 @@ public class ImpEmpresa {
         return empresa;
     }
 
-    // ENTITY A DTOempresa
+    // ENTITY A DTOEMPRESA
     private DTOempresa DTOempresa(empresa empresa) {
         DTOempresa DTO = new DTOempresa();
 
@@ -89,7 +89,9 @@ public class ImpEmpresa {
         DTO.setTelefono(empresa.getTelefono());
         DTO.setDireccion(empresa.getDireccion());
         DTO.setEstado(empresa.getEstado());
+        DTO.setImagen(empresa.getImagen());
         DTO.setEspecialidad(empresa.getEspecialidad().getNombre());
+
         return DTO;
     }
 
@@ -106,9 +108,29 @@ public class ImpEmpresa {
 
         while (i.hasNext()) {
             empresa interar = i.next();
-            DTOempresa DTOs = DTOempresa(interar);
+            if (interar.getEstado()) {
+                DTOempresa DTOs = DTOempresa(interar);
 
-            DTO.add(DTOs);
+                DTO.add(DTOs);
+            }
+        }
+        return DTO;
+    }
+
+    // LISTADO DE ELIMINADOS
+    public List<DTOempresa> eliminados() {
+        List<DTOempresa> DTO = new ArrayList<DTOempresa>();
+        List<empresa> empresaes = listar();
+
+        Iterator<empresa> i = empresaes.iterator();
+
+        while (i.hasNext()) {
+            empresa interar = i.next();
+            if (interar.getEstado() == false) {
+                DTOempresa DTOs = DTOempresa(interar);
+
+                DTO.add(DTOs);
+            }
         }
         return DTO;
     }
@@ -120,7 +142,7 @@ public class ImpEmpresa {
         } else {
             return null;
         }
-        
+
     }
 
     // EDITAR

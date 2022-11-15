@@ -82,9 +82,28 @@ public class ImpEspecialidad {
 
         while (i.hasNext()) {
             especialidad interar = i.next();
+            if(interar.getEstado()){
             DTOespecialidad DTOs = DTOespecialidad(interar);
 
             DTO.add(DTOs);
+            }
+        }
+        return DTO;
+    }
+    // LISTADO DE ELIMINADOS
+    public List<DTOespecialidad> eliminados() {
+        List<DTOespecialidad> DTO = new ArrayList<DTOespecialidad>();
+        List<especialidad> especialidades = listar();
+
+        Iterator<especialidad> i = especialidades.iterator();
+
+        while (i.hasNext()) {
+            especialidad interar = i.next();
+            if(interar.getEstado() == false){
+            DTOespecialidad DTOs = DTOespecialidad(interar);
+
+            DTO.add(DTOs);
+            }
         }
         return DTO;
     }

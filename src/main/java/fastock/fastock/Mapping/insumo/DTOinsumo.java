@@ -2,8 +2,6 @@ package fastock.fastock.Mapping.insumo;
 
 import java.util.List;
 
-import fastock.fastock.Mapping.fabricacion.DTOfabricacion;
-
 public class DTOinsumo {
 	// -----------------------ID-----------------------//
 	private Integer id;
@@ -18,37 +16,19 @@ public class DTOinsumo {
 	// ************************************************//
 	// -------------Relacion con tipo------------------//
 	// ************************************************//
-	private List<DTOtipo> tipo ;
+	private List<String> tipo;
 	// ************************************************//
 	// -------------Relacion con proveedor-------------//
 	// ************************************************//
 	private String proveedor;
+	// -------------Id proveedor-------------//
 	// ************************************************//
-	// -------------Relacion con fabricacion-----------//
-	// ************************************************//
-	private List<DTOfabricacion> fabricacion ;
+	private Integer idProveedor;
 	// ************************************************//
 	// -------------Relacion con inventario------------//
 	// ************************************************//
+
 	private Boolean inventario;
-
-	// ---------GETTERS AND SETTERS---------------------//
-
-	public DTOinsumo() {
-	}
-
-	public DTOinsumo(Integer id, String nombre, String material, String imagen, Boolean estado, List<DTOtipo> tipo,
-			String proveedor, List<DTOfabricacion> fabricacion, Boolean inventario) {
-		this.id = id;
-		this.nombre = nombre;
-		this.material = material;
-		this.imagen = imagen;
-		this.estado = estado;
-		this.tipo = tipo;
-		this.proveedor = proveedor;
-		this.fabricacion = fabricacion;
-		this.inventario = inventario;
-	}
 
 	public Integer getId() {
 		return id;
@@ -90,11 +70,11 @@ public class DTOinsumo {
 		this.estado = estado;
 	}
 
-	public List<DTOtipo> getTipo() {
+	public List<String> getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(List<DTOtipo> tipo) {
+	public void setTipo(List<String> tipo) {
 		this.tipo = tipo;
 	}
 
@@ -106,12 +86,12 @@ public class DTOinsumo {
 		this.proveedor = proveedor;
 	}
 
-	public List<DTOfabricacion> getFabricacion() {
-		return fabricacion;
+	public Integer getIdProveedor() {
+		return idProveedor;
 	}
 
-	public void setFabricacion(List<DTOfabricacion> fabricacion) {
-		this.fabricacion = fabricacion;
+	public void setIdProveedor(Integer idProveedor) {
+		this.idProveedor = idProveedor;
 	}
 
 	public Boolean getInventario() {
@@ -122,6 +102,23 @@ public class DTOinsumo {
 		this.inventario = inventario;
 	}
 
+    public DTOinsumo(Integer id, String nombre, String material, String imagen, Boolean estado, List<String> tipo,
+            String proveedor, Integer idProveedor, Boolean inventario) {
+        this.id = id;
+        this.nombre = nombre;
+        this.material = material;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.tipo = tipo;
+        this.proveedor = proveedor;
+        this.idProveedor = idProveedor;
+        this.inventario = inventario;
+    }
+
+	public DTOinsumo() {
+	}
+
+	// ---------GETTERS AND SETTERS---------------------/
 
 	
 }

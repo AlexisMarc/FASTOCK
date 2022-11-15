@@ -25,12 +25,10 @@ public class DTOCreateInsumo {
 	// ************************************************//
 	private Integer proveedor;
 	// -----------------------IMAGEN-----------------------//
-    private String imagen;
+	private String imagen;
 
 	public DTOCreateInsumo() {
 	}
-
-	
 
 	public DTOCreateInsumo(
 			@NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres") String nombre,
@@ -42,8 +40,6 @@ public class DTOCreateInsumo {
 		this.proveedor = proveedor;
 		this.imagen = imagen;
 	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -77,13 +73,9 @@ public class DTOCreateInsumo {
 		this.proveedor = proveedor;
 	}
 
-
-
 	public String getImagen() {
 		return imagen;
 	}
-
-
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;

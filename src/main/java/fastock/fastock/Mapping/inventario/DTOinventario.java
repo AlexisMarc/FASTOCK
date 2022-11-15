@@ -22,18 +22,25 @@ public class DTOinventario {
     // ************************************************//
     private String insumo;
 
-    /*-----------------GETTERS AND SETTERS----------------*/
-    public DTOinventario() {
-    }
+    private String img;
 
-    public DTOinventario(Integer id, String tipoUnidad, Boolean estado, Integer salida, Integer entrada,
-            String insumo) {
+    private Integer idInsumo;
+
+
+    public DTOinventario(Integer id, String tipoUnidad, Boolean estado, Integer salida, Integer entrada, String insumo,
+            String img, Integer idInsumo) {
         this.id = id;
         this.tipoUnidad = tipoUnidad;
         this.estado = estado;
         this.salida = salida;
         this.entrada = entrada;
         this.insumo = insumo;
+        this.img = img;
+        this.idInsumo = idInsumo;
+    }
+
+    /*-----------------GETTERS AND SETTERS----------------*/
+    public DTOinventario() {
     }
 
     public Integer getId() {
@@ -84,6 +91,20 @@ public class DTOinventario {
         this.insumo = insumo;
     }
 
-   
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getIdInsumo() {
+        return idInsumo;
+    }
+
+    public void setIdInsumo(Integer idInsumo) {
+        this.idInsumo = idInsumo;
+    }
     
 }

@@ -100,6 +100,24 @@ public class ImpProveedor {
         return DTO;
     }
 
+    // LISTADO DE ELIMINADOS
+    public List<DTOproveedor> eliminados() {
+        List<DTOproveedor> DTO = new ArrayList<DTOproveedor>();
+        List<proveedor> proveedores = listar();
+
+        Iterator<proveedor> i = proveedores.iterator();
+
+        while (i.hasNext()) {
+            proveedor interar = i.next();
+            if (interar.getEstado()==false) {
+                DTOproveedor DTOs = DTOproveedor(interar);
+                DTO.add(DTOs);
+            }
+
+        }
+        return DTO;
+    }
+
     // CONSULTAR
     public DTOproveedor consulta(Integer id) {
         if (proveedori.existsById(id)) {

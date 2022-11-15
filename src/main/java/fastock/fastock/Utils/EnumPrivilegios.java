@@ -2,8 +2,8 @@ package fastock.fastock.Utils;
 
 public enum EnumPrivilegios {
     //PRODUCTO
-    ROLE_PRODUCTO_CREATE_UPDATE,
-    ROLE_PRODUCTO_SELECT,
+    PRODUCTO_CREATE_UPDATE,
+    PRODUCTO_SELECT,
     PRODUCTO_DELETE,
     //INSUMO
     INSUMO_CREATE_UPDATE,

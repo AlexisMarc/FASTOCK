@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -18,7 +19,8 @@ public class privilegios {
     private Integer id;
 
     // -----------------------privilegio-----------------------//
-    @Column(length = 30, nullable = false)
+    @NotNull
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EnumPrivilegios privilegio;
 
@@ -27,7 +29,10 @@ public class privilegios {
     // ************************************************//
     @ManyToMany
     @JsonIgnoreProperties(value = "privilegio_cargo")
-    @JoinTable(name = "privilegio_cargo", joinColumns = @JoinColumn(name = "id_privilegio", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
+    @JoinTable(
+        name = "privilegio_cargo", 
+        joinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(name = "id_privilegio", referencedColumnName = "id"))
     private Set<cargo> cargo = new HashSet<>();
 
     // ************************************************//
@@ -37,7 +42,8 @@ public class privilegios {
     public privilegios() {
     }
 
-    public privilegios(Integer id, EnumPrivilegios privilegio, Set<cargo> cargo) {
+    public privilegios(Integer id, @NotNull EnumPrivilegios privilegio,
+            Set<fastock.fastock.Class.usuario.cargo> cargo) {
         this.id = id;
         this.privilegio = privilegio;
         this.cargo = cargo;
@@ -67,4 +73,6 @@ public class privilegios {
         this.cargo = cargo;
     }
 
+
+    
 }

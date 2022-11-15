@@ -8,12 +8,14 @@ public class DTOcategoria {
     private String nombre;
 
     // -----------------------FILTRO-----------------------//
-      private String filtro;
+    private String filtro;
+
+    // -----------------------ESTADO-----------------------//
+    private Boolean estado;
 
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
-
     // ************************************************//
     // -------------Contructores accesores--------------//
     // ************************************************//
@@ -21,10 +23,11 @@ public class DTOcategoria {
     public DTOcategoria() {
     }
 
-    public DTOcategoria(Integer id, String nombre, String filtro) {
+    public DTOcategoria(Integer id, String nombre, String filtro, Boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.filtro = filtro;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -51,6 +54,14 @@ public class DTOcategoria {
         this.filtro = filtro;
     }
 
-   
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+
 
 }

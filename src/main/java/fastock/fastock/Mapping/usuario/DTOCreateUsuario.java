@@ -7,7 +7,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import fastock.fastock.Utils.EnumGenero;
+import fastock.fastock.Utils.EnumTipoIdentificacion;
+
 public class DTOCreateUsuario {
+    // -----------------------Tipo Identificacion-----------------------//
+    @NotEmpty(message = "El tipo de identificacion no debe estar vacío")
+    @Size(min = 2, max = 30, message = "El tipo de identificacion debe tener entre 2 y 30 carcateres")
+    private EnumTipoIdentificacion tipo;
+
     // -----------------------Idenficacion-----------------------//
     @NotNull(message = "La identificación no debe estar vacío")
     private Long identificacion;
@@ -25,7 +33,7 @@ public class DTOCreateUsuario {
     // -----------------------Genero-----------------------//
     @NotEmpty(message = "El género no debe estar vacío")
     @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres")
-    private String genero;
+    private EnumGenero genero;
 
     // -----------------------Fecha de nacimiento-----------------------//
     @NotEmpty(message = "La fecha de nacimiento no debe estar vacío")
@@ -48,30 +56,25 @@ public class DTOCreateUsuario {
     @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres")
     private String email;
 
+    // ---------------------imagen----------------------//
+    private String imagen;
+
     // ************************************************//
     // -------------Relacion con cargo-----------------//
     // ************************************************//
     @NotNull(message = "El cargo no debe estar vacío")
     private List<Integer> cargo;
 
-    public DTOCreateUsuario(@NotNull(message = "La identificación no debe estar vacío") Long identificacion,
-            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
-            @NotEmpty(message = "El apellido no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String apellido,
-            @NotEmpty(message = "El género no debe estar vacío") @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres") String genero,
-            @NotEmpty(message = "La fecha de nacimiento no debe estar vacío") String fecha,
-            @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres") String direccion,
-            @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
-            @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String email,
-            @NotNull(message = "El cargo no debe estar vacío") List<Integer> cargo) {
-        this.identificacion = identificacion;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.genero = genero;
-        this.fecha = fecha;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-        this.cargo = cargo;
+    // ************************************************//
+    // ------------- CONSTRUCTORES/GETTERS AND SETTERS--------------//
+    // ************************************************//
+
+    public EnumTipoIdentificacion getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(EnumTipoIdentificacion tipo) {
+        this.tipo = tipo;
     }
 
     public Long getIdentificacion() {
@@ -98,11 +101,11 @@ public class DTOCreateUsuario {
         this.apellido = apellido;
     }
 
-    public String getGenero() {
+    public EnumGenero getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(EnumGenero genero) {
         this.genero = genero;
     }
 
@@ -138,6 +141,14 @@ public class DTOCreateUsuario {
         this.email = email;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public List<Integer> getCargo() {
         return cargo;
     }
@@ -146,15 +157,31 @@ public class DTOCreateUsuario {
         this.cargo = cargo;
     }
 
+    public DTOCreateUsuario(
+            @NotEmpty(message = "El tipo de identificacion no debe estar vacío") @Size(min = 2, max = 30, message = "El tipo de identificacion debe tener entre 2 y 30 carcateres") EnumTipoIdentificacion tipo,
+            @NotNull(message = "La identificación no debe estar vacío") Long identificacion,
+            @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
+            @NotEmpty(message = "El apellido no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String apellido,
+            @NotEmpty(message = "El género no debe estar vacío") @Size(min = 2, message = "El género no debe tener mínimo 2 caracteres") EnumGenero genero,
+            @NotEmpty(message = "La fecha de nacimiento no debe estar vacío") String fecha,
+            @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres") String direccion,
+            @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
+            @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String email,
+            String imagen, @NotNull(message = "El cargo no debe estar vacío") List<Integer> cargo) {
+        this.tipo = tipo;
+        this.identificacion = identificacion;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.fecha = fecha;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.imagen = imagen;
+        this.cargo = cargo;
+    }
+
     public DTOCreateUsuario() {
     }
 
-
-    
-    // ************************************************//
-    // ------------- CONSTRUCTORES/GETTERS AND SETTERS--------------//
-    // ************************************************//
-    
-
-    
 }

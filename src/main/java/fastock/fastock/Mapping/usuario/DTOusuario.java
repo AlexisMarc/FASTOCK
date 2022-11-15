@@ -6,8 +6,12 @@ public class DTOusuario {
     // -----------------------ID-----------------------//
     private Integer id;
 
+    // -----------------------Tipo Idenficacion-----------------------//
+    private String tipo;
+    
     // -----------------------Idenficacion-----------------------//
     private Long identificacion;
+    
     // -----------------------Nombre-----------------------//
     private String nombre;
 
@@ -32,20 +36,24 @@ public class DTOusuario {
     // -----------------------Estado-----------------------//
     private Boolean estado;
 
+    // -----------------------Inicio-----------------------//
+    private Boolean inicio;
+
+     // ----------------------Imagen-----------------------//
+    private String imagen;
+
     // ************************************************//
     // -------------Relacion con cargo-----------------//
     // ************************************************//
     private List<DTOcargo> cargo;
 
-    // ************************************************//
-    // ------------- CONSTRUCTORES/GETTERS AND ListTERS--------------//
-    // ************************************************//
-    public DTOusuario() {
-    }
+    
 
-    public DTOusuario(Integer id, Long identificacion, String nombre, String apellido, String genero, String fecha,
-            String direccion, Long telefono, String email, Boolean estado, List<DTOcargo> cargo) {
+    public DTOusuario(Integer id, String tipo, Long identificacion, String nombre, String apellido, String genero,
+            String fecha, String direccion, Long telefono, String email, Boolean estado, Boolean inicio, String imagen,
+            List<DTOcargo> cargo) {
         this.id = id;
+        this.tipo = tipo;
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -55,6 +63,8 @@ public class DTOusuario {
         this.telefono = telefono;
         this.email = email;
         this.estado = estado;
+        this.inicio = inicio;
+        this.imagen = imagen;
         this.cargo = cargo;
     }
 
@@ -64,6 +74,14 @@ public class DTOusuario {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Long getIdentificacion() {
@@ -138,6 +156,14 @@ public class DTOusuario {
         this.estado = estado;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public List<DTOcargo> getCargo() {
         return cargo;
     }
@@ -145,7 +171,23 @@ public class DTOusuario {
     public void setCargo(List<DTOcargo> cargo) {
         this.cargo = cargo;
     }
+    
 
-   
+    public DTOusuario() {
+    }
+
+    public Boolean getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Boolean inicio) {
+        this.inicio = inicio;
+    }
+
+    // ************************************************//
+    // ------------- CONSTRUCTORES/GETTERS AND ListTERS--------------//
+    // ************************************************///
+    
+
     
 }

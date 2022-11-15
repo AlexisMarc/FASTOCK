@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fastock.fastock.Class.inventario.insumo.entrada;
 import fastock.fastock.Class.inventario.insumo.inventario;
@@ -20,6 +21,7 @@ import fastock.fastock.Service.usuario.IUsuario;
 import fastock.fastock.Utils.DataTime;
 import fastock.fastock.Utils.EnumEntradaSalida;
 
+@Service
 public class ImpEntradas {
     @Autowired
     private IEntrada entradai;
@@ -31,7 +33,7 @@ public class ImpEntradas {
     private IInventario inventarioi;
     @Autowired
     private IInventariopro inventarioproi;
-    @Autowired
+    
     private DataTime fecha;
 
     // LISTAR

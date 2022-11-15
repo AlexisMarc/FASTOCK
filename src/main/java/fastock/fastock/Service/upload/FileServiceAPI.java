@@ -16,5 +16,5 @@ public interface FileServiceAPI {
 	public void save(List<MultipartFile> files) throws Exception;
 	
 	public Stream<Path> loadAll() throws Exception;
-	 
+	
 }

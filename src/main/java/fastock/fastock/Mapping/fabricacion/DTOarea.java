@@ -1,10 +1,5 @@
 package fastock.fastock.Mapping.fabricacion;
 
-import fastock.fastock.Mapping.empresa.DTOempresa;
-import fastock.fastock.Mapping.usuario.DTOusuario;
-
-import java.util.List;
-
 public class DTOarea {
     // -----------------------ID-----------------------//
     private Integer id;
@@ -17,26 +12,18 @@ public class DTOarea {
 
     // -----------------------FECHA_FINAL-----------------------//
     private String fechafinal;
+    // ----------------------NUMERADOR---------------------//
+    private Integer numerador;
     // -----------------------Estado-----------------------//
     private Boolean estado;
 
     // ************************************************//
-    // -------------Relacion con fabricacion-----------//
+    // --------------------Encargado-------------------//
     // ************************************************//
-    private Integer fabricacion;
-    // ************************************************//
-    // -------------Relacion con produccion------------//
-    // ************************************************//
-    private List<DTOproduccion> produccion;
-    // ************************************************//
-    // -------------Relacion con usuario--------------//
-    // ************************************************//
-    private List<DTOusuario> usuario;
-    // ************************************************//
-    // -------------Relacion con empresa---------------//
-    // ************************************************//
-    private List<DTOempresa> empresa;
-
+    private Integer idEncargado;
+    private String encargado;
+    private String tipoEncargado;
+    private String imagen;
     // ************************************************//
     // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
     // ************************************************//
@@ -44,17 +31,18 @@ public class DTOarea {
     public DTOarea() {
     }
 
-    public DTOarea(Integer id, String nombre, String fechainicio, String fechafinal, Boolean estado,
-            Integer fabricacion, List<DTOproduccion> produccion, List<DTOusuario> usuario, List<DTOempresa> empresa) {
+    public DTOarea(Integer id, String nombre, String fechainicio, String fechafinal, Integer numerador, Boolean estado,
+            Integer idEncargado, String encargado, String tipoEncargado, String imagen) {
         this.id = id;
         this.nombre = nombre;
         this.fechainicio = fechainicio;
         this.fechafinal = fechafinal;
+        this.numerador = numerador;
         this.estado = estado;
-        this.fabricacion = fabricacion;
-        this.produccion = produccion;
-        this.usuario = usuario;
-        this.empresa = empresa;
+        this.idEncargado = idEncargado;
+        this.encargado = encargado;
+        this.tipoEncargado = tipoEncargado;
+        this.imagen = imagen;
     }
 
     public Integer getId() {
@@ -97,40 +85,44 @@ public class DTOarea {
         this.estado = estado;
     }
 
-    public Integer getFabricacion() {
-        return fabricacion;
+    public Integer getIdEncargado() {
+        return idEncargado;
     }
 
-    public void setFabricacion(Integer fabricacion) {
-        this.fabricacion = fabricacion;
+    public void setIdEncargado(Integer idEncargado) {
+        this.idEncargado = idEncargado;
     }
 
-    public List<DTOproduccion> getProduccion() {
-        return produccion;
+    public String getEncargado() {
+        return encargado;
     }
 
-    public void setProduccion(List<DTOproduccion> produccion) {
-        this.produccion = produccion;
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
     }
 
-    public List<DTOusuario> getUsuario() {
-        return usuario;
+    public String getTipoEncargado() {
+        return tipoEncargado;
     }
 
-    public void setUsuario(List<DTOusuario> usuario) {
-        this.usuario = usuario;
+    public void setTipoEncargado(String tipoEncargado) {
+        this.tipoEncargado = tipoEncargado;
     }
 
-    public List<DTOempresa> getEmpresa() {
-        return empresa;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setEmpresa(List<DTOempresa> empresa) {
-        this.empresa = empresa;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    
+    public Integer getNumerador() {
+        return numerador;
+    }
 
-   
+    public void setNumerador(Integer numerador) {
+        this.numerador = numerador;
+    }
 
 }

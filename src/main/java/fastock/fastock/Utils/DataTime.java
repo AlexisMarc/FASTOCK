@@ -11,4 +11,11 @@ public class DataTime {
         LocalDateTime ahora = LocalDateTime.now();
         return formateador.format(ahora);
     }
+
+    public String soloFecha(){
+        String formato = "yyyy-MM-dd";
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+        LocalDateTime ahora = LocalDateTime.now();
+        return formateador.format(ahora);
+    }
 }

@@ -140,6 +140,8 @@ public class insumo {
 
 	}
 
+	
+
 	public insumo(Integer id,
 			@NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 caracteres") String nombre,
 			@NotEmpty(message = "El nombre del material no debe estar vacío") @Size(min = 2, max = 30, message = "El nombre del material debe tener entre 2 y 30 carcateres") String material,
@@ -156,6 +158,14 @@ public class insumo {
 		this.proveedor = proveedor;
 		this.fabricacion = fabricacion;
 		this.inventario = inventario;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 }

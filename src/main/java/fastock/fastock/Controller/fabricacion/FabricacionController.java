@@ -36,7 +36,7 @@ public class FabricacionController {
 // ****************************************//
 
 // --------------LISTAR TODOS--------------//
-@RolesAllowed("ROLE_USUARIO_SELECT")
+@PreAuthorize("hasRole('FABRICACION_SELECT')")
 @GetMapping
 	public ResponseEntity<Collection<fabricacion>> listarfabricacions(){
 		return new ResponseEntity<>(ifabricacion.findAll(),HttpStatus.OK);
@@ -99,6 +99,7 @@ public class FabricacionController {
 
 // ---------------REGISTRAR----------------//
 
+@RolesAllowed("FABRICACION_CREATE_UPDATE")
 @PostMapping
 	public ResponseEntity<?> guardarfabricacion(@RequestBody fabricacion fabricacion){
 		return new ResponseEntity<>(ifabricacion.save(fabricacion),HttpStatus.CREATED);

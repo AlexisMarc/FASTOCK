@@ -24,6 +24,10 @@ public class cargo {
     @Size(min = 2, max = 60, message = "El cargo debe tener entre 2 y 60 caracteres")
     private String cargo;
 
+    // -----------------------Estado-----------------------//
+    @Column(nullable = false)
+    private Boolean estado;
+
     // ************************************************//
     // -------------Relacion con usuario--------------//
     // ************************************************//
@@ -36,9 +40,12 @@ public class cargo {
     // -------------Relacion con privilegios--------------//
     // ************************************************//
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = "privilegio_cargo")
-    @JoinTable(name = "privilegio_cargo", joinColumns = @JoinColumn(name = "id_privilegio", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
+    @JoinTable(
+        name = "privilegio_cargo", 
+        joinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(name = "id_privilegio", referencedColumnName = "id"))
     private Set<privilegios> privilegio = new HashSet<>();
 
     // ************************************************//
@@ -47,6 +54,18 @@ public class cargo {
 
     public cargo() {
     }
+
+    
+    public cargo(Integer id,
+            @NotEmpty(message = "El cargo no debe estar vacío") @Size(min = 2, max = 60, message = "El cargo debe tener entre 2 y 60 caracteres") String cargo,
+            Boolean estado, Set<fastock.fastock.Class.usuario.usuario> usuario, Set<privilegios> privilegio) {
+        this.id = id;
+        this.cargo = cargo;
+        this.estado = estado;
+        this.usuario = usuario;
+        this.privilegio = privilegio;
+    }
+
 
     public Integer getId() {
         return id;
@@ -80,13 +99,15 @@ public class cargo {
         this.privilegio = privilegio;
     }
 
-    public cargo(Integer id,
-            @NotEmpty(message = "El cargo no debe estar vacío") @Size(min = 2, max = 60, message = "El cargo debe tener entre 2 y 60 caracteres") String cargo,
-            Set<usuario> usuario, Set<privilegios> privilegio) {
-        this.id = id;
-        this.cargo = cargo;
-        this.usuario = usuario;
-        this.privilegio = privilegio;
+
+    public Boolean getEstado() {
+        return estado;
     }
 
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    
 }

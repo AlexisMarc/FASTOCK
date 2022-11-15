@@ -9,5 +9,4 @@ import fastock.fastock.Class.usuario.usuario;
 @Repository
 public interface IUsuario extends JpaRepository<usuario, Integer>{
     Optional<usuario> findByUserName(String UserName);
-    boolean existsByUserName(String UserName);
 }

@@ -14,6 +14,7 @@ import fastock.fastock.Class.usuario.usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -38,6 +39,12 @@ public class area {
     // -----------------------FECHA_FINAL-----------------------//
     @Column(length = 20, nullable = true)
     private String fechafinal;
+
+    // ----------------------NUMERADOR---------------------//
+    @NotNull(message = "El numerador no debe estar vacío")
+    @Column(nullable = false)
+    private Integer numerador;
+
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
     private Boolean estado;
@@ -59,7 +66,7 @@ public class area {
     // ************************************************//
     // -------------Relacion con usuario--------------//
     // ************************************************//
-    @JsonIgnoreProperties(value = "areausuario")
+    @JsonIgnoreProperties(value = "area_usuario")
     @ManyToMany
     @JoinTable(name = "area_usuario", joinColumns = @JoinColumn(name = "id_area", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))
     private Set<usuario> usuario = new HashSet<>();
@@ -76,20 +83,37 @@ public class area {
 
     public area(Integer id,
             @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 30 caracteres") String nombre,
-            String fechainicio, String fechafinal, Boolean estado,
+            String fechainicio, String fechafinal,
+            @NotNull(message = "El numerador no debe estar vacío") Integer numerador, Boolean estado,
             fabricacion fabricacion,
             Set<produccion> produccion,
-            Set<usuario> usuario,
-            Set<empresa> empresa) {
+            Set<usuario> usuario, Set<empresa> empresa) {
         this.id = id;
         this.nombre = nombre;
         this.fechainicio = fechainicio;
         this.fechafinal = fechafinal;
+        this.numerador = numerador;
         this.estado = estado;
         this.fabricacion = fabricacion;
         this.produccion = produccion;
         this.usuario = usuario;
         this.empresa = empresa;
+    }
+
+    public Integer getNumerador() {
+        return numerador;
+    }
+
+    public void setNumerador(Integer numerador) {
+        this.numerador = numerador;
+    }
+
+    public Set<usuario> getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Set<usuario> usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {

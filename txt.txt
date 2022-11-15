@@ -1,0 +1,5 @@
+INSERT INTO `privilegio` (`id`, `privilegio`) VALUES (NULL, 'PRODUCTO_CREATE_UPDATE'), (NULL, 'PRODUCTO_SELECT'), (NULL, 'PRODUCTO_DELETE'), (NULL, 'INSUMO_CREATE_UPDATE'), (NULL, 'INSUMO_SELECT'), (NULL, 'INSUMO_DELETE'), (NULL, 'FABRICACION_CREATE_UPDATE'), (NULL, 'FABRICACION_SELECT'), (NULL, 'FABRICACION_DELETE'), (NULL, 'USUARIO_CREATE_UPDATE'), (NULL, 'USUARIO_SELECT'), (NULL, 'USUARIO_DELETE'), (NULL, 'EMPRESA_CREATE_UPDATE'), (NULL, 'EMPRESA_SELECT'), (NULL, 'EMPRESA_DELETE'), (NULL, 'INVENTARIOS_CREATE_UPDATE'), (NULL, 'INVENTARIOS_SELECT'), (NULL, 'INVENTARIOS_DELETE');
+
+INSERT INTO `cargo` (`id`, `cargo`) VALUES (NULL, 'ADMIN'), (NULL, 'ASISTENTE'), (NULL, 'GERENTE'), (NULL, 'EMPLEADO'), (NULL, 'JEFE_AREA'), (NULL, 'JEFE_BODEGA');
+
+INSERT INTO `usuario` (`id`, `apellido`, `direccion`, `estado`, `fecha`, `genero`, `identificacion`, `nombre`, `password`, `telefono`, `user_name`) VALUES (NULL, 'Rincon', 'calle 12', b'1', '12-12-2004', 'Masculino', '12345678900', 'Alexis', '$2a$10$63iV9Pp70NvP8eSEa.8t.e5YI66eoFgI7.gjXgcWDCBBQrkdxDh.i', '98113564', 'marcos.rincon1903@gmail.com');

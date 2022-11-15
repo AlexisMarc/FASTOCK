@@ -13,12 +13,24 @@ public class DTOproduccion {
 
     // --------------Estado---------------//
     private Boolean estado;
+
+    // --------------confirmacion---------------//
+    private Boolean confirmacion;
+
+    // --------------visto---------------//
+    private Boolean visto;
     // ************************************************//
     // -------------Relacion con area------------------//
     // ************************************************//
     private String area;
+    private Integer idArea;
 
-    private Integer idarea;
+    // ************************************************//
+    // -------------Relacion con usuario------------------//
+    // ************************************************//
+    private Integer idUsuario;
+    private String Usuario;
+    private String imagen;
 
     // ************************************************//
     // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
@@ -27,15 +39,21 @@ public class DTOproduccion {
     public DTOproduccion() {
     }
 
-    public DTOproduccion(Integer id, String descripcion, String fecha, String tipo, Boolean estado, String area,
-            Integer idarea) {
+    public DTOproduccion(Integer id, String descripcion, String fecha, String tipo, Boolean estado,
+            Boolean confirmacion, Boolean visto, String area, Integer idArea, Integer idUsuario, String usuario,
+            String imagen) {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.tipo = tipo;
         this.estado = estado;
+        this.confirmacion = confirmacion;
+        this.visto = visto;
         this.area = area;
-        this.idarea = idarea;
+        this.idArea = idArea;
+        this.idUsuario = idUsuario;
+        Usuario = usuario;
+        this.imagen = imagen;
     }
 
     public Integer getId() {
@@ -86,13 +104,52 @@ public class DTOproduccion {
         this.area = area;
     }
 
-    public Integer getIdarea() {
-        return idarea;
+    public Integer getIdArea() {
+        return idArea;
     }
 
-    public void setIdarea(Integer idarea) {
-        this.idarea = idarea;
+    public void setIdArea(Integer idArea) {
+        this.idArea = idArea;
     }
 
-    
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        Usuario = usuario;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public Boolean getConfirmacion() {
+        return confirmacion;
+    }
+
+    public void setConfirmacion(Boolean confirmacion) {
+        this.confirmacion = confirmacion;
+    }
+
+    public Boolean getVisto() {
+        return visto;
+    }
+
+    public void setVisto(Boolean visto) {
+        this.visto = visto;
+    }
+
 }

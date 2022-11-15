@@ -30,6 +30,9 @@ public class fabricacion {
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
     private Boolean estado;
+    // -----------------------Estado-----------------------//
+    @Column(nullable = false)
+    private Boolean suspendido;
 
     // ************************************************//
     // -------------Relacion con area------------------//
@@ -64,14 +67,14 @@ public class fabricacion {
     public fabricacion() {
     }
 
-    public fabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado,
+    public fabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado, Boolean suspendido,
             Set<area> area, Set<usuario> usuario,
-            Set<insumo> insumo,
-            Set<producto> producto) {
+            Set<insumo> insumo, Set<producto> producto) {
         this.id = id;
         this.fechainicio = fechainicio;
         this.fechafinal = fechafinal;
         this.estado = estado;
+        this.suspendido = suspendido;
         this.area = area;
         this.usuario = usuario;
         this.insumo = insumo;
@@ -140,6 +143,14 @@ public class fabricacion {
 
     public void setProducto(Set<producto> producto) {
         this.producto = producto;
+    }
+
+    public Boolean getSuspendido() {
+        return suspendido;
+    }
+
+    public void setSuspendido(Boolean suspendido) {
+        this.suspendido = suspendido;
     }
 
 }

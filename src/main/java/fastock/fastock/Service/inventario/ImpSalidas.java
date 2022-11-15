@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fastock.fastock.Class.inventario.insumo.salida;
 import fastock.fastock.Class.inventario.insumo.inventario;
@@ -20,6 +21,7 @@ import fastock.fastock.Service.usuario.IUsuario;
 import fastock.fastock.Utils.DataTime;
 import fastock.fastock.Utils.EnumEntradaSalida;
 
+@Service
 public class ImpSalidas {
     @Autowired
     private ISalida salidai;
@@ -31,7 +33,7 @@ public class ImpSalidas {
     private IInventario inventarioi;
     @Autowired
     private IInventariopro inventarioproi;
-    @Autowired
+    
     private DataTime fecha;
 
     // LISTAR
@@ -123,8 +125,10 @@ public class ImpSalidas {
     // ***************************************************************//
 
     // LISTADO salida
-    public Integer salida(EnumEntradaSalida dato) {
+    public Integer salida(EnumEntradaSalida dato, Integer id) {
         if (dato == EnumEntradaSalida.INSUMO) {
+
+            inventario pro = inventario(dato, id);
 
             List<salida> salidaes = listar();
             Iterator<salida> i = salidaes.iterator();
@@ -133,7 +137,10 @@ public class ImpSalidas {
             while (i.hasNext()) {
                 salida interar = i.next();
                 if (interar.getEstado()) {
-                    salida = salida + interar.getCantidad();
+                    if (interar.getInventario().getId() == pro.getId()) {
+                        salida = salida + interar.getCantidad();
+                    }
+
                 }
             }
             return salida;
@@ -143,10 +150,14 @@ public class ImpSalidas {
             Iterator<salidapro> i = salidaes.iterator();
             Integer salidapro = 0;
 
+            inventariopro pro = inventariopro(dato, id);
+
             while (i.hasNext()) {
                 salidapro interar = i.next();
                 if (interar.getEstado()) {
-                    salidapro = salidapro + interar.getCantidad();
+                    if (interar.getInventario().getId() == pro.getId()) {
+                        salidapro = salidapro + interar.getCantidad();
+                    }
                 }
             }
             return salidapro;

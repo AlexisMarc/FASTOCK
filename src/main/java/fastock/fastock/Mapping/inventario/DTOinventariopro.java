@@ -1,10 +1,9 @@
 package fastock.fastock.Mapping.inventario;
 
-public class DTOinventariopro {
 
+public class DTOinventariopro {
     // -----------------------ID-----------------------//
     private Integer id;
-
     // -----------------------ESTADO-----------------------//
     private Boolean estado;
 
@@ -13,27 +12,32 @@ public class DTOinventariopro {
     // ************************************************//
     private Integer salida;
     // ************************************************//
-    // -------------Relacion con entrada---------------//
+    // -------------Relacion con entrada----------------//
     // ************************************************//
     private Integer entrada;
     // ************************************************//
-    // -------------Relacion con producto--------------//
+    // -------------Relacion con producto----------------//
     // ************************************************//
     private String producto;
 
-    // ************************************************//
-    // -------------Contructores accesores--------------//
-    // ************************************************//
+    private String img;
 
-    public DTOinventariopro() {
-    }
+    private Integer idProducto;
 
-    public DTOinventariopro(Integer id, Boolean estado, Integer salida, Integer entrada, String producto) {
+
+    public DTOinventariopro(Integer id, Boolean estado, Integer salida, Integer entrada, String producto,
+            String img, Integer idProducto) {
         this.id = id;
         this.estado = estado;
         this.salida = salida;
         this.entrada = entrada;
         this.producto = producto;
+        this.img = img;
+        this.idProducto = idProducto;
+    }
+
+    /*-----------------GETTERS AND SETTERS----------------*/
+    public DTOinventariopro() {
     }
 
     public Integer getId() {
@@ -76,6 +80,20 @@ public class DTOinventariopro {
         this.producto = producto;
     }
 
-  
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+    
 }

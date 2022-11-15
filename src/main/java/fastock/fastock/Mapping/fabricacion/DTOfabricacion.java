@@ -2,10 +2,6 @@ package fastock.fastock.Mapping.fabricacion;
 
 import java.util.List;
 
-import fastock.fastock.Mapping.insumo.DTOinsumo;
-import fastock.fastock.Mapping.producto.DTOproducto;
-import fastock.fastock.Mapping.usuario.DTOusuario;
-
 public class DTOfabricacion {
     // -----------------------ID-----------------------//
     private Integer id;
@@ -16,6 +12,8 @@ public class DTOfabricacion {
     private String fechafinal;
     // -----------------------Estado-----------------------//
     private Boolean estado;
+    // -----------------------Estado-----------------------//
+    private Boolean suspendido;
 
     // ************************************************//
     // -------------Relacion con area------------------//
@@ -24,33 +22,19 @@ public class DTOfabricacion {
     // ************************************************//
     // -------------Relacion con usuario----------------//
     // ************************************************//
-    private List<DTOusuario> usuario;
-    // ************************************************//
-    // -------------Relacion con insumo----------------//
-    // ************************************************//
-    private List<DTOinsumo> insumo;
+    private List<DTOAdmin> usuario;
     // ************************************************//
     // -------------Relacion con producto--------------//
     // ************************************************//
-    private List<DTOproducto> producto;
+    private String producto;
+    private Integer idProducto;
+    private String imagen;
 
     // ************************************************//
     // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
     // ************************************************//
 
     public DTOfabricacion() {
-    }
-
-    public DTOfabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado, List<DTOarea> area,
-            List<DTOusuario> usuario, List<DTOinsumo> insumo, List<DTOproducto> producto) {
-        this.id = id;
-        this.fechainicio = fechainicio;
-        this.fechafinal = fechafinal;
-        this.estado = estado;
-        this.area = area;
-        this.usuario = usuario;
-        this.insumo = insumo;
-        this.producto = producto;
     }
 
     public Integer getId() {
@@ -81,6 +65,14 @@ public class DTOfabricacion {
         return estado;
     }
 
+    public void setSuspendido(Boolean suspendido) {
+        this.suspendido = suspendido;
+    }
+
+    public Boolean getSuspendido() {
+        return suspendido;
+    }
+
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
@@ -93,29 +85,50 @@ public class DTOfabricacion {
         this.area = area;
     }
 
-    public List<DTOusuario> getUsuario() {
+    public List<DTOAdmin> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(List<DTOusuario> usuario) {
+    public void setUsuario(List<DTOAdmin> usuario) {
         this.usuario = usuario;
     }
 
-    public List<DTOinsumo> getInsumo() {
-        return insumo;
-    }
-
-    public void setInsumo(List<DTOinsumo> insumo) {
-        this.insumo = insumo;
-    }
-
-    public List<DTOproducto> getProducto() {
+    public String getProducto() {
         return producto;
     }
 
-    public void setProducto(List<DTOproducto> producto) {
+    public void setProducto(String producto) {
         this.producto = producto;
     }
 
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public DTOfabricacion(Integer id, String fechainicio, String fechafinal, Boolean estado, Boolean suspendido,
+            List<DTOarea> area, List<DTOAdmin> usuario, String producto, Integer idProducto, String imagen) {
+        this.id = id;
+        this.fechainicio = fechainicio;
+        this.fechafinal = fechafinal;
+        this.estado = estado;
+        this.suspendido = suspendido;
+        this.area = area;
+        this.usuario = usuario;
+        this.producto = producto;
+        this.idProducto = idProducto;
+        this.imagen = imagen;
+    }
 
 }
