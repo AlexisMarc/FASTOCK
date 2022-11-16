@@ -12,6 +12,7 @@ public class DTOCreateEspecialidad {
     @NotEmpty(message = "La descripción no debe estar vacía.")
     @Size(min = 2, max = 200, message = "La descripción debe tener una longitud entre 2 y 200 carcateres.")
     private String descripcion;
+    
 
     // ************************************************//
     // -------------Constructores---------------//

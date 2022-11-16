@@ -66,9 +66,6 @@ public class DTOUpdateUsuario {
   @NotNull(message = "El estado no debe estar vacío")
   private Boolean estado;
 
-  // -----------------------inicio-----------------------//
-  @NotNull(message = "El inicio no debe estar vacío")
-  private Boolean inicio;
   // ************************************************//
   // -------------Relacion con cargo-----------------//
   // ************************************************//
@@ -89,7 +86,6 @@ public class DTOUpdateUsuario {
       @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
       @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String email,
       String imagen, @NotNull(message = "El estado no debe estar vacío") Boolean estado,
-      @NotNull(message = "El inicio no debe estar vacío") Boolean inicio,
       @NotNull(message = "El cargo no debe estar vacío") List<Integer> cargo) {
     this.id = id;
     this.tipo = tipo;
@@ -103,7 +99,6 @@ public class DTOUpdateUsuario {
     this.email = email;
     this.imagen = imagen;
     this.estado = estado;
-    this.inicio = inicio;
     this.cargo = cargo;
   }
 
@@ -201,14 +196,6 @@ public class DTOUpdateUsuario {
 
   public void setEstado(Boolean estado) {
     this.estado = estado;
-  }
-
-  public Boolean getInicio() {
-    return inicio;
-  }
-
-  public void setInicio(Boolean inicio) {
-    this.inicio = inicio;
   }
 
   public List<Integer> getCargo() {

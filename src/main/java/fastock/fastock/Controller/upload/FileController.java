@@ -20,8 +20,6 @@ import fastock.fastock.Mapping.upload.File;
 import fastock.fastock.Messages.upload.Response;
 import fastock.fastock.Service.upload.FileServiceAPI;
 
-
-
 @RestController
 @RequestMapping("/files")
 public class FileController {

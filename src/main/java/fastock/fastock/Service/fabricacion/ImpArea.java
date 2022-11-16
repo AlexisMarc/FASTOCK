@@ -116,12 +116,31 @@ public class ImpArea {
         DTO.setNumerador(area.getNumerador());
         DTO.setEstado(area.getEstado());
 
-        
-        DTO.setIdEncargado(null);
-        DTO.setEncargado(null);
-        DTO.setTipoEncargado(null);
-        DTO.setImagen(null);
-        
+        if (area.getUsuario() != null) {
+            Set<usuario> usuarios = area.getUsuario();
+
+            Iterator<usuario> i = usuarios.iterator();
+
+            while (i.hasNext()) {
+                usuario usuario = i.next();
+                DTO.setIdEncargado(usuario.getId());
+                DTO.setEncargado(usuario.getNombre() + ' ' + usuario.getApellido());
+                DTO.setTipoEncargado(EnumArea.EMPLEADO.name());
+                DTO.setImagen(usuario.getImagen());
+            }
+        } else if (area.getEmpresa() != null) {
+            Set<empresa> empresas = area.getEmpresa();
+
+            Iterator<empresa> i = empresas.iterator();
+
+            while (i.hasNext()) {
+                empresa empresa = i.next();
+                DTO.setIdEncargado(empresa.getId());
+                DTO.setEncargado(empresa.getNombre());
+                DTO.setTipoEncargado(EnumArea.EMPRESA.name());
+                DTO.setImagen(empresa.getImagen());
+            }
+        }
 
         return DTO;
     }
@@ -130,8 +149,8 @@ public class ImpArea {
     // PUBLICOS
     // ***************************************************************//
 
-    // LISTADO
-    public List<DTOarea> listado() {
+    // LISTADO POR FABRICACION
+    public List<DTOarea> listado(Integer id) {
         List<DTOarea> DTO = new ArrayList<DTOarea>();
         List<area> areas = listar();
 
@@ -139,39 +158,13 @@ public class ImpArea {
 
         while (i.hasNext()) {
             area interar = i.next();
-            if (interar.getEstado()) {
+            if (interar.getFabricacion().getId() == id) {
                 DTOarea DTOs = DTOarea(interar);
                 DTO.add(DTOs);
             }
 
         }
         return DTO;
-    }
-
-    // LISTADO DE ELIMINADOS
-    public List<DTOarea> eliminados() {
-        List<DTOarea> DTO = new ArrayList<DTOarea>();
-        List<area> areaes = listar();
-
-        Iterator<area> i = areaes.iterator();
-
-        while (i.hasNext()) {
-            area interar = i.next();
-            if (interar.getEstado() == false) {
-                DTOarea DTOs = DTOarea(interar);
-                DTO.add(DTOs);
-            }
-        }
-        return DTO;
-    }
-
-    // CONSULTAR
-    public DTOarea consulta(Integer id) {
-        if (areai.existsById(id)) {
-            return DTOarea(consultar(id));
-        } else {
-            return null;
-        }
     }
 
     // EDITAR

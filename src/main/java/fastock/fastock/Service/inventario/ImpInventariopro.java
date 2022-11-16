@@ -90,6 +90,15 @@ public class ImpInventariopro {
         return DTO;
     }
 
+    // CONSULTAR
+    public DTOinventariopro consulta(Integer id) {
+        if (inventarioi.existsById(id)) {
+            return DTOinventario(consultar(id));
+        } else {
+            return null;
+        }
+    }
+
     // REGISTAR
     public DTOinventariopro registrar(DTOCreateInventariopro DTO) {
         inventariopro inventario = guardar(DTOCreate(DTO));

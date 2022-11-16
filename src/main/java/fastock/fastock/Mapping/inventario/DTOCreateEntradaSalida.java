@@ -1,6 +1,5 @@
 package fastock.fastock.Mapping.inventario;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import fastock.fastock.Utils.EnumEntradaSalida;
@@ -22,7 +21,6 @@ public class DTOCreateEntradaSalida {
     @NotNull(message = "El usuario no debe estar vacío")
     private Integer usuario;
 
-    @NotEmpty(message = "El tipo de inventario no debe estar vacío")
     private EnumEntradaSalida tipo;
 
     // ************************************************//
@@ -34,7 +32,7 @@ public class DTOCreateEntradaSalida {
     public DTOCreateEntradaSalida(@NotNull(message = "La cantidad no debe estar vacía") Integer cantidad,
             @NotNull(message = "El Inventario no debe estar vacío") Integer inventario,
             @NotNull(message = "El usuario no debe estar vacío") Integer usuario,
-            @NotEmpty(message = "El tipo de inventario no debe estar vacío") EnumEntradaSalida tipo) {
+            EnumEntradaSalida tipo) {
         this.cantidad = cantidad;
         this.inventario = inventario;
         this.usuario = usuario;

@@ -1,15 +1,11 @@
 package fastock.fastock.Controller.empresa;
 
-
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Optional; 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,96 +16,164 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import fastock.fastock.Service.Empresa.IEmpresa;
-import fastock.fastock.Service.Empresa.IEspecialidad;
-import fastock.fastock.Class.empresa.empresa;
-import fastock.fastock.Class.empresa.especialidad;
-
+import fastock.fastock.Service.Empresa.ImpEmpresa;
+import fastock.fastock.Service.Empresa.ImpEspecialidad;
+import fastock.fastock.Mapping.empresa.DTOCreateEmpresa;
+import fastock.fastock.Mapping.empresa.DTOCreateEspecialidad;
+import fastock.fastock.Mapping.empresa.DTOUpdateEmpresa;
+import fastock.fastock.Mapping.empresa.DTOUpdateEspecialidad;
+import fastock.fastock.Mapping.empresa.DTOempresa;
+import fastock.fastock.Mapping.empresa.DTOespecialidad;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+
 @SessionAttributes("empresa")
 @RequestMapping("/empresa")
 public class EmpresaController {
-    @Autowired
-    private IEmpresa iempresa;
+	@Autowired
+	private ImpEmpresa iempresa;
 
-    @Autowired
-    private IEspecialidad iespecialidad;
+	@Autowired
+	private ImpEspecialidad iespecialidad;
 
-// ****************************************//
-// --------------METODO GET----------------//
-// ****************************************//
+	// ****************************************//
+	// --------------METODO GET----------------//
+	// ****************************************//
 
-// --------------LISTAR TODOS--------------//
-@GetMapping
-	public ResponseEntity<Page<empresa>> empresas(Pageable pageable){
-		return ResponseEntity.ok(iempresa.findAll(pageable));
+	// --------------LISTAR TODOS--------------//
+	@GetMapping
+	public ResponseEntity<List<DTOempresa>> empresaes() {
+		return ResponseEntity.ok(iempresa.listado());
 	}
 
-// ---------------LISTAR UNO---------------//
-@GetMapping("/{id}")
-	public ResponseEntity<empresa> empresa(@PathVariable Integer id){
-		Optional<empresa> empresaOptional = iempresa.findById(id);
-		
-		if(!empresaOptional.isPresent()){
+	// ---------------LISTAR UNO---------------//
+
+	@GetMapping("/{id}")
+	public ResponseEntity<DTOempresa> empresa(@PathVariable Integer id) {
+		DTOempresa empresaOptional = iempresa.consulta(id);
+
+		if (empresaOptional == null) {
 			return ResponseEntity.unprocessableEntity().build();
 		}
-		
-		return ResponseEntity.ok(empresaOptional.get());
+
+		return ResponseEntity.ok(empresaOptional);
 	}
 
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
 
-// ****************************************//
-// -------------METODO POST----------------//
-// ****************************************//
+	// ---------------REGISTRAR----------------//
 
-// ---------------REGISTRAR----------------//
-@PostMapping
-	public ResponseEntity<empresa> guardarempresa(@Valid @RequestBody empresa empresa){
-		Optional<especialidad> especialidadOptional = iespecialidad.findById(empresa.getEspecialidad().getId());
-		
-		if(!especialidadOptional.isPresent()){
-			return ResponseEntity.unprocessableEntity().build();
-		}
-		
-		empresa.setEspecialidad(especialidadOptional.get());
-		empresa empresaGuardado = iempresa.save(empresa);
+	@PostMapping
+	public ResponseEntity<DTOempresa> guardarempresa(@Valid @RequestBody DTOCreateEmpresa empresa) {
+		DTOempresa empresaGuardada = iempresa.registrar(empresa);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(empresaGuardado.getId()).toUri();
-		
-		return ResponseEntity.created(ubicacion).body(empresaGuardado);
+				.buildAndExpand(empresaGuardada.getId()).toUri();
+		return ResponseEntity.created(ubicacion).body(empresaGuardada);
 	}
 
-// ****************************************//
-// --------------METODO PUT----------------//
-// ****************************************//
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
 
-// ----------------EDITAR------------------//
-@PutMapping("/{id}")
-	public ResponseEntity<empresa> actualizarempresa(@Valid @RequestBody empresa empresa,@PathVariable Integer id){
-		Optional<especialidad> especialidadOptional = iespecialidad.findById(empresa.getEspecialidad().getId());
-		
-		if(!especialidadOptional.isPresent()){
+	// ----------------EDITAR------------------//
+
+	@PutMapping("/{id}")
+	public ResponseEntity<DTOempresa> actualizarempresa(@PathVariable Integer id,
+			@Valid @RequestBody DTOUpdateEmpresa empresa) {
+		DTOempresa empresaID = iempresa.consulta(id);
+		if (empresaID == null) {
 			return ResponseEntity.unprocessableEntity().build();
+		} else {
+			empresa.setId(empresaID.getId());
+			DTOempresa pro = iempresa.editar(empresa);
+
+			URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(empresa.getId()).toUri();
+
+			return ResponseEntity.created(ubicacion).body(pro);
 		}
-		
-		Optional<empresa> empresaOptional = iempresa.findById(id);
-		if(!empresaOptional.isPresent()){
-			return ResponseEntity.unprocessableEntity().build();
-		}
-		
-		empresa.setEspecialidad(especialidadOptional.get());
-		empresa.setId(empresaOptional.get().getId());
-		iempresa.save(empresa);
-		
-		return ResponseEntity.noContent().build();
 	}
 
+	// ----------------ESTADO------------------//
 
+	@PutMapping("/estado/{id}")
+	public ResponseEntity<DTOempresa> Estadoempresa(@PathVariable Integer id) {
+		iempresa.estado(id);
+		return ResponseEntity.ok(iempresa.consulta(id));
+	}
 
-// ----------------ESTADO------------------//
+	// **************************************************************************************//
+	// ----------------------------------------ESPECIALIDAD---------------------------------//
+	// **************************************************************************************//
 
+	// ****************************************//
+	// --------------METODO GET----------------//
+	// ****************************************//
 
+	// --------------LISTAR TODOS--------------//
+	@GetMapping("/especialidad")
+	public ResponseEntity<List<DTOespecialidad>> especialidades() {
+		return ResponseEntity.ok(iespecialidad.listado());
+	}
+
+	// ---------------LISTAR UNO---------------//
+
+	@GetMapping("/especialidad/{id}")
+	public ResponseEntity<DTOespecialidad> especialidad(@PathVariable Integer id) {
+		DTOespecialidad especialidadOptional = iespecialidad.consulta(id);
+
+		if (especialidadOptional == null) {
+			return ResponseEntity.unprocessableEntity().build();
+		}
+
+		return ResponseEntity.ok(especialidadOptional);
+	}
+
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
+
+	// ---------------REGISTRAR----------------//
+
+	@PostMapping("/especialidad")
+	public ResponseEntity<DTOespecialidad> guardarespecialidad(@Valid @RequestBody DTOCreateEspecialidad especialidad) {
+		DTOespecialidad especialidadGuardada = iespecialidad.registrar(especialidad);
+		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(especialidadGuardada.getId()).toUri();
+		return ResponseEntity.created(ubicacion).body(especialidadGuardada);
+	}
+
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
+
+	// ----------------EDITAR------------------//
+
+	@PutMapping("//especialidad/{id}")
+	public ResponseEntity<DTOespecialidad> actualizarespecialidad(@PathVariable Integer id,
+			@Valid @RequestBody DTOUpdateEspecialidad especialidad) {
+		DTOespecialidad especialidadID = iespecialidad.consulta(id);
+		if (especialidadID == null) {
+			return ResponseEntity.unprocessableEntity().build();
+		} else {
+			especialidad.setId(especialidadID.getId());
+			DTOespecialidad pro = iespecialidad.editar(especialidad);
+
+			URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(especialidad.getId()).toUri();
+
+			return ResponseEntity.created(ubicacion).body(pro);
+		}
+	}
+
+	// ----------------ESTADO------------------//
+
+	@PutMapping("/especialidad/especialidad/estado/{id}")
+	public ResponseEntity<DTOespecialidad> Estadoespecialidad(@PathVariable Integer id) {
+		iespecialidad.estado(id);
+		return ResponseEntity.ok(iespecialidad.consulta(id));
+	}
 
 }

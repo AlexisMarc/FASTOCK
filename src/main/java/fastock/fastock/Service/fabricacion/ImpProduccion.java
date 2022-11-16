@@ -115,6 +115,15 @@ public class ImpProduccion {
         return DTO;
     }
 
+    // CONSULTAR
+    public DTOproduccion consulta(Integer id) {
+        if (produccioni.existsById(id)) {
+            return DTOproduccion(consultar(id));
+        } else {
+            return null;
+        }
+    }
+
     // REGISTAR
     public DTOproduccion registrar(DTOCreateProduccion DTO) {
         produccion produccion = guardar(DTOCreate(DTO));

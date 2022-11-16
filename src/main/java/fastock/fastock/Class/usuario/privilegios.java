@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import fastock.fastock.Utils.EnumPrivilegios;
 
@@ -27,12 +27,8 @@ public class privilegios {
     // ************************************************//
     // -------------Relacion con cargo--------------//
     // ************************************************//
-    @ManyToMany
-    @JsonIgnoreProperties(value = "privilegio_cargo")
-    @JoinTable(
-        name = "privilegio_cargo", 
-        joinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"), 
-        inverseJoinColumns = @JoinColumn(name = "id_privilegio", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "privilegio")
+    @JsonBackReference(value = "privilegio_cargo")
     private Set<cargo> cargo = new HashSet<>();
 
     // ************************************************//

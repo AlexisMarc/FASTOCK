@@ -7,7 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cargo")
@@ -32,8 +33,10 @@ public class cargo {
     // -------------Relacion con usuario--------------//
     // ************************************************//
     @ManyToMany
-    @JsonIgnoreProperties(value = "usuario_cargo")
-    @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
+    @JsonBackReference(value = "usuario_cargo")
+    @JoinTable(name = "usuario_cargo", 
+    joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
     private Set<usuario> usuario = new HashSet<>();
 
     // ************************************************//
@@ -41,7 +44,7 @@ public class cargo {
     // ************************************************//
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value = "privilegio_cargo")
+    @JsonManagedReference(value = "privilegio_cargo")
     @JoinTable(
         name = "privilegio_cargo", 
         joinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"), 

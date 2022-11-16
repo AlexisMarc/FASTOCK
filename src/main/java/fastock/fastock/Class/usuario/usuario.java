@@ -105,6 +105,10 @@ public class usuario {
     @Column(nullable = false)
     private Boolean inicio;
 
+    // -----------------------Inicio-----------------------//
+    @Column(nullable = false)
+    private Boolean verificacion;
+
     // ************************************************//
     // -------------Relacion con fabricacion-----------//
     // ************************************************//
@@ -117,7 +121,7 @@ public class usuario {
     // -------------Relacion con cargo-----------------//
     // ************************************************//
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value = "usuario_cargo")
+    @JsonManagedReference(value = "usuario_cargo")
     @JoinTable(name = "usuario_cargo", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_cargo", referencedColumnName = "id"))
     private Set<cargo> cargo = new HashSet<>();
 
@@ -168,8 +172,6 @@ public class usuario {
     public usuario() {
     }
 
-    
-
     public usuario(Integer id, @NotNull(message = "La identificación no debe estar vacío") Long identificacion,
             @NotEmpty(message = "El nombre no debe estar vacío") @Size(min = 2, max = 60, message = "El nombre debe tener entre 2 y 60 carcateres") String nombre,
             @NotEmpty(message = "El tipo de Identificación no debe estar vacío") @Size(min = 2, max = 30, message = "El tipo de Identificación debe tener entre 2 y 30 carcateres") EnumTipoIdentificacion tipo,
@@ -179,7 +181,7 @@ public class usuario {
             @NotEmpty(message = "La dirección no debe estar vacío") @Size(min = 2, max = 100, message = "La dirección debe tener entre 2 y 100 carcateres") String direccion,
             @NotNull(message = "El número teléfono no debe estar vacío") Long telefono,
             @NotEmpty(message = "EL Email no debe estar vacío") @Email(message = "EL Email no valido") @Size(min = 4, max = 200, message = "La dirección debe tener entre 4 y 200 carcateres") String userName,
-            @NotNull String password, String imagen, Boolean estado, Boolean inicio,
+            @NotNull String password, String imagen, Boolean estado, Boolean inicio, Boolean verificacion,
             Set<fabricacion> fabricacion,
             Set<cargo> cargo, Set<area> area,
             Set<entrada> entrada,
@@ -201,6 +203,7 @@ public class usuario {
         this.imagen = imagen;
         this.estado = estado;
         this.inicio = inicio;
+        this.verificacion = verificacion;
         this.fabricacion = fabricacion;
         this.cargo = cargo;
         this.area = area;
@@ -381,16 +384,22 @@ public class usuario {
         this.imagen = imagen;
     }
 
-
-
     public Boolean getInicio() {
         return inicio;
     }
 
-
-
     public void setInicio(Boolean inicio) {
         this.inicio = inicio;
     }
+
+    public Boolean getVerificacion() {
+        return verificacion;
+    }
+
+    public void setVerificacion(Boolean verificacion) {
+        this.verificacion = verificacion;
+    }
+
+    
 
 }
