@@ -203,6 +203,15 @@ public class ImpFabricacion {
         return DTOfabricacion(fabricacion);
     }
 
+    // CONSULTAR
+    public DTOfabricacion consulta(Integer id) {
+        if (fabricacioni.existsById(id)) {
+            return DTOfabricacion(consultar(id));
+        } else {
+            return null;
+        }
+    }
+
     // EDITAR
     public DTOfabricacion editar(DTOUpdateFabricacion DTO) {
         fabricacion fabricacion = guardar(DTOUpdate(DTO));

@@ -1,4 +1,5 @@
 package fastock.fastock.Controller.insumo;
+
 import java.net.URI;
 import java.util.List;
 
@@ -18,16 +19,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fastock.fastock.Service.insumo.ImpInsumo;
 import fastock.fastock.Service.insumo.ImpTipo;
+import fastock.fastock.Service.inventario.ImpEntradas;
 import fastock.fastock.Service.inventario.ImpInventario;
+import fastock.fastock.Service.inventario.ImpSalidas;
+import fastock.fastock.Utils.EnumEntradaSalida;
 import fastock.fastock.Mapping.insumo.DTOCreateInsumo;
 import fastock.fastock.Mapping.insumo.DTOCreateTipo;
 import fastock.fastock.Mapping.insumo.DTOUpdateInsumo;
 import fastock.fastock.Mapping.insumo.DTOUpdateTipo;
 import fastock.fastock.Mapping.insumo.DTOinsumo;
 import fastock.fastock.Mapping.insumo.DTOtipo;
+import fastock.fastock.Mapping.inventario.DTOCreateEntradaSalida;
 import fastock.fastock.Mapping.inventario.DTOCreateInventario;
 import fastock.fastock.Mapping.inventario.DTOinventario;
-
 
 @RestController
 
@@ -36,8 +40,8 @@ import fastock.fastock.Mapping.inventario.DTOinventario;
 
 public class InsumoController {
 
-    @Autowired
-    private ImpInsumo iinsumo;
+	@Autowired
+	private ImpInsumo iinsumo;
 
 	@Autowired
 	private ImpTipo itipo;
@@ -45,19 +49,26 @@ public class InsumoController {
 	@Autowired
 	private ImpInventario iinventario;
 
+	@Autowired
+	private ImpEntradas ientradas;
+
+	@Autowired
+	private ImpSalidas isalidas;
+
+
 	// ****************************************//
 	// --------------METODO GET----------------//
 	// ****************************************//
 
 	// --------------LISTAR TODOS--------------//
-	@GetMapping
+	@GetMapping("/insumo")
 	public ResponseEntity<List<DTOinsumo>> insumoes() {
 		return ResponseEntity.ok(iinsumo.listado());
 	}
 
 	// ---------------LISTAR UNO---------------//
 
-	@GetMapping("/{id}")
+	@GetMapping("/insumo/{id}")
 	public ResponseEntity<DTOinsumo> insumo(@PathVariable Integer id) {
 		DTOinsumo insumoOptional = iinsumo.consulta(id);
 
@@ -117,132 +128,184 @@ public class InsumoController {
 	// ------------------------------------------TIPO-------------------------------------------------------//
 	// ****************************************************************************************************************//
 
-// ****************************************//
-// --------------METODO GET----------------//
-// ****************************************//
+	// ****************************************//
+	// --------------METODO GET----------------//
+	// ****************************************//
 
-// --------------LISTAR TODOS--------------//
-@GetMapping
-	public ResponseEntity<List<DTOtipo>> tipoes(){
+	// --------------LISTAR TODOS--------------//
+	@GetMapping("/tipo")
+	public ResponseEntity<List<DTOtipo>> tipoes() {
 		return ResponseEntity.ok(itipo.listado());
 	}
 
+	// ---------------LISTAR UNO---------------//
 
-// ---------------LISTAR UNO---------------//
-
-
-@GetMapping("/tipo/{id}")
-	public ResponseEntity<DTOtipo> tipo(@PathVariable Integer id){
+	@GetMapping("/tipo/{id}")
+	public ResponseEntity<DTOtipo> tipo(@PathVariable Integer id) {
 		DTOtipo tipoOptional = itipo.consulta(id);
-		
-		if(tipoOptional==null){
+
+		if (tipoOptional == null) {
 			return ResponseEntity.unprocessableEntity().build();
 		}
-		
+
 		return ResponseEntity.ok(tipoOptional);
 	}
 
-// ****************************************//
-// -------------METODO POST----------------//
-// ****************************************//
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
 
-// ---------------REGISTRAR----------------//
+	// ---------------REGISTRAR----------------//
 
-@PostMapping
-	public ResponseEntity<DTOtipo> guardartipo(@Valid @RequestBody DTOCreateTipo tipo){
+	@PostMapping("/tipo")
+	public ResponseEntity<DTOtipo> guardartipo(@Valid @RequestBody DTOCreateTipo tipo) {
 		DTOtipo tipoGuardada = itipo.registrar(tipo);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(tipoGuardada.getId()).toUri();
 		return ResponseEntity.created(ubicacion).body(tipoGuardada);
 	}
 
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
 
-// ****************************************//
-// --------------METODO PUT----------------//
-// ****************************************//
+	// ----------------EDITAR------------------//
 
-// ----------------EDITAR------------------//
-
-@PutMapping("/tipo/{id}")
-	public ResponseEntity<DTOtipo> actualizartipo(@PathVariable Integer id,@Valid @RequestBody DTOUpdateTipo tipo){
+	@PutMapping("/tipo/{id}")
+	public ResponseEntity<DTOtipo> actualizartipo(@PathVariable Integer id, @Valid @RequestBody DTOUpdateTipo tipo) {
 		DTOtipo tipoID = itipo.consulta(id);
-		if(tipoID==null){
+		if (tipoID == null) {
 			return ResponseEntity.unprocessableEntity().build();
-		}else{
+		} else {
 			tipo.setId(tipoID.getId());
 			DTOtipo pro = itipo.editar(tipo);
 
 			URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(tipo.getId()).toUri();
+					.buildAndExpand(tipo.getId()).toUri();
 
 			return ResponseEntity.created(ubicacion).body(pro);
 		}
 	}
 
-// ----------------ESTADO------------------//
+	// ----------------ESTADO------------------//
 
-@PutMapping("/tipo/estado/{id}")
-	public ResponseEntity<DTOtipo> Estadotipo(@PathVariable Integer id){
+	@PutMapping("/tipo/estado/{id}")
+	public ResponseEntity<DTOtipo> Estadotipo(@PathVariable Integer id) {
 		itipo.estado(id);
 		return ResponseEntity.ok(itipo.consulta(id));
 	}
 
-// ****************************************************************************************************************//
-// ------------------------------------------INVENTARIO--------------------------------------------------------//
-// ************************************************************************************************************//
+	// ****************************************************************************************************************//
+	// ------------------------------------------INVENTARIO--------------------------------------------------------//
+	// ************************************************************************************************************//
 
-// ****************************************//
-// --------------METODO GET----------------//
-// ****************************************//
+	// ****************************************//
+	// --------------METODO GET----------------//
+	// ****************************************//
 
-// --------------LISTAR TODOS--------------//
-@GetMapping
-	public ResponseEntity<List<DTOinventario>> inventarioes(){
+	// --------------LISTAR TODOS--------------//
+	@GetMapping("/inventario")
+	public ResponseEntity<List<DTOinventario>> inventarioes() {
 		return ResponseEntity.ok(iinventario.listado());
 	}
 
+	// ---------------LISTAR UNO---------------//
 
-// ---------------LISTAR UNO---------------//
-
-
-@GetMapping("/inventario/{id}")
-	public ResponseEntity<DTOinventario> inventario(@PathVariable Integer id){
+	@GetMapping("/inventario/{id}")
+	public ResponseEntity<DTOinventario> inventario(@PathVariable Integer id) {
 		DTOinventario inventarioOptional = iinventario.consulta(id);
-		
-		if(inventarioOptional==null){
+
+		if (inventarioOptional == null) {
 			return ResponseEntity.unprocessableEntity().build();
 		}
-		
+
 		return ResponseEntity.ok(inventarioOptional);
 	}
 
-// ****************************************//
-// -------------METODO POST----------------//
-// ****************************************//
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
 
-// ---------------REGISTRAR----------------//
+	// ---------------REGISTRAR----------------//
 
-@PostMapping
-	public ResponseEntity<DTOinventario> guardarinventario(@Valid @RequestBody DTOCreateInventario inventario){
+	@PostMapping("/inventario")
+	public ResponseEntity<DTOinventario> guardarinventario(@Valid @RequestBody DTOCreateInventario inventario) {
 		DTOinventario inventarioGuardada = iinventario.registrar(inventario);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(inventarioGuardada.getId()).toUri();
 		return ResponseEntity.created(ubicacion).body(inventarioGuardada);
 	}
 
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
 
-// ****************************************//
-// --------------METODO PUT----------------//
-// ****************************************//
+	// ----------------ESTADO------------------//
 
-
-// ----------------ESTADO------------------//
-
-@PutMapping("/inventario/estado/{id}")
-	public ResponseEntity<DTOinventario> Estadoinventario(@PathVariable Integer id){
+	@PutMapping("/inventario/estado/{id}")
+	public ResponseEntity<DTOinventario> Estadoinventario(@PathVariable Integer id) {
 		iinventario.estado(id);
 		return ResponseEntity.ok(iinventario.consulta(id));
 	}
 
-}
+	// ****************************************************************************************************************//
+	// ------------------------------------------ENTRADA---------------------------------------------------//
+	// ************************************************************************************************************//
 
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
+
+	// ---------------REGISTRAR----------------//
+
+	@PostMapping("/inventario/entrada")
+	public ResponseEntity<?> guardarentrada(@Valid @RequestBody DTOCreateEntradaSalida entrada) {
+		entrada.setTipo(EnumEntradaSalida.PRODUCTO);
+		ientradas.registrar(entrada);
+
+		return ResponseEntity.ok(null);
+	}
+
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
+
+	// ----------------ESTADO------------------//
+
+	@PutMapping("/inventario/entrada/estado/{id}")
+	public ResponseEntity<?> Estadoentrada(@PathVariable Integer id) {
+		ientradas.estado(id, EnumEntradaSalida.PRODUCTO);
+		return ResponseEntity.ok(null);
+	}
+
+	// ****************************************************************************************************************//
+	// ------------------------------------------SALIDA--------------------------------------------------------//
+	// ************************************************************************************************************//
+
+	// ****************************************//
+	// -------------METODO POST----------------//
+	// ****************************************//
+
+	// ---------------REGISTRAR----------------//
+
+	@PostMapping("/inventario/salida")
+	public ResponseEntity<?> guardarsalida(@Valid @RequestBody DTOCreateEntradaSalida salida) {
+		salida.setTipo(EnumEntradaSalida.PRODUCTO);
+		isalidas.registrar(salida);
+
+		return ResponseEntity.ok(null);
+	}
+
+	// ****************************************//
+	// --------------METODO PUT----------------//
+	// ****************************************//
+
+	// ----------------ESTADO------------------//
+
+	@PutMapping("/inventario/salida/estado/{id}")
+	public ResponseEntity<?> Estadosalida(@PathVariable Integer id) {
+		isalidas.estado(id, EnumEntradaSalida.PRODUCTO);
+		return ResponseEntity.ok(null);
+	}
+
+}

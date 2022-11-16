@@ -179,6 +179,15 @@ public class ImpArea {
         return DTOarea(area);
     }
 
+    // CONSULTAR
+    public DTOarea consulta(Integer id) {
+        if (areai.existsById(id)) {
+            return DTOarea(consultar(id));
+        } else {
+            return null;
+        }
+    }
+
     // ESTADO
     public void estado(Integer id) {
         area area = consultar(id);

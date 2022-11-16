@@ -117,7 +117,7 @@ public class UsuarioController {
 // ****************************************//
 
 // --------------LISTAR TODOS--------------//
-@GetMapping
+@GetMapping("/cargo")
 	public ResponseEntity<List<DTOcargo>> cargoes(){
 		return ResponseEntity.ok(icargo.listado());
 	}
@@ -143,7 +143,7 @@ public class UsuarioController {
 
 // ---------------REGISTRAR----------------//
 
-@PostMapping
+@PostMapping("/cargo")
 	public ResponseEntity<DTOcargo> guardarcargo(@Valid @RequestBody DTOCreateCargo cargo){
 		DTOcargo cargoGuardada = icargo.registrar(cargo);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

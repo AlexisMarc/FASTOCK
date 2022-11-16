@@ -151,7 +151,7 @@ public class EmpresaController {
 
 	// ----------------EDITAR------------------//
 
-	@PutMapping("//especialidad/{id}")
+	@PutMapping("/especialidad/{id}")
 	public ResponseEntity<DTOespecialidad> actualizarespecialidad(@PathVariable Integer id,
 			@Valid @RequestBody DTOUpdateEspecialidad especialidad) {
 		DTOespecialidad especialidadID = iespecialidad.consulta(id);
@@ -170,7 +170,7 @@ public class EmpresaController {
 
 	// ----------------ESTADO------------------//
 
-	@PutMapping("/especialidad/especialidad/estado/{id}")
+	@PutMapping("/especialidad/estado/{id}")
 	public ResponseEntity<DTOespecialidad> Estadoespecialidad(@PathVariable Integer id) {
 		iespecialidad.estado(id);
 		return ResponseEntity.ok(iespecialidad.consulta(id));

@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import fastock.fastock.Service.inventario.ImpEntradas;
 import fastock.fastock.Service.inventario.ImpInventariopro;
+import fastock.fastock.Service.inventario.ImpSalidas;
 import fastock.fastock.Service.producto.ImpCategoria;
 import fastock.fastock.Service.producto.ImpProducto;
+import fastock.fastock.Utils.EnumEntradaSalida;
+import fastock.fastock.Mapping.inventario.DTOCreateEntradaSalida;
 import fastock.fastock.Mapping.inventario.DTOCreateInventariopro;
 import fastock.fastock.Mapping.inventario.DTOinventariopro;
 import fastock.fastock.Mapping.producto.DTOCreateCategoria;
@@ -43,6 +47,12 @@ public class ProductoController {
 
 	@Autowired
 	private ImpInventariopro iinventariopro;
+
+	@Autowired
+	private ImpEntradas ientradas;
+
+	@Autowired
+	private ImpSalidas isalidas;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -118,7 +128,7 @@ public class ProductoController {
 // ************************************************************************************************************//
 
 // --------------LISTAR TODOS--------------//
-@GetMapping
+@GetMapping("/categoria")
 	public ResponseEntity<List<DTOcategoria>> categoriaes(){
 		return ResponseEntity.ok(icategoria.listado());
 	}
@@ -144,7 +154,7 @@ public class ProductoController {
 
 // ---------------REGISTRAR----------------//
 
-@PostMapping
+@PostMapping("/categoria")
 	public ResponseEntity<DTOcategoria> guardarcategoria(@Valid @RequestBody DTOCreateCategoria categoria){
 		DTOcategoria categoriaGuardada = icategoria.registrar(categoria);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -183,7 +193,7 @@ public class ProductoController {
 		return ResponseEntity.ok(icategoria.consulta(id));
 	}
 
-	// ****************************************************************************************************************//
+// ****************************************************************************************************************//
 // ------------------------------------------INVENTARIO PRO --------------------------------------------------------//
 // ************************************************************************************************************//
 
@@ -192,7 +202,7 @@ public class ProductoController {
 // ****************************************//
 
 // --------------LISTAR TODOS--------------//
-@GetMapping
+@GetMapping("/inventario")
 	public ResponseEntity<List<DTOinventariopro>> inventarioproes(){
 		return ResponseEntity.ok(iinventariopro.listado());
 	}
@@ -201,7 +211,7 @@ public class ProductoController {
 // ---------------LISTAR UNO---------------//
 
 
-@GetMapping("/inventariopro/{id}")
+@GetMapping("/inventario/{id}")
 	public ResponseEntity<DTOinventariopro> inventariopro(@PathVariable Integer id){
 		DTOinventariopro inventarioproOptional = iinventariopro.consulta(id);
 		
@@ -218,7 +228,7 @@ public class ProductoController {
 
 // ---------------REGISTRAR----------------//
 
-@PostMapping
+@PostMapping("/inventario")
 	public ResponseEntity<DTOinventariopro> guardarinventariopro(@Valid @RequestBody DTOCreateInventariopro inventariopro){
 		DTOinventariopro inventarioproGuardada = iinventariopro.registrar(inventariopro);
 		URI ubicacion = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -234,10 +244,72 @@ public class ProductoController {
 
 // ----------------ESTADO------------------//
 
-@PutMapping("/inventariopro/estado/{id}")
+@PutMapping("/inventario/estado/{id}")
 	public ResponseEntity<DTOinventariopro> Estadoinventariopro(@PathVariable Integer id){
 		iinventariopro.estado(id);
 		return ResponseEntity.ok(iinventariopro.consulta(id));
+	}
+
+// ****************************************************************************************************************//
+// ------------------------------------------ENTRADA---------------------------------------------------//
+// ************************************************************************************************************//
+
+// ****************************************//
+// -------------METODO POST----------------//
+// ****************************************//
+
+// ---------------REGISTRAR----------------//
+
+@PostMapping("/inventario/entrada")
+	public ResponseEntity<?> guardarentrada(@Valid @RequestBody DTOCreateEntradaSalida entrada){
+		entrada.setTipo(EnumEntradaSalida.PRODUCTO);
+		ientradas.registrar(entrada);
+
+		return ResponseEntity.ok(null);
+	}
+
+
+// ****************************************//
+// --------------METODO PUT----------------//
+// ****************************************//
+
+// ----------------ESTADO------------------//
+
+@PutMapping("/inventario/entrada/estado/{id}")
+	public ResponseEntity<?> Estadoentrada(@PathVariable Integer id){
+		ientradas.estado(id, EnumEntradaSalida.PRODUCTO);
+		return ResponseEntity.ok(null);
+	}
+
+// ****************************************************************************************************************//
+// ------------------------------------------SALIDA--------------------------------------------------------//
+// ************************************************************************************************************//
+
+// ****************************************//
+// -------------METODO POST----------------//
+// ****************************************//
+
+// ---------------REGISTRAR----------------//
+
+@PostMapping("/inventario/salida")
+	public ResponseEntity<?> guardarsalida(@Valid @RequestBody DTOCreateEntradaSalida salida){
+		salida.setTipo(EnumEntradaSalida.PRODUCTO);
+		isalidas.registrar(salida);
+
+		return ResponseEntity.ok(null);
+	}
+
+
+// ****************************************//
+// --------------METODO PUT----------------//
+// ****************************************//
+
+// ----------------ESTADO------------------//
+
+@PutMapping("/inventario/salida/estado/{id}")
+	public ResponseEntity<?> Estadosalida(@PathVariable Integer id){
+		isalidas.estado(id, EnumEntradaSalida.PRODUCTO);
+		return ResponseEntity.ok(null);
 	}
 
 }
