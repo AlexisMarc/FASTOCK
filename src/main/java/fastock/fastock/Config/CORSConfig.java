@@ -16,7 +16,7 @@ public WebMvcConfigurer corsConfigurer() {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:3000");
+                    .allowedOrigins("http://localhost:3000").allowedMethods("PUT", "POST", "DELETE", "GET");
                 }
 
         };
