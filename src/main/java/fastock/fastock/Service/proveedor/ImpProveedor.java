@@ -3,8 +3,13 @@ package fastock.fastock.Service.proveedor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import fastock.fastock.Class.proveedor.proveedor;
@@ -150,4 +155,47 @@ public class ImpProveedor {
         }
         guardar(proveedor);
     }
+
+
+    @NotNull
+  public ResponseEntity<Resource> exportInvoice(int id, int idOrden) {
+    proveedor optProveedor = this.repository.findByIdAndClienteId(id, idOrden);
+    Double rpta = this.detalleProveedorRepository.totalByIdCustomer(id);
+    if (optProveedor.isPresent()) {
+      try {
+        final Proveedor proveedor = optProveedor.get();
+        final File file = ResourceUtils.getFile("classpath:exportInvoice.jasper");
+        final File imgLogo = ResourceUtils.getFile("classpath:images/logoCevicheria.png");
+        final JasperReport report = (JasperReport) JRLoader.loadObject(file);
+
+        final HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("nombreCliente", proveedor.getCliente().getNombreCompletoCiente());
+        parameters.put("imgLogo", new FileInputStream(imgLogo));
+        parameters.put("total", rpta);
+        parameters.put("dsInvoice", new JRBeanCollectionDataSource((Collection<?>) this.detalleProveedorRepository.findByProveedor(idOrden)));
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
+        byte[] reporte = JasperExportManager.exportReportToPdf(jasperPrint);
+        String sdf = (new SimpleDateFormat("dd/MM/yyyy")).format(new Date());
+        StringBuilder stringBuilder = new StringBuilder().append("InvoicePDF:");
+        ContentDisposition contentDisposition = ContentDisposition.builder("attachment")
+            .filename(stringBuilder.append(Proveedor.getId())
+                .append("generateDate:")
+                .append(sdf)
+                .append(".pdf")
+                .toString())
+            .build();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(contentDisposition);
+        return ResponseEntity.ok().contentLength((long) reporte.length)
+            .contentType(MediaType.APPLICATION_PDF)
+            .headers(headers).body(new ByteArrayResource(reporte));
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } else {
+      return ResponseEntity.noContent().build(); //No se encontro el reporte
+    }
+    return null;
+  }
 }

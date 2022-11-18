@@ -101,4 +101,9 @@ public class ProveedorController {
 		return ResponseEntity.ok(iproveedor.consulta(id));
 	}
 
+// ----------------EXPORTAR PDDF EN ORDEN------------------//
+
+@GetMapping("exportInvoice")
+public ResponseEntity<Resource> exportInvoice(@RequestParam int id, @RequestParam int idOrden){
+	return this.service.exportInvoice(id, idOrden);
 }
