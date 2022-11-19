@@ -103,6 +103,7 @@ public class ImpProducto {
         DTO.setEstado(producto.getEstado());
         DTO.setCategoria(string(producto.getCategoria()));
         DTO.setVisible(producto.getVisible());
+        DTO.setInventario(producto.getInventario().isEmpty());
 
         return DTO;
     }
