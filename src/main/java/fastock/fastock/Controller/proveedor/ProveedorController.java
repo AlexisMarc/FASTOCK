@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import fastock.fastock.Service.insumo.ImpInsumo;
 import fastock.fastock.Service.proveedor.ImpProveedor;
+import fastock.fastock.Mapping.insumo.DTOinsumo;
 import fastock.fastock.Mapping.proveedor.DTOCreateProveedor;
 import fastock.fastock.Mapping.proveedor.DTOUpdateProveedor;
 import fastock.fastock.Mapping.proveedor.DTOproveedor;
@@ -30,6 +32,9 @@ public class ProveedorController {
 
     @Autowired
     private ImpProveedor iproveedor;
+
+	@Autowired
+    private ImpInsumo iinsumo;
 
 // ****************************************//
 // --------------METODO GET----------------//
@@ -55,6 +60,20 @@ public class ProveedorController {
 		
 		return ResponseEntity.ok(proveedorOptional);
 	}
+
+	// ---------------LISTAR INSUMOS---------------//
+
+
+@GetMapping("/insumo/{id}")
+public ResponseEntity<List<DTOinsumo>> insumos(@PathVariable Integer id){
+	DTOproveedor proveedorOptional = iproveedor.consulta(id);
+	
+	if(proveedorOptional==null){
+		return ResponseEntity.unprocessableEntity().build();
+	}
+	
+	return ResponseEntity.ok(iinsumo.proveedor(id));
+}
 
 // ****************************************//
 // -------------METODO POST----------------//

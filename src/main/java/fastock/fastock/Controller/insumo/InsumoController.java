@@ -61,14 +61,14 @@ public class InsumoController {
 	// ****************************************//
 
 	// --------------LISTAR TODOS--------------//
-	@GetMapping("/insumo")
+	@GetMapping
 	public ResponseEntity<List<DTOinsumo>> insumoes() {
 		return ResponseEntity.ok(iinsumo.listado());
 	}
 
 	// ---------------LISTAR UNO---------------//
 
-	@GetMapping("/insumo/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<DTOinsumo> insumo(@PathVariable Integer id) {
 		DTOinsumo insumoOptional = iinsumo.consulta(id);
 

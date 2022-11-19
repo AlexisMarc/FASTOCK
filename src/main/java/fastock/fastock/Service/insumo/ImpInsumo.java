@@ -152,6 +152,26 @@ public class ImpInsumo {
         return DTO;
     }
 
+    // LISTADO DE PROVEEDOR
+    public List<DTOinsumo> proveedor(Integer id) {
+        List<DTOinsumo> DTO = new ArrayList<DTOinsumo>();
+        List<insumo> insumos = listar();
+
+        Iterator<insumo> i = insumos.iterator();
+
+        while (i.hasNext()) {
+            insumo interar = i.next();
+            if (interar.getEstado()) {
+                if (interar.getProveedor().getId() == id) {
+                    DTOinsumo DTOs = DTOinsumo(interar);
+                    DTO.add(DTOs);
+                }
+            }
+
+        }
+        return DTO;
+    }
+
     // CONSULTAR
     public DTOinsumo consulta(Integer id) {
         if (insumoi.existsById(id)) {
