@@ -29,9 +29,9 @@ public class FileController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<Response> uploadFiles(@RequestParam("files") List<MultipartFile> files) throws Exception {
-		fileServiceAPI.save(files);
+		String nombre = fileServiceAPI.save(files);
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(new Response("Los archivos fueron cargados correctamente al servidor"));
+				.body(new Response(nombre));
 	}
 
 	@GetMapping("/{filename:.+}")

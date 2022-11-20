@@ -43,7 +43,7 @@ public class producto {
     private Boolean visible;
 
     // -----------------------IMAGEN-----------------------//
-    @Column(length = 200)
+    @Column(length = 1000)
     private String imagen;
 
     // ************************************************//

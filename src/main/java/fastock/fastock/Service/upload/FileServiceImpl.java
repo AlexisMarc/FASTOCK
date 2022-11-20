@@ -16,8 +16,10 @@ public class FileServiceImpl implements FileServiceAPI {
     private final Path rootFolder = Paths.get("uploads");
 
 	@Override
-	public void save(MultipartFile file) throws Exception {
-		Files.copy(file.getInputStream(), this.rootFolder.resolve(file.getOriginalFilename()));
+	public String save(MultipartFile file) throws Exception {
+		String nombre = Math.random()+file.getOriginalFilename();
+		Files.copy(file.getInputStream(), this.rootFolder.resolve(nombre));
+		return nombre;
 	}
 
 	@Override
@@ -28,10 +30,12 @@ public class FileServiceImpl implements FileServiceAPI {
 	}
 
 	@Override
-	public void save(List<MultipartFile> files) throws Exception {
+	public String save(List<MultipartFile> files) throws Exception {
+		String nombre = "";
 		for (MultipartFile file : files) {
-			this.save(file);
+			nombre = this.save(file);
 		}
+	return nombre;
 	}
 
 	@Override

@@ -101,6 +101,7 @@ public class ImpProducto {
         DTO.setNombre(producto.getNombre());
         DTO.setDescripcion(producto.getDescripcion());
         DTO.setEstado(producto.getEstado());
+        DTO.setImagen(producto.getImagen());
         DTO.setCategoria(string(producto.getCategoria()));
         DTO.setVisible(producto.getVisible());
         DTO.setInventario(producto.getInventario().isEmpty());
