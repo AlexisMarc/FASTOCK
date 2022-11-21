@@ -5,8 +5,6 @@ public class DTOtipo {
     private Integer id;
     // --------------------NOMBRE-----------------------//
     private String nombre;
-    // -----------------------FILTRO-----------------------//
-    private String filtro;
     // --------------Estado---------------//
     private Boolean estado;
     
@@ -30,22 +28,15 @@ public class DTOtipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getFiltro() {
-        return filtro;
-    }
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
-    }
     public Boolean getEstado() {
         return estado;
     }
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    public DTOtipo(Integer id, String nombre, String filtro, Boolean estado) {
+    public DTOtipo(Integer id, String nombre, Boolean estado) {
         this.id = id;
         this.nombre = nombre;
-        this.filtro = filtro;
         this.estado = estado;
     }
     public DTOtipo() {

@@ -22,11 +22,6 @@ public class tipo {
     @Column(length = 30, nullable = false)
     @Size(min = 2, max = 30)
     private String nombre;
-    // -----------------------FILTRO-----------------------//
-    @NotEmpty(message = "No puede ser vacío.")
-    @Column(length = 20, nullable = false)
-    @Size(min = 2, max = 20)
-    private String filtro;
     // --------------Estado---------------//
     @Column(nullable = true)
     private Boolean estado;
@@ -76,23 +71,14 @@ public class tipo {
     public tipo() {
     }
 
-    public String getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
-    }
-
     public tipo(Integer id,
             @NotEmpty(message = "El tipo debe tener una longitud en 2 y 30 caracteres.") @Size(min = 2, max = 30) String nombre,
-            @NotEmpty(message = "No puede ser vacío.") @Size(min = 2, max = 20) String filtro, Boolean estado,
-            Set<insumo> insumo) {
+            Boolean estado, Set<fastock.fastock.Class.insumo.insumo> insumo) {
         this.id = id;
         this.nombre = nombre;
-        this.filtro = filtro;
         this.estado = estado;
         this.insumo = insumo;
     }
 
+    
 }

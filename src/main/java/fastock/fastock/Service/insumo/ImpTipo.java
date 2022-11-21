@@ -38,7 +38,6 @@ public class ImpTipo {
         tipo tipo = new tipo();
 
         tipo.setNombre(DTO.getNombre());
-        tipo.setFiltro(DTO.getFiltro());
         tipo.setEstado(true);
 
         return tipo;
@@ -50,7 +49,6 @@ public class ImpTipo {
 
         tipo.setId(DTO.getId());
         tipo.setNombre(DTO.getNombre());
-        tipo.setFiltro(DTO.getFiltro());
         tipo.setEstado(DTO.getEstado());
 
         return tipo;
@@ -62,7 +60,7 @@ public class ImpTipo {
 
         DTO.setId(tipo.getId());
         DTO.setNombre(tipo.getNombre());
-        DTO.setFiltro(tipo.getFiltro());
+
         DTO.setEstado(tipo.getEstado());
 
         return DTO;

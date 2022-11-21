@@ -16,10 +16,6 @@ public class DTOUpdateCategoria {
     // -----------------------ESTADO-----------------------//
     @NotNull(message = "El estado no debe estar vacío")
     private Boolean estado;
-    // -----------------------FILTRO-----------------------//
-    @NotEmpty(message = "El filtro no debe estar vacío")
-    @Size(min = 2, max = 20)
-    private String filtro;
 
     // ************************************************//
     // -------------Constructores---------------//
@@ -34,7 +30,6 @@ public class DTOUpdateCategoria {
         this.id = id;
         this.nombre = nombre;
         this.estado = estado;
-        this.filtro = filtro;
     }
 
     public Integer getId() {
@@ -59,14 +54,6 @@ public class DTOUpdateCategoria {
 
     public void setEstado(Boolean estado) {
         this.estado = estado;
-    }
-
-    public String getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
     }
 
 }

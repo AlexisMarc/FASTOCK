@@ -8,11 +8,6 @@ public class DTOCreateTipo {
     @NotEmpty(message = "El tipo debe tener una longitud en 2 y 30 caracteres.")
     @Size(min = 2, max = 30)
     private String nombre;
-    // -----------------------FILTRO-----------------------//
-    @NotEmpty(message = "No puede ser vacío.")
-    @Size(min = 2, max = 20)
-    private String filtro;
-
     // ************************************************//
     // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//
     // ************************************************//
@@ -20,10 +15,8 @@ public class DTOCreateTipo {
     }
 
     public DTOCreateTipo(
-            @NotEmpty(message = "El tipo debe tener una longitud en 2 y 30 caracteres.") @Size(min = 2, max = 30) String nombre,
-            @NotEmpty(message = "No puede ser vacío.") @Size(min = 2, max = 20) String filtro) {
+            @NotEmpty(message = "El tipo debe tener una longitud en 2 y 30 caracteres.") @Size(min = 2, max = 30) String nombre) {
         this.nombre = nombre;
-        this.filtro = filtro;
     }
 
     public String getNombre() {
@@ -33,13 +26,4 @@ public class DTOCreateTipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
-    }
-
 }

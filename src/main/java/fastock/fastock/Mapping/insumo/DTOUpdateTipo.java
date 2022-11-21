@@ -15,19 +15,13 @@ public class DTOUpdateTipo {
     // -----------------------ESTADO-----------------------//
     @NotNull(message = "El estado no debe estar vacío")
     private Boolean estado;
-    // -----------------------FILTRO-----------------------//
-    @NotEmpty(message = "No puede ser vacío.")
-    @Size(min = 2, max = 20)
-    private String filtro;
 
     public DTOUpdateTipo(@NotNull(message = "El ID no debe estar vacío") Integer id,
             @NotEmpty(message = "El tipo debe tener una longitud en 2 y 30 caracteres.") @Size(min = 2, max = 30) String nombre,
-            @NotNull(message = "El estado no debe estar vacío") Boolean estado,
-            @NotEmpty(message = "No puede ser vacío.") @Size(min = 2, max = 20) String filtro) {
+            @NotNull(message = "El estado no debe estar vacío") Boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.estado = estado;
-        this.filtro = filtro;
     }
 
     public DTOUpdateTipo() {
@@ -56,13 +50,4 @@ public class DTOUpdateTipo {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
-    public String getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
-    }
-
 }

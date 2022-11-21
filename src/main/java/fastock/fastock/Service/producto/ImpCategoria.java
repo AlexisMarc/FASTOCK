@@ -39,7 +39,6 @@ public class ImpCategoria {
         categoria categoria = new categoria();
 
         categoria.setNombre(DTO.getNombre());
-        categoria.setFiltro(DTO.getFiltro());
         categoria.setEstado(true);
 
         return categoria;
@@ -51,7 +50,6 @@ public class ImpCategoria {
 
         categoria.setId(DTO.getId());
         categoria.setNombre(DTO.getNombre());
-        categoria.setFiltro(DTO.getFiltro());
         categoria.setEstado(DTO.getEstado());
 
         return categoria;
@@ -63,7 +61,6 @@ public class ImpCategoria {
 
         DTO.setId(categoria.getId());
         DTO.setNombre(categoria.getNombre());
-        DTO.setFiltro(categoria.getFiltro());
         DTO.setEstado(categoria.getEstado());
 
         return DTO;

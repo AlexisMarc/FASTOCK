@@ -24,12 +24,6 @@ public class categoria {
     @Size(min = 2, max = 30, message = "La categoría debe tener una longitud en 2 y 60 caracteres.")
     private String nombre;
 
-    // -----------------------FILTRO-----------------------//
-    @NotEmpty(message = "El filtro no debe estar vacío")
-    @Column(length = 20, nullable = false)
-    @Size(min = 2, max = 20)
-    private String filtro;
-
     // -----------------------Estado-----------------------//
     @Column(nullable = false)
     private Boolean estado;
@@ -50,12 +44,11 @@ public class categoria {
     }
 
     public categoria(Integer id,
-            @NotEmpty(message = "La categoría no debe estar vacía") @Size(min = 2, max = 30, message = "La categoría debe tener una longitud en 2 y 60 caracteres.") String nombre,
-            @NotEmpty(message = "El filtro no debe estar vacío") @Size(min = 2, max = 20) String filtro, Boolean estado,
+            @NotEmpty(message = "La categoría no debe estar vacía") @Size(min = 2, max = 30, message = "La categoría debe tener una longitud en 2 y 60 caracteres.") 
+            String nombre, Boolean estado,
             Set<producto> producto) {
         this.id = id;
         this.nombre = nombre;
-        this.filtro = filtro;
         this.estado = estado;
         this.producto = producto;
     }
@@ -74,14 +67,6 @@ public class categoria {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(String filtro) {
-        this.filtro = filtro;
     }
 
     public Boolean getEstado() {
