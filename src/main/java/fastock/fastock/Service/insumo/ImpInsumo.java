@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fastock.fastock.Class.insumo.insumo;
+import fastock.fastock.Class.proveedor.proveedor;
 import fastock.fastock.Class.insumo.tipo;
 import fastock.fastock.Mapping.insumo.DTOCreateInsumo;
 import fastock.fastock.Mapping.insumo.DTOUpdateInsumo;
 import fastock.fastock.Mapping.insumo.DTOinsumo;
+import fastock.fastock.Mapping.insumo.DTOtipo;
 import fastock.fastock.Service.proveedor.IProveedor;
 
 @Service
@@ -57,14 +59,18 @@ public class ImpInsumo {
         return lista;
     }
 
-    // TIPOS A STRING
-    private List<String> string(Set<tipo> tipos) {
-        List<String> lista = new ArrayList<String>();
+    // TIPOS A DTOtipo
+    private List<DTOtipo> DTOtipo(Set<tipo> tipos) {
+        List<DTOtipo> lista = new ArrayList<DTOtipo>();
         Iterator<tipo> i = tipos.iterator();
 
         while (i.hasNext()) {
             tipo interar = i.next();
-            lista.add(interar.getNombre());
+            DTOtipo DTO = new DTOtipo();
+            DTO.setId(interar.getId());
+            DTO.setNombre(interar.getNombre());
+            DTO.setEstado(interar.getEstado());
+            lista.add(DTO);
         }
         return lista;
     }
@@ -72,11 +78,14 @@ public class ImpInsumo {
     // DTOCREATE A ENTITY
     private insumo DTOCreate(DTOCreateInsumo DTO) {
         insumo insumo = new insumo();
-
+        proveedor proveedor = new proveedor();
+        if (proveedori.findById(DTO.getProveedor()).get()!=null) {
+            proveedor=proveedori.findById(DTO.getProveedor()).get();
+        }
         insumo.setNombre(DTO.getNombre());
         insumo.setMaterial(DTO.getMaterial());
         insumo.setTipo(tipos(DTO.getTipo()));
-        insumo.setProveedor(proveedori.findById(DTO.getProveedor()).get());
+        insumo.setProveedor(proveedor);
         insumo.setImagen(DTO.getImagen());
         insumo.setEstado(true);
         return insumo;
@@ -103,7 +112,7 @@ public class ImpInsumo {
         DTO.setId(insumo.getId());
         DTO.setNombre(insumo.getNombre());
         DTO.setMaterial(insumo.getMaterial());
-        DTO.setTipo(string(insumo.getTipo()));
+        DTO.setTipo(DTOtipo(insumo.getTipo()));
         DTO.setImagen(insumo.getImagen());
         DTO.setIdProveedor(insumo.getProveedor().getId());
         DTO.setProveedor(insumo.getProveedor().getNombre());

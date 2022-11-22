@@ -52,7 +52,7 @@ public class insumo {
 	// -------------Relacion con proveedor-------------//
 	// ************************************************//
 	@JsonBackReference(value = "insumo_proveedor")
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "proveedor_id")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private proveedor proveedor;

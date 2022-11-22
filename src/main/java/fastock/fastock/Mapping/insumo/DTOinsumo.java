@@ -16,7 +16,7 @@ public class DTOinsumo {
 	// ************************************************//
 	// -------------Relacion con tipo------------------//
 	// ************************************************//
-	private List<String> tipo;
+	private List<DTOtipo> tipo;
 	// ************************************************//
 	// -------------Relacion con proveedor-------------//
 	// ************************************************//
@@ -70,11 +70,11 @@ public class DTOinsumo {
 		this.estado = estado;
 	}
 
-	public List<String> getTipo() {
+	public List<DTOtipo> getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(List<String> tipo) {
+	public void setTipo(List<DTOtipo> tipo) {
 		this.tipo = tipo;
 	}
 
@@ -102,7 +102,7 @@ public class DTOinsumo {
 		this.inventario = inventario;
 	}
 
-    public DTOinsumo(Integer id, String nombre, String material, String imagen, Boolean estado, List<String> tipo,
+    public DTOinsumo(Integer id, String nombre, String material, String imagen, Boolean estado, List<DTOtipo> tipo,
             String proveedor, Integer idProveedor, Boolean inventario) {
         this.id = id;
         this.nombre = nombre;

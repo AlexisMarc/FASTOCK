@@ -52,7 +52,7 @@ public class proveedor {
     // -------------Relacion con insumo----------------//
     // ************************************************//
     @JsonManagedReference(value = "insumo_proveedor")
-    @OneToMany(mappedBy = "proveedor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "proveedor", fetch = FetchType.LAZY)
     private Set<insumo> insumo = new HashSet<>();
     // ************************************************//
     // -------------Constructores---------------//

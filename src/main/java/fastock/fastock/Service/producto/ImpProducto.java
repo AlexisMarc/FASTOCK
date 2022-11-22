@@ -14,6 +14,7 @@ import fastock.fastock.Class.producto.producto;
 import fastock.fastock.Mapping.producto.DTOCreateProducto;
 import fastock.fastock.Mapping.producto.DTOUpdateProducto;
 import fastock.fastock.Mapping.producto.DTOproducto;
+import fastock.fastock.Mapping.producto.DTOcategoria;
 
 @Service
 public class ImpProducto {
@@ -53,14 +54,18 @@ public class ImpProducto {
         return lista;
     }
 
-    //CATEGORIAS A STRING
-    private List<String> string(Set<categoria> categorias){
-        List<String> lista = new ArrayList<String>();
+    //CATEGORIAS A DTOcategoria
+    private List<DTOcategoria> DTOcategoria(Set<categoria> categorias){
+        List<DTOcategoria> lista = new ArrayList<DTOcategoria>();
         Iterator<categoria> i = categorias.iterator();
         
         while (i.hasNext()) {
             categoria interar = i.next();
-            lista.add(interar.getNombre());
+            DTOcategoria DTO = new DTOcategoria();
+            DTO.setId(interar.getId());
+            DTO.setNombre(interar.getNombre());
+            DTO.setEstado(interar.getEstado());
+            lista.add(DTO);
         }
         return lista;
     }
@@ -102,7 +107,7 @@ public class ImpProducto {
         DTO.setDescripcion(producto.getDescripcion());
         DTO.setEstado(producto.getEstado());
         DTO.setImagen(producto.getImagen());
-        DTO.setCategoria(string(producto.getCategoria()));
+        DTO.setCategoria(DTOcategoria(producto.getCategoria()));
         DTO.setVisible(producto.getVisible());
         DTO.setInventario(producto.getInventario().isEmpty());
 

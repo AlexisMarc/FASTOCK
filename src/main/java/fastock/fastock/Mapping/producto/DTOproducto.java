@@ -25,7 +25,7 @@ public class DTOproducto {
     // ************************************************//
     // -------------Relacion con Categoria-------------//
     // ************************************************//
-    private List<String> categoria;
+    private List<DTOcategoria> categoria;
     // ************************************************//
     // -------------Relacion con inventario------------//
     // ************************************************//
@@ -39,7 +39,7 @@ public class DTOproducto {
     }
 
     public DTOproducto(Integer id, String nombre, String descripcion, Boolean estado, Boolean visible, String imagen,
-            List<String> categoria, Boolean inventario) {
+            List<DTOcategoria> categoria, Boolean inventario) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -98,11 +98,11 @@ public class DTOproducto {
         this.imagen = imagen;
     }
 
-    public List<String> getCategoria() {
+    public List<DTOcategoria> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(List<String> categoria) {
+    public void setCategoria(List<DTOcategoria> categoria) {
         this.categoria = categoria;
     }
 
