@@ -30,7 +30,9 @@ public class tipo {
     // ************************************************//
     @JsonIgnoreProperties(value = "insumo_tipo")
     @ManyToMany
-    @JoinTable(name = "insumo_tipo", joinColumns = @JoinColumn(name = "id_insumo", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_tipo", referencedColumnName = "id"))
+    @JoinTable(name = "insumo_tipo", 
+    inverseJoinColumns = @JoinColumn(name = "id_insumo", referencedColumnName = "id"), 
+    joinColumns = @JoinColumn(name = "id_tipo", referencedColumnName = "id"))
     private Set<insumo> insumo = new HashSet<>();
     // ************************************************//
     // -------------GETTERS AND SETTERS/CONSTRUCTORES----------------//

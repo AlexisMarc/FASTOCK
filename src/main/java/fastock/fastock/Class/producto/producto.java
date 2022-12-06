@@ -51,7 +51,9 @@ public class producto {
     // ************************************************//
     @ManyToMany
     @JsonIgnoreProperties(value = "producto_categoria")
-    @JoinTable(name = "producto_categoria", joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
+    @JoinTable(name = "producto_categoria", 
+    joinColumns = @JoinColumn(name = "id_producto", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id"))
     private Set<categoria> categoria = new HashSet<>();
     // ************************************************//
     // -------------Relacion con fabricacion-----------//

@@ -56,8 +56,8 @@ public class ImpInventariopro {
         DTOinventariopro DTO = new DTOinventariopro();
 
         DTO.setId(inventario.getId());
-        DTO.setSalida(salidasi.salida(EnumEntradaSalida.INSUMO, inventario.getId()));
-        DTO.setEntrada(entradasi.Entrada(EnumEntradaSalida.INSUMO, inventario.getId()));
+        DTO.setSalida(salidasi.salida(EnumEntradaSalida.PRODUCTO, inventario.getId()));
+        DTO.setEntrada(entradasi.Entrada(EnumEntradaSalida.PRODUCTO, inventario.getId()));
         DTO.setProducto(inventario.getProducto().getNombre());
         DTO.setImg(inventario.getProducto().getImagen());
         DTO.setIdProducto(inventario.getProducto().getId());

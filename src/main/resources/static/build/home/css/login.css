@@ -1,0 +1,118 @@
+*{
+    margin: 0px;
+
+}
+
+body{
+    background: url(../images/fondo-login.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* tiprografia */
+h2{
+    font-size: 42px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #cf93b9;
+}
+p{
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22.4px;
+    color: #cf93b9;
+    margin-bottom: 3%;
+}
+
+a{
+    text-decoration: none;
+    color: #cf93b9;
+    background-color: #C0BCCB;
+}
+/* login */
+
+.sectionf{
+	text-align: center;
+
+ }
+ .containerf{
+	width: 40%;
+	margin-left: 27%;
+    margin-top: 3%;
+	padding: 3%;
+    
+ }
+ .conFormf {
+	text-align: center;
+	width: 100%;
+}
+.conFormf h5 {
+	font-size: 30px;
+	
+}
+.conFormf p {
+	text-align: center;
+	margin: 7%;
+}
+.conFormf input {
+	color: #797979;
+	padding: 15px 30px;
+	border: none;
+	margin-right: 3%;
+	margin-bottom: 30px;
+	outline: none;
+	font-style: normal;
+	border: #e0e0e0 1px solid;
+	font-size: 15px;
+	width: 90%;
+}
+.conFormf input.noMarr {
+	margin-right: 0px;
+}
+.conFormf textarea {
+	color: #797979;
+	padding: 15px 30px;
+	margin-bottom: 18px;
+	outline: none;
+	height: 150px;
+	font-style: normal;
+	resize: none;
+	font-size: 15px;
+	border: none;
+	border: #e0e0e0 1px solid;
+}
+.conFormf .submitBnt {
+	background: #cf93b9;
+	color: #fff;
+	margin-top: 30px;
+	padding:15px 30px 15px 30px;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 5px;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	width: 103%;
+}
+.conFormf .submitBnt:hover {
+	background: #C0BCCB;
+	color: #000;
+}
+/* boton */
+.back-to-top {
+    position: fixed;
+    right: 3rem;
+    width: 9rem;
+    bottom: 3rem;
+    background: #C0BCCB;
+    font-size: 25px;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
